@@ -1312,7 +1312,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #a1acb9;
+  background: #d6c437;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2682,7 +2682,7 @@ ul.breadcrumb li + li:last-child {
   margin-top: 16px;
 }
 body {
-  background: url("/images/the_view.jpg");
+  background: url("/images/view.jpg");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
