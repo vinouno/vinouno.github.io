@@ -21,23 +21,20 @@
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
   </script>
-  <meta name="description" content="一道简单的模拟题，考验的是基本功">
+  <meta name="description" content="数组简单题，练习的是基本语法掌握">
 <meta property="og:type" content="article">
-<meta property="og:title" content="59. 螺旋矩阵II">
-<meta property="og:url" content="http://example.com/2023/02/06/59.%20%E8%9E%BA%E6%97%8B%E7%9F%A9%E9%98%B5II/index.html">
+<meta property="og:title" content="66. 加一">
+<meta property="og:url" content="http://example.com/2023/02/07/66.%20%E5%8A%A0%E4%B8%80/index.html">
 <meta property="og:site_name" content="老泉杂记">
-<meta property="og:description" content="一道简单的模拟题，考验的是基本功">
+<meta property="og:description" content="数组简单题，练习的是基本语法掌握">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://assets.leetcode.com/uploads/2020/11/13/spiraln.jpg">
-<meta property="article:published_time" content="2023-02-06T03:15:36.000Z">
-<meta property="article:modified_time" content="2023-02-06T03:52:26.614Z">
+<meta property="article:published_time" content="2023-02-07T12:58:48.000Z">
+<meta property="article:modified_time" content="2023-02-07T13:01:54.275Z">
 <meta property="article:author" content="裘千尺">
-<meta property="article:tag" content="模拟">
 <meta property="article:tag" content="数组">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://assets.leetcode.com/uploads/2020/11/13/spiraln.jpg">
 
-<link rel="canonical" href="http://example.com/2023/02/06/59.%20%E8%9E%BA%E6%97%8B%E7%9F%A9%E9%98%B5II/">
+<link rel="canonical" href="http://example.com/2023/02/07/66.%20%E5%8A%A0%E4%B8%80/">
 
 
 <script id="page-configurations">
@@ -50,7 +47,7 @@
   };
 </script>
 
-  <title>59. 螺旋矩阵II | 老泉杂记</title>
+  <title>66. 加一 | 老泉杂记</title>
   
 
 
@@ -196,7 +193,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/02/06/59.%20%E8%9E%BA%E6%97%8B%E7%9F%A9%E9%98%B5II/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/02/07/66.%20%E5%8A%A0%E4%B8%80/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/jinx.jpg">
@@ -209,7 +206,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          59. 螺旋矩阵II
+          66. 加一
         </h1>
 
         <div class="post-meta">
@@ -220,7 +217,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2023-02-06 11:15:36 / 修改时间：11:52:26" itemprop="dateCreated datePublished" datetime="2023-02-06T11:15:36+08:00">2023-02-06</time>
+              <time title="创建时间：2023-02-07 20:58:48 / 修改时间：21:01:54" itemprop="dateCreated datePublished" datetime="2023-02-07T20:58:48+08:00">2023-02-07</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -233,7 +230,7 @@
             </span>
 
           
-            <div class="post-description"><div align="center"> 一道简单的模拟题，考验的是基本功 </div></div>
+            <div class="post-description"><div align="center">数组简单题，练习的是基本语法掌握</div></div>
 
         </div>
       </header>
@@ -244,13 +241,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/spiral-matrix-ii/">leetcode-59. 螺旋矩阵II</a></p>
-<p>以n&#x3D;3为例，此矩阵共赋值9次，移动8次，沿4个方向移动，问题的关键在于如何把这些操作不重不漏地分类完成。</p>
-<p>下一步要思考的是，根据n的不同，如何把这些操作分配到不同的轮次内，一个可行的办法是转一圈，算作一个轮次。</p>
-<p>一个轮次内有4个方向，由此可知，至少要写4个循环才能完成目标，同一方向的操作，写在一个循环内。</p>
-<p>最后，在完成一圈后，移动到下一圈开始的位置，即可完成循环。</p>
-<p><img src="https://assets.leetcode.com/uploads/2020/11/13/spiraln.jpg" alt="实例"></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">generateMatrix</span>(<span class="type">int</span> n) &#123;</span><br><span class="line">        vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">result</span>(n,<span class="built_in">vector</span>(n,<span class="number">0</span>));</span><br><span class="line">        <span class="type">int</span> i = <span class="number">1</span>, x = <span class="number">0</span>, y = <span class="number">0</span>, loop = n;  <span class="comment">//loop为轮次的长度</span></span><br><span class="line">        <span class="keyword">while</span> (loop &gt; <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> step = <span class="number">0</span>; step &lt; loop <span class="number">-1</span>; step++)</span><br><span class="line">            &#123;</span><br><span class="line">                result[x][y] = i;</span><br><span class="line">                y++;</span><br><span class="line">                i++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> step = <span class="number">0</span>; step &lt; loop - <span class="number">1</span>; step++)</span><br><span class="line">            &#123;</span><br><span class="line">                result[x][y] = i;</span><br><span class="line">                x++;</span><br><span class="line">                i++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> step = <span class="number">0</span>; step &lt; loop - <span class="number">1</span>; step++)</span><br><span class="line">            &#123;</span><br><span class="line">                result[x][y] = i;</span><br><span class="line">                y--;</span><br><span class="line">                i++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> step = <span class="number">0</span>; step &lt; loop - <span class="number">2</span>; step++)</span><br><span class="line">            &#123;</span><br><span class="line">                result[x][y] = i;</span><br><span class="line">                x--;</span><br><span class="line">                i++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//四次循环，对应四个方向的移动</span></span><br><span class="line">            result[x][y] = i;</span><br><span class="line">            y++;</span><br><span class="line">            i++;</span><br><span class="line">            <span class="comment">//把位置重置到下一轮的起始点</span></span><br><span class="line">            loop -= <span class="number">2</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+        <p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/plus-one/description/">66. 加一</a></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">plusOne</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; digits)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = digits.<span class="built_in">size</span>() - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(digits[i] != <span class="number">9</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                digits[i]++;</span><br><span class="line">                <span class="keyword">return</span> digits;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            digits[i] = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//出了循环，说明全是9</span></span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">result</span><span class="params">(digits.size() + <span class="number">1</span>, <span class="number">0</span>)</span></span>;</span><br><span class="line">        result[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
     </div>
 
     
@@ -259,7 +251,6 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E6%A8%A1%E6%8B%9F/" rel="tag"># 模拟</a>
               <a href="/tags/%E6%95%B0%E7%BB%84/" rel="tag"># 数组</a>
           </div>
 
@@ -269,13 +260,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2023/02/06/209.%20%E9%95%BF%E5%BA%A6%E6%9C%80%E5%B0%8F%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84/" rel="prev" title="209. 长度最小的子数组">
-      <i class="fa fa-chevron-left"></i> 209. 长度最小的子数组
+    <a href="/2023/02/07/206.%20%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8/" rel="prev" title="206. 反转链表">
+      <i class="fa fa-chevron-left"></i> 206. 反转链表
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2023/02/07/203.%20%E7%A7%BB%E9%99%A4%E9%93%BE%E8%A1%A8%E5%85%83%E7%B4%A0/" rel="next" title="203. 移除链表元素">
-      203. 移除链表元素 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
