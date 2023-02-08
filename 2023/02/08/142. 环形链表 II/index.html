@@ -21,21 +21,24 @@
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
   </script>
-  <meta name="description" content="利用双指针一趟解决删除链表节点问题">
+  <meta name="description" content="三种办法解题">
 <meta property="og:type" content="article">
-<meta property="og:title" content="19. 删除链表的倒数第 N 个结点">
-<meta property="og:url" content="http://example.com/2023/02/08/19.%20%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E7%9A%84%E5%80%92%E6%95%B0%E7%AC%AC%20N%20%E4%B8%AA%E7%BB%93%E7%82%B9/index.html">
+<meta property="og:title" content="142. 环形链表 II -待补充">
+<meta property="og:url" content="http://example.com/2023/02/08/142.%20%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8%20II/index.html">
 <meta property="og:site_name" content="老泉杂记">
-<meta property="og:description" content="利用双指针一趟解决删除链表节点问题">
+<meta property="og:description" content="三种办法解题">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-02-08T00:52:00.000Z">
-<meta property="article:modified_time" content="2023-02-08T02:17:59.866Z">
+<meta property="article:published_time" content="2023-02-08T02:03:30.000Z">
+<meta property="article:modified_time" content="2023-02-08T02:16:56.577Z">
 <meta property="article:author" content="裘千尺">
 <meta property="article:tag" content="链表">
 <meta property="article:tag" content="双指针">
+<meta property="article:tag" content="待补充">
+<meta property="article:tag" content="哈希">
+<meta property="article:tag" content="巧妙构思">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/2023/02/08/19.%20%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E7%9A%84%E5%80%92%E6%95%B0%E7%AC%AC%20N%20%E4%B8%AA%E7%BB%93%E7%82%B9/">
+<link rel="canonical" href="http://example.com/2023/02/08/142.%20%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8%20II/">
 
 
 <script id="page-configurations">
@@ -48,7 +51,7 @@
   };
 </script>
 
-  <title>19. 删除链表的倒数第 N 个结点 | 老泉杂记</title>
+  <title>142. 环形链表 II -待补充 | 老泉杂记</title>
   
 
 
@@ -194,7 +197,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/02/08/19.%20%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E7%9A%84%E5%80%92%E6%95%B0%E7%AC%AC%20N%20%E4%B8%AA%E7%BB%93%E7%82%B9/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/02/08/142.%20%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8%20II/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/jinx.jpg">
@@ -207,7 +210,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          19. 删除链表的倒数第 N 个结点
+          142. 环形链表 II -待补充
         </h1>
 
         <div class="post-meta">
@@ -218,7 +221,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2023-02-08 08:52:00 / 修改时间：10:17:59" itemprop="dateCreated datePublished" datetime="2023-02-08T08:52:00+08:00">2023-02-08</time>
+              <time title="创建时间：2023-02-08 10:03:30 / 修改时间：10:16:56" itemprop="dateCreated datePublished" datetime="2023-02-08T10:03:30+08:00">2023-02-08</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -231,7 +234,7 @@
             </span>
 
           
-            <div class="post-description"><div align="center"> 利用双指针一趟解决删除链表节点问题 </div></div>
+            <div class="post-description"><div align="center"> 三种办法解题 </div></div>
 
         </div>
       </header>
@@ -242,9 +245,23 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="19-删除链表的倒数第-N-个结点"><a href="#19-删除链表的倒数第-N-个结点" class="headerlink" title="19. 删除链表的倒数第 N 个结点"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/remove-nth-node-from-end-of-list/">19. 删除链表的倒数第 N 个结点</a></h1><p>熟悉的双指针，让fastIndex先前进n步，再让两个指针一起前进，直到fastIndex到达最后一个元素。此时，slowIndex所在的位置即为要删除节点的前一个元素，方便删除操作。</p>
-<p>本题稍微卡壳的地方在于，要删除的节点是第一个节点的问题，是没法找到要删除的节点的前一个节点的。但是在引入虚拟头节点dummyHead后，问题就解决了。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode* <span class="title">removeNthFromEnd</span><span class="params">(ListNode* head, <span class="type">int</span> n)</span> </span>&#123;</span><br><span class="line">        ListNode* dummyHead = <span class="keyword">new</span> <span class="built_in">ListNode</span>(<span class="number">0</span>);</span><br><span class="line">        dummyHead-&gt;next = head;</span><br><span class="line">        ListNode* slowIndex = dummyHead;</span><br><span class="line">        ListNode* fastIndex = dummyHead;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            fastIndex = fastIndex-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span>(fastIndex-&gt;next != <span class="literal">NULL</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            fastIndex = fastIndex-&gt;next;</span><br><span class="line">            slowIndex = slowIndex-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        ListNode* temp = slowIndex-&gt;next;</span><br><span class="line">        slowIndex-&gt;next = temp-&gt;next;</span><br><span class="line">        <span class="keyword">delete</span> temp; </span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> dummyHead-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+        <h1 id="142-环形链表-II"><a href="#142-环形链表-II" class="headerlink" title="142. 环形链表 II"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/linked-list-cycle-ii/description/">142. 环形链表 II</a></h1><p>这道题非常地有趣，旨在找到链表中环的起始点。</p>
+<h2 id="哈希法"><a href="#哈希法" class="headerlink" title="哈希法"></a>哈希法</h2><p>最容易的办法是遍历链表中的每个节点，用哈希表储存地址，如果有重复的内容，说明找到了环的起始点。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//代码待补充</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="数学法"><a href="#数学法" class="headerlink" title="数学法"></a>数学法</h2><p>第二种办法是数学法，具体可以参考题解：<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/linked-list-cycle-ii/solutions/12616/linked-list-cycle-ii-kuai-man-zhi-zhen-shuang-zhi-/">环形链表 II（双指针法，清晰图解）</a></p>
+<p>概括一下：</p>
+<p>根据：</p>
+<p>f&#x3D;2s （快指针每次2步，路程刚好2倍）</p>
+<p>f &#x3D; s + nb (相遇时，刚好多走了n圈）</p>
+<p>推出：s &#x3D; nb</p>
+<p>从head结点走到入环点需要走 ： a + nb， 而slow已经走了nb，那么slow再走a步就是入环点了。</p>
+<p>如何知道slow刚好走了a步？ 从head开始，和slow指针一起走，相遇时刚好就是a步.</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode *<span class="title">detectCycle</span><span class="params">(ListNode *head)</span> </span>&#123;</span><br><span class="line">         ListNode* fast = head;</span><br><span class="line">         ListNode* slow = head;</span><br><span class="line">        <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (fast == <span class="literal">NULL</span> || fast-&gt;next == <span class="literal">NULL</span>) <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">            fast = fast-&gt;next-&gt;next;</span><br><span class="line">            slow = slow-&gt;next;</span><br><span class="line">            <span class="keyword">if</span> (fast == slow) <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        fast = head;</span><br><span class="line">        <span class="keyword">while</span> (slow != fast) &#123;</span><br><span class="line">            slow = slow-&gt;next;</span><br><span class="line">            fast = fast-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> fast;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="巧妙法"><a href="#巧妙法" class="headerlink" title="巧妙法"></a>巧妙法</h2><p>O(n)算法，应该是最快的。 堆的地址从低到高，LeetCode的链表内存是顺序申请的，如果有环，head-&gt;next一定小于或等于head。</p>
+<p>这个办法在实际生产中没法使用，因为堆内会不断地new和delete新的节点。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode *<span class="title">detectCycle</span><span class="params">(ListNode *head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">while</span>(head) &#123;</span><br><span class="line">            <span class="keyword">if</span>(!<span class="built_in">less</span>&lt;ListNode *&gt;()(head, head-&gt;next)) &#123;</span><br><span class="line">                <span class="keyword">return</span> head-&gt;next;</span><br><span class="line">            &#125;</span><br><span class="line">            head = head-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
     </div>
 
     
@@ -255,6 +272,9 @@
           <div class="post-tags">
               <a href="/tags/%E9%93%BE%E8%A1%A8/" rel="tag"># 链表</a>
               <a href="/tags/%E5%8F%8C%E6%8C%87%E9%92%88/" rel="tag"># 双指针</a>
+              <a href="/tags/%E5%BE%85%E8%A1%A5%E5%85%85/" rel="tag"># 待补充</a>
+              <a href="/tags/%E5%93%88%E5%B8%8C/" rel="tag"># 哈希</a>
+              <a href="/tags/%E5%B7%A7%E5%A6%99%E6%9E%84%E6%80%9D/" rel="tag"># 巧妙构思</a>
           </div>
 
         
@@ -263,13 +283,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2023/02/07/66.%20%E5%8A%A0%E4%B8%80/" rel="prev" title="66. 加一">
-      <i class="fa fa-chevron-left"></i> 66. 加一
+    <a href="/2023/02/08/160.%20%E7%9B%B8%E4%BA%A4%E9%93%BE%E8%A1%A8/" rel="prev" title="160. 相交链表">
+      <i class="fa fa-chevron-left"></i> 160. 相交链表
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2023/02/08/160.%20%E7%9B%B8%E4%BA%A4%E9%93%BE%E8%A1%A8/" rel="next" title="160. 相交链表">
-      160. 相交链表 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -328,7 +345,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#19-%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E7%9A%84%E5%80%92%E6%95%B0%E7%AC%AC-N-%E4%B8%AA%E7%BB%93%E7%82%B9"><span class="nav-number">1.</span> <span class="nav-text">19. 删除链表的倒数第 N 个结点</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#142-%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8-II"><span class="nav-number">1.</span> <span class="nav-text">142. 环形链表 II</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%93%88%E5%B8%8C%E6%B3%95"><span class="nav-number">1.1.</span> <span class="nav-text">哈希法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E5%AD%A6%E6%B3%95"><span class="nav-number">1.2.</span> <span class="nav-text">数学法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B7%A7%E5%A6%99%E6%B3%95"><span class="nav-number">1.3.</span> <span class="nav-text">巧妙法</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
