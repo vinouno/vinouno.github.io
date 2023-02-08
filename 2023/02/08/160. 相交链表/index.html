@@ -21,19 +21,21 @@
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
   </script>
-  <meta name="description" content="苏老泉，二十七。始发愤，读书籍。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="schedule">
-<meta property="og:url" content="http://example.com/schedule/index.html">
+  <meta name="description" content="两个指针一起移动，找到链表的交点">
+<meta property="og:type" content="article">
+<meta property="og:title" content="160. 相交链表">
+<meta property="og:url" content="http://example.com/2023/02/08/160.%20%E7%9B%B8%E4%BA%A4%E9%93%BE%E8%A1%A8/index.html">
 <meta property="og:site_name" content="老泉杂记">
-<meta property="og:description" content="苏老泉，二十七。始发愤，读书籍。">
+<meta property="og:description" content="两个指针一起移动，找到链表的交点">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-02-05T03:11:20.000Z">
-<meta property="article:modified_time" content="2023-02-06T10:17:40.086Z">
+<meta property="article:published_time" content="2023-02-08T01:23:51.000Z">
+<meta property="article:modified_time" content="2023-02-08T01:34:28.841Z">
 <meta property="article:author" content="裘千尺">
+<meta property="article:tag" content="链表">
+<meta property="article:tag" content="双指针">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/schedule/">
+<link rel="canonical" href="http://example.com/2023/02/08/160.%20%E7%9B%B8%E4%BA%A4%E9%93%BE%E8%A1%A8/">
 
 
 <script id="page-configurations">
@@ -41,13 +43,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>schedule | 老泉杂记
-</title>
+  <title>160. 相交链表 | 老泉杂记</title>
   
 
 
@@ -185,200 +186,96 @@
       <div class="main-inner">
         <div class="content-wrap">
           
-  
-  
 
-          <div class="content page posts-expand">
+          <div class="content post posts-expand">
             
 
     
-    
-    
-    <div class="post-block" lang="zh-CN">
-      <header class="post-header">
-
-<h1 class="post-title" itemprop="name headline">schedule
-</h1>
-
-<div class="post-meta">
   
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/02/08/160.%20%E7%9B%B8%E4%BA%A4%E9%93%BE%E8%A1%A8/">
 
-</div>
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/jinx.jpg">
+      <meta itemprop="name" content="裘千尺">
+      <meta itemprop="description" content="苏老泉，二十七。始发愤，读书籍。">
+    </span>
 
-</header>
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="老泉杂记">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          160. 相交链表
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-02-08 09:23:51 / 修改时间：09:34:28" itemprop="dateCreated datePublished" datetime="2023-02-08T09:23:51+08:00">2023-02-08</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">算法笔记</span></a>
+                </span>
+            </span>
+
+          
+            <div class="post-description"><div align="center"> 两个指针一起移动，找到链表的交点 </div></div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-      
-      
-      <div class="post-body">
-          <div class="event-list">
+        <p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/intersection-of-two-linked-lists/">160. 相交链表</a></p>
+<p>由于链表的特殊性质，一旦多条链表在一个节点相交，那么后面所有的节点都是重合的。所以，链表相交一定发生在链表的尾部。</p>
+<p>解决方案是，把两条链表尾部对齐，使两指针一起移动，如果发现地址相同，说明链表已经相交。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode *<span class="title">getIntersectionNode</span><span class="params">(ListNode *headA, ListNode *headB)</span> </span>&#123;</span><br><span class="line">        ListNode* curA = headA;</span><br><span class="line">        ListNode* curB = headB;</span><br><span class="line">        <span class="type">int</span> lenA = <span class="number">0</span>, lenB = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (curA != <span class="literal">NULL</span>) &#123; <span class="comment">// 求链表A的长度</span></span><br><span class="line">            lenA++;</span><br><span class="line">            curA = curA-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> (curB != <span class="literal">NULL</span>) &#123; <span class="comment">// 求链表B的长度</span></span><br><span class="line">            lenB++;</span><br><span class="line">            curB = curB-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        curA = headA;</span><br><span class="line">        curB = headB;</span><br><span class="line">        <span class="comment">// 让curA为最长链表的头，lenA为其长度</span></span><br><span class="line">        <span class="keyword">if</span> (lenB &gt; lenA) &#123;</span><br><span class="line">            <span class="built_in">swap</span> (lenA, lenB);</span><br><span class="line">            <span class="built_in">swap</span> (curA, curB);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 求长度差</span></span><br><span class="line">        <span class="type">int</span> gap = lenA - lenB;</span><br><span class="line">        <span class="comment">// 让curA和curB在同一起点上（末尾位置对齐）</span></span><br><span class="line">        <span class="keyword">while</span> (gap--) &#123;</span><br><span class="line">            curA = curA-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 遍历curA 和 curB，遇到相同则直接返回</span></span><br><span class="line">        <span class="keyword">while</span> (curA != <span class="literal">NULL</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (curA == curB) &#123;</span><br><span class="line">                <span class="keyword">return</span> curA;</span><br><span class="line">            &#125;</span><br><span class="line">            curA = curA-&gt;next;</span><br><span class="line">            curB = curB-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E9%93%BE%E8%A1%A8/" rel="tag"># 链表</a>
+              <a href="/tags/%E5%8F%8C%E6%8C%87%E9%92%88/" rel="tag"># 双指针</a>
           </div>
-          <script>
-(function() {
-  // Initialization
-  var calendar = {
-    orderBy     : 'startTime',
-    showLocation: false,
-    offsetMax   : 72,
-    offsetMin   : 4,
-    showDeleted : false,
-    singleEvents: true,
-    maxResults  : 250
-  };
-
-  // Read config form theme config file
-  Object.assign(calendar, {"calendar_id":"charlesquint6012@gmail.com","api_key":"AIzaSyAM4gKhHq0UC9RyIsc_9v7g3d2RjyZIAXo","orderBy":"startTime","offsetMax":120,"offsetMin":4,"showDeleted":false,"singleEvents":true,"maxResults":250});
-
-  var now = new Date();
-  var timeMax = new Date();
-  var timeMin = new Date();
-
-  timeMax.setHours(now.getHours() + calendar.offsetMax);
-  timeMin.setHours(now.getHours() - calendar.offsetMin);
-
-  // Build URL
-  const params = {
-    key         : calendar.api_key,
-    orderBy     : calendar.orderBy,
-    timeMax     : timeMax.toISOString(),
-    timeMin     : timeMin.toISOString(),
-    showDeleted : calendar.showDeleted,
-    singleEvents: calendar.singleEvents,
-    maxResults  : calendar.maxResults
-  };
-
-  var request_url = 'https://www.googleapis.com/calendar/v3/calendars/' + calendar.calendar_id + '/events?' + Object.entries(params).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
-
-  fetchData();
-  var fetchDataTimer = setInterval(fetchData, 60000);
-  window.addEventListener('pjax:send', () => {
-    clearInterval(fetchDataTimer);
-  });
-
-  function fetchData() {
-    var eventList = document.querySelector('.event-list');
-    if (!eventList) return;
-
-    fetch(request_url).then(response => {
-      return response.json();
-    }).then(data => {
-      if (data.items.length === 0) {
-        eventList.innerHTML = '<hr>';
-        return;
-      }
-      // Clean the event list
-      eventList.innerHTML = '';
-      var prevEnd = 0; // used to decide where to insert an <hr>
-
-      data.items.forEach(event => {
-        // Parse data
-        var utc   = new Date().getTimezoneOffset() * 60000;
-        var start = event.start.dateTime = new Date(event.start.dateTime || (new Date(event.start.date).getTime() + utc));
-        var end   = event.end.dateTime = new Date(event.end.dateTime || (new Date(event.end.date).getTime() + utc));
-
-        tense = judgeTense(now, start, end); // 0:now 1:future -1:past
-
-        if (tense === 1 && prevEnd < now) {
-          eventList.innerHTML += '<hr>';
-        }
-
-        eventDOM = buildEventDOM(tense, event);
-        eventList.innerHTML += eventDOM;
-
-        prevEnd = end;
-      });
-    });
-  }
-
-  function getRelativeTime(current, previous) {
-    var msPerMinute = 60 * 1000;
-    var msPerHour = msPerMinute * 60;
-    var msPerDay = msPerHour * 24;
-    var msPerMonth = msPerDay * 30;
-    var msPerYear = msPerDay * 365;
-
-    var elapsed = current - previous;
-    var tense = elapsed > 0 ? 'ago' : 'later';
-
-    elapsed = Math.abs(elapsed);
-
-    if      ( elapsed < msPerHour  ) {
-      return Math.round(elapsed / msPerMinute) + ' minutes ' + tense;
-    }
-    else if ( elapsed < msPerDay   ) {
-      return Math.round(elapsed / msPerHour) + ' hours ' + tense;
-    }
-    else if ( elapsed < msPerMonth ) {
-      return 'about ' + Math.round(elapsed / msPerDay) + ' days ' + tense;
-    }
-    else if ( elapsed < msPerYear  ) {
-      return 'about ' + Math.round(elapsed / msPerMonth) + ' months ' + tense;
-    }
-    else {
-      return 'about' + Math.round(elapsed / msPerYear) + ' years' + tense;
-    }
-  }
-
-  function judgeTense(now, eventStart, eventEnd) {
-    if      (eventEnd   < now) { return -1; }
-    else if (eventStart > now) { return  1; }
-    else                       { return  0; }
-  }
-
-  function buildEventDOM(tense, event) {
-    var tenseClass = '';
-    var start      = event.start.dateTime;
-    var end        = event.end.dateTime;
-    switch(tense) {
-      case 0 : // now
-        tenseClass = 'event-now';
-        break;
-      case 1 : // future
-        tenseClass = 'event-future';
-        break;
-      case -1: // past
-        tenseClass = 'event-past';
-        break;
-      default:
-        throw 'Time data error';
-    }
-    var durationFormat = {
-      weekday: 'short',
-      hour   : '2-digit',
-      minute : '2-digit'
-    };
-    var relativeTimeStr = (tense === 0) ? 'NOW' : getRelativeTime(now, start);
-    var durationStr = start.toLocaleTimeString([], durationFormat) + ' - ' + end.toLocaleTimeString([], durationFormat);
-
-    var locationDOM = '';
-    if (calendar.showLocation && event.location) {
-      locationDOM = '<span class="event-location event-details">' + event.location + '</span>';
-    }
-
-    var eventContent = `<div class="event ${tenseClass}">
-        <h2 class="event-summary">
-          ${event.summary}
-          <span class="event-relative-time">${relativeTimeStr}</span>
-        </h2>
-        ${locationDOM}
-        <span class="event-duration event-details">${durationStr}</span>
-      </div>`;
-    return eventContent;
-  }
-})();
-</script>
 
         
-      </div>
-      
-      
-      
-    </div>
-    
 
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/02/08/19.%20%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E7%9A%84%E5%80%92%E6%95%B0%E7%AC%AC%20N%20%E4%B8%AA%E7%BB%93%E7%82%B9/" rel="prev" title="19. 删除链表的倒数第 N 个结点">
+      <i class="fa fa-chevron-left"></i> 19. 删除链表的倒数第 N 个结点
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
     
-    
-    
+  </article>
+  
+  
+  
+
 
 
           </div>
