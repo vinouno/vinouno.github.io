@@ -21,23 +21,19 @@
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"vinouno.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
   </script>
-  <meta name="description" content="对C++中哈希相关容器的介绍">
-<meta property="og:type" content="article">
-<meta property="og:title" content="C++中的STL无序（哈希）容器">
-<meta property="og:url" content="https://vinouno.github.io/2023/02/10/C-%E4%B8%AD%E7%9A%84STL%E6%97%A0%E5%BA%8F%EF%BC%88%E5%93%88%E5%B8%8C%EF%BC%89%E5%AE%B9%E5%99%A8/index.html">
+  <meta property="og:type" content="article">
+<meta property="og:title" content="ChatGPT关于LeetCode的问答">
+<meta property="og:url" content="https://vinouno.github.io/2023/02/10/ChatGPT%E5%85%B3%E4%BA%8ELeetCode%E7%9A%84%E9%97%AE%E7%AD%94/index.html">
 <meta property="og:site_name" content="老泉杂记">
-<meta property="og:description" content="对C++中哈希相关容器的介绍">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20210104235134572.png">
-<meta property="article:published_time" content="2023-02-10T01:08:49.000Z">
-<meta property="article:modified_time" content="2023-02-10T08:20:02.874Z">
+<meta property="article:published_time" content="2023-02-10T11:30:50.000Z">
+<meta property="article:modified_time" content="2023-02-10T11:38:23.973Z">
 <meta property="article:author" content="裘千尺">
-<meta property="article:tag" content="哈希">
-<meta property="article:tag" content="STL">
+<meta property="article:tag" content="ChatGPT">
+<meta property="article:tag" content="LeetCode周赛">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20210104235134572.png">
 
-<link rel="canonical" href="https://vinouno.github.io/2023/02/10/C-%E4%B8%AD%E7%9A%84STL%E6%97%A0%E5%BA%8F%EF%BC%88%E5%93%88%E5%B8%8C%EF%BC%89%E5%AE%B9%E5%99%A8/">
+<link rel="canonical" href="https://vinouno.github.io/2023/02/10/ChatGPT%E5%85%B3%E4%BA%8ELeetCode%E7%9A%84%E9%97%AE%E7%AD%94/">
 
 
 <script id="page-configurations">
@@ -50,7 +46,7 @@
   };
 </script>
 
-  <title>C++中的STL无序（哈希）容器 | 老泉杂记</title>
+  <title>ChatGPT关于LeetCode的问答 | 老泉杂记</title>
   
 
 
@@ -197,7 +193,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://vinouno.github.io/2023/02/10/C-%E4%B8%AD%E7%9A%84STL%E6%97%A0%E5%BA%8F%EF%BC%88%E5%93%88%E5%B8%8C%EF%BC%89%E5%AE%B9%E5%99%A8/">
+    <link itemprop="mainEntityOfPage" href="https://vinouno.github.io/2023/02/10/ChatGPT%E5%85%B3%E4%BA%8ELeetCode%E7%9A%84%E9%97%AE%E7%AD%94/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/jinx.jpg">
@@ -210,7 +206,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          C++中的STL无序（哈希）容器
+          ChatGPT关于LeetCode的问答
         </h1>
 
         <div class="post-meta">
@@ -221,7 +217,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2023-02-10 09:08:49 / 修改时间：16:20:02" itemprop="dateCreated datePublished" datetime="2023-02-10T09:08:49+08:00">2023-02-10</time>
+              <time title="创建时间：2023-02-10 19:30:50 / 修改时间：19:38:23" itemprop="dateCreated datePublished" datetime="2023-02-10T19:30:50+08:00">2023-02-10</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -239,16 +235,16 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.3k</span>
+              <span>669</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
+              <span>1 分钟</span>
             </span>
-            <div class="post-description"><div align="center"> 对C++中哈希相关容器的介绍 </div></div>
+            <div class="post-description"><div align="center"> </div></div>
 
         </div>
       </header>
@@ -259,103 +255,37 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="常见的三种哈希结构"><a href="#常见的三种哈希结构" class="headerlink" title="常见的三种哈希结构"></a>常见的三种哈希结构</h1><p>当我们想使用哈希法来解决问题的时候，我们一般会选择如下三种数据结构。</p>
+        <h1 id="Q：如果想要全部答出周赛问题，那么要做哪些种类的题目？"><a href="#Q：如果想要全部答出周赛问题，那么要做哪些种类的题目？" class="headerlink" title="Q：如果想要全部答出周赛问题，那么要做哪些种类的题目？"></a>Q：如果想要全部答出周赛问题，那么要做哪些种类的题目？</h1><p>A：要想答出所有 LeetCode 周赛题目，你需要具备良好的编程基础知识和一定的数据结构和算法的理解。此外，下面几种题目类型也是很有必要练习的：</p>
 <ul>
-<li>数组</li>
-<li>set（集合）</li>
-<li>map (映射)</li>
+<li><p>数组和字符串问题：对于这类问题，需要对字符串或数组进行遍历，并对其进行处理，如反转字符串，查找最长不重复子串等。</p>
+</li>
+<li><p>数学问题：这类问题通常涉及到简单的数学计算，如求最大公因数，最小公倍数，数学归纳等。</p>
+</li>
+<li><p>树和图问题：树和图是经典的数据结构问题，如二叉树遍历，最短路径，图的拓扑排序等。</p>
+</li>
+<li><p>动态规划问题：动态规划是一种通过将复杂问题分解为若干个子问题并记录子问题的解，从而得到原问题的解的方法。</p>
+</li>
+<li><p>贪心算法问题：贪心算法是通过在每一步选择最佳决策来寻找全局最优解的一种方法。</p>
+</li>
 </ul>
-<p>这里数组就没啥可说的了，我们来看一下set。</p>
-<p>在C++中，set 和 map 分别提供以下三种数据结构，其底层实现以及优劣如下表所示：</p>
-<table>
-<thead>
-<tr>
-<th align="center">集合</th>
-<th align="center">底层实现</th>
-<th align="center">是否有序</th>
-<th align="center">数值是否可以重复</th>
-<th align="center">能否更改数值</th>
-<th align="center">查询效率</th>
-<th align="center">增删效率</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">std::set</td>
-<td align="center">红黑树</td>
-<td align="center">有序</td>
-<td align="center">否</td>
-<td align="center">否</td>
-<td align="center">O(log n)</td>
-<td align="center">O(log n)</td>
-</tr>
-<tr>
-<td align="center">std::multiset</td>
-<td align="center">红黑树</td>
-<td align="center">有序</td>
-<td align="center">是</td>
-<td align="center">否</td>
-<td align="center">O(log n)</td>
-<td align="center">O(log n)</td>
-</tr>
-<tr>
-<td align="center">std::unordered_set</td>
-<td align="center">哈希表</td>
-<td align="center">无序</td>
-<td align="center">否</td>
-<td align="center">否</td>
-<td align="center">O(1)</td>
-<td align="center">O(1)</td>
-</tr>
-</tbody></table>
-<p>std::unordered_set底层实现为哈希表，std::set 和std::multiset 的底层实现是红黑树，红黑树是一种平衡二叉搜索树，所以key值是有序的，但key不可以修改，改动key值会导致整棵树的错乱，所以只能删除和增加。</p>
-<table>
-<thead>
-<tr>
-<th align="center">集合</th>
-<th align="center">底层实现</th>
-<th align="center">是否有序</th>
-<th align="center">数值是否可以重复</th>
-<th align="center">能否更改数值</th>
-<th align="center">查询效率</th>
-<th align="center">增删效率</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">std::map</td>
-<td align="center">红黑树</td>
-<td align="center">key有序</td>
-<td align="center">key不可重复</td>
-<td align="center">key不可修改</td>
-<td align="center">O(log n)</td>
-<td align="center">O(log n)</td>
-</tr>
-<tr>
-<td align="center">std::multimap</td>
-<td align="center">红黑树</td>
-<td align="center">key有序</td>
-<td align="center">key可重复</td>
-<td align="center">key可修改</td>
-<td align="center">O(log n)</td>
-<td align="center">O(log n)</td>
-</tr>
-<tr>
-<td align="center">std::unordered_map</td>
-<td align="center">哈希表</td>
-<td align="center">key无序</td>
-<td align="center">key不可重复</td>
-<td align="center">key不可修改</td>
-<td align="center">O(1)</td>
-<td align="center">O(1)</td>
-</tr>
-</tbody></table>
-<p>std::unordered_map 底层实现为哈希表，std::map 和std::multimap 的底层实现是红黑树。同理，std::map 和std::multimap 的key也是有序的（这个问题也经常作为面试题，考察对语言容器底层的理解）。</p>
-<p>当我们要使用集合来解决哈希问题的时候，优先使用unordered_set，因为它的查询和增删效率是最优的，如果需要集合是有序的，那么就用set，如果要求不仅有序还要有重复数据的话，那么就用multiset。</p>
-<p>那么再来看一下map ，在map 是一个key value 的数据结构，map中，对key是有限制，对value没有限制的，因为key的存储方式使用红黑树实现的。</p>
-<p>其他语言例如：java里的HashMap ，TreeMap 都是一样的原理。可以灵活贯通。</p>
-<p>虽然std::set、std::multiset 的底层实现是红黑树，不是哈希表，std::set、std::multiset 使用红黑树来索引和存储，不过给我们的使用方式，还是哈希法的使用方式，即key和value。所以使用这些数据结构来解决映射问题的方法，我们依然称之为哈希法。 map也是一样的道理。</p>
-<p>这里在说一下，一些C++的经典书籍上 例如STL源码剖析，说到了hash_set hash_map，这个与unordered_set，unordered_map又有什么关系呢？</p>
-<p>实际上功能都是一样一样的， 但是unordered_set在C++11的时候被引入标准库了，而hash_set并没有，所以建议还是使用unordered_set比较好，这就好比一个是官方认证的，hash_set，hash_map 是C++11标准之前民间高手自发造的轮子。</p>
-<p><img src="https://img-blog.csdnimg.cn/20210104235134572.png"></p>
+<h1 id="Q：LeetCode周赛中频率最高的几种问题分别是什么？"><a href="#Q：LeetCode周赛中频率最高的几种问题分别是什么？" class="headerlink" title="Q：LeetCode周赛中频率最高的几种问题分别是什么？"></a>Q：LeetCode周赛中频率最高的几种问题分别是什么？</h1><p>LeetCode 周赛中频率最高的问题类型通常包括：</p>
+<ul>
+<li><p>数组和字符串：这类问题包括对数组和字符串的操作，例如排序、搜索、反转、拼接等。</p>
+</li>
+<li><p>数学：这类问题包括数学算法，例如最大公约数、最小公倍数、素数等。</p>
+</li>
+<li><p>链表：这类问题包括对链表的操作，例如遍历、删除节点、反转等。</p>
+</li>
+<li><p>树：这类问题包括对树的操作，例如遍历、查找、插入等。</p>
+</li>
+<li><p>图：这类问题包括图的遍历、最短路径等。</p>
+</li>
+<li><p>动态规划：这类问题包括动态规划算法，例如最长公共子序列、最长上升子序列等。</p>
+</li>
+<li><p>贪心：这类问题包括贪心算法，例如选择排列、最优解等。</p>
+</li>
+</ul>
+<p>以上是 LeetCode 周赛中频率最高的问题类型，不同的周赛可能会有所不同。因此，为了全部答对周赛问题，最好涵盖多个算法类型和数据结构，并对这些算法进行充分的练习。</p>
 
     </div>
 
@@ -371,7 +301,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://vinouno.github.io/2023/02/10/C-%E4%B8%AD%E7%9A%84STL%E6%97%A0%E5%BA%8F%EF%BC%88%E5%93%88%E5%B8%8C%EF%BC%89%E5%AE%B9%E5%99%A8/" title="C++中的STL无序（哈希）容器">https://vinouno.github.io/2023/02/10/C-中的STL无序（哈希）容器/</a>
+    <a href="https://vinouno.github.io/2023/02/10/ChatGPT%E5%85%B3%E4%BA%8ELeetCode%E7%9A%84%E9%97%AE%E7%AD%94/" title="ChatGPT关于LeetCode的问答">https://vinouno.github.io/2023/02/10/ChatGPT关于LeetCode的问答/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -382,8 +312,8 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E5%93%88%E5%B8%8C/" rel="tag"># 哈希</a>
-              <a href="/tags/STL/" rel="tag"># STL</a>
+              <a href="/tags/ChatGPT/" rel="tag"># ChatGPT</a>
+              <a href="/tags/LeetCode%E5%91%A8%E8%B5%9B/" rel="tag"># LeetCode周赛</a>
           </div>
 
         
@@ -392,8 +322,8 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2023/02/09/%E5%93%88%E5%B8%8C%E8%A1%A8/" rel="prev" title="哈希表">
-      <i class="fa fa-chevron-left"></i> 哈希表
+    <a href="/2023/02/10/1.%20%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/" rel="prev" title="1. 两数之和">
+      <i class="fa fa-chevron-left"></i> 1. 两数之和
     </a></div>
       <div class="post-nav-item"></div>
     </div>
@@ -454,7 +384,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E7%9A%84%E4%B8%89%E7%A7%8D%E5%93%88%E5%B8%8C%E7%BB%93%E6%9E%84"><span class="nav-number">1.</span> <span class="nav-text">常见的三种哈希结构</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Q%EF%BC%9A%E5%A6%82%E6%9E%9C%E6%83%B3%E8%A6%81%E5%85%A8%E9%83%A8%E7%AD%94%E5%87%BA%E5%91%A8%E8%B5%9B%E9%97%AE%E9%A2%98%EF%BC%8C%E9%82%A3%E4%B9%88%E8%A6%81%E5%81%9A%E5%93%AA%E4%BA%9B%E7%A7%8D%E7%B1%BB%E7%9A%84%E9%A2%98%E7%9B%AE%EF%BC%9F"><span class="nav-number">1.</span> <span class="nav-text">Q：如果想要全部答出周赛问题，那么要做哪些种类的题目？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Q%EF%BC%9ALeetCode%E5%91%A8%E8%B5%9B%E4%B8%AD%E9%A2%91%E7%8E%87%E6%9C%80%E9%AB%98%E7%9A%84%E5%87%A0%E7%A7%8D%E9%97%AE%E9%A2%98%E5%88%86%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">2.</span> <span class="nav-text">Q：LeetCode周赛中频率最高的几种问题分别是什么？</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -470,7 +400,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-count">16</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -483,7 +413,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -523,12 +453,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">12k</span>
+    <span title="站点总字数">14k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">21 分钟</span>
+    <span title="站点阅读时长">23 分钟</span>
 </div>
 
 <!--
