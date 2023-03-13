@@ -29,7 +29,7 @@
 <meta property="og:description" content="三种办法解题">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-02-08T02:03:30.000Z">
-<meta property="article:modified_time" content="2023-02-11T03:19:56.868Z">
+<meta property="article:modified_time" content="2023-03-13T14:36:58.157Z">
 <meta property="article:author" content="裘千尺">
 <meta property="article:tag" content="哈希">
 <meta property="article:tag" content="双指针">
@@ -227,7 +227,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-02-11 11:19:56" itemprop="dateModified" datetime="2023-02-11T11:19:56+08:00">2023-02-11</time>
+                <time title="修改时间：2023-03-13 22:36:58" itemprop="dateModified" datetime="2023-03-13T22:36:58+08:00">2023-03-13</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -265,19 +265,21 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="环形链表-ii"><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/linked-list-cycle-ii/description/">142.
+        <h1 id="环形链表-ii"><a
+target="_blank" rel="noopener" href="https://leetcode.cn/problems/linked-list-cycle-ii/description/">142.
 环形链表 II</a></h1>
 <p>这道题非常地有趣，旨在找到链表中环的起始点。</p>
 <h2 id="哈希法">哈希法</h2>
 <p>最容易的办法是遍历链表中的每个节点，用哈希表储存地址，如果有重复的内容，说明找到了环的起始点。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode *<span class="title">detectCycle</span><span class="params">(ListNode *head)</span> </span>&#123;</span><br><span class="line">        unordered_set&lt;ListNode *&gt; visited;</span><br><span class="line">        <span class="keyword">while</span>(head != <span class="literal">nullptr</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(visited.<span class="built_in">count</span>(head)) <span class="comment">//返回head出现的次数</span></span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">return</span> head;</span><br><span class="line">            &#125;</span><br><span class="line">            visited.<span class="built_in">insert</span>(head);</span><br><span class="line">            head = head-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <h2 id="数学法">数学法</h2>
-<p>第二种办法是数学法，具体可以参考题解：<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/linked-list-cycle-ii/solutions/12616/linked-list-cycle-ii-kuai-man-zhi-zhen-shuang-zhi-/">环形链表
+<p>第二种办法是数学法，具体可以参考题解：<a
+target="_blank" rel="noopener" href="https://leetcode.cn/problems/linked-list-cycle-ii/solutions/12616/linked-list-cycle-ii-kuai-man-zhi-zhen-shuang-zhi-/">环形链表
 II（双指针法，清晰图解）</a></p>
 <p>概括一下：</p>
 <p>根据：</p>
-<p>f=2s （快指针每次2步，路程刚好2倍）</p>
-<p>f = s + nb (相遇时，刚好多走了n圈）</p>
+<p>f = 2s （快指针每次2步，路程刚好2倍）</p>
+<p>f = s + nb （相遇时，刚好多走了n圈）</p>
 <p>推出：s = nb</p>
 <p>从head结点走到入环点需要走 ： a + nb，
 而slow已经走了nb，那么slow再走a步就是入环点了。</p>

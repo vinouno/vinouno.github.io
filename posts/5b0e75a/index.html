@@ -263,7 +263,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="leetcode-209.-长度最小的子数组"><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/minimum-size-subarray-sum/description/">leetcode-209.
+        <h1 id="leetcode-209.-长度最小的子数组"><a
+target="_blank" rel="noopener" href="https://leetcode.cn/problems/minimum-size-subarray-sum/description/">leetcode-209.
 长度最小的子数组</a></h1>
 <p>如果使用暴力解法，需要用两个for循环嵌套，时间复杂度很明显是O(n^2)。</p>
 <p>巧妙的方法是使用滑动窗口的方法，类似计算机网络中的内容，窗口由一前一后两个指针约束。窗口的前指针在循环中不停地前进，寻找最优解。当窗口中的内容不符合最优解的时候，移动后指针直到重新符合条件，再进入循环。</p>

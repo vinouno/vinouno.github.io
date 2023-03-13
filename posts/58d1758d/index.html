@@ -259,7 +259,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="leetcode-239.-滑动窗口最大值"><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/sliding-window-maximum/description/">leetcode-239.
+        <h1 id="leetcode-239.-滑动窗口最大值"><a
+target="_blank" rel="noopener" href="https://leetcode.cn/problems/sliding-window-maximum/description/">leetcode-239.
 滑动窗口最大值</a></h1>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">maxSlidingWindow</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums, <span class="type">int</span> k)</span> </span>&#123;</span><br><span class="line">        deque&lt;<span class="type">int</span>&gt; maxNum;</span><br><span class="line">        vector&lt;<span class="type">int</span>&gt; result;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; nums.<span class="built_in">size</span>(); i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(i &gt;= k &amp;&amp; nums[i-k] == maxNum.<span class="built_in">front</span>())</span><br><span class="line">            maxNum.<span class="built_in">pop_front</span>();</span><br><span class="line">            <span class="keyword">if</span>(maxNum.<span class="built_in">size</span>() == <span class="number">0</span>)</span><br><span class="line">            maxNum.<span class="built_in">push_back</span>(nums[i]);</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">while</span>(!maxNum.<span class="built_in">empty</span>() &amp;&amp;nums[i] &gt; maxNum.<span class="built_in">back</span>())</span><br><span class="line">                &#123;</span><br><span class="line">                    maxNum.<span class="built_in">pop_back</span>();</span><br><span class="line">                &#125;</span><br><span class="line">                maxNum.<span class="built_in">push_back</span>(nums[i]);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(i &gt;= k - <span class="number">1</span>)</span><br><span class="line">            result.<span class="built_in">push_back</span>(maxNum.<span class="built_in">front</span>());</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <p>定义一个双向队列maxNum,用来储存所有可能成为滑动窗口内最大值的数。</p>
@@ -270,7 +271,9 @@
 <li>入队：入队的同时，淘汰所有的比它更小的数。</li>
 </ul>
 <p>所以只需要维护这个队列，即可得到答案。</p>
-<p>时间复杂度为<span class="math inline">\(O(n)\)</span>,空间复杂度为<span class="math inline">\(O(k)\)</span>。</p>
+<p>时间复杂度为<span
+class="math inline">\(O(n)\)</span>,空间复杂度为<span
+class="math inline">\(O(k)\)</span>。</p>
 
     </div>
 
