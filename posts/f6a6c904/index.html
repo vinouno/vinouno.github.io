@@ -263,9 +263,12 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="160-相交链表"><a href="#160-相交链表" class="headerlink" title="160. 相交链表"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/intersection-of-two-linked-lists/">160. 相交链表</a></h1><p>由于链表的特殊性质，一旦多条链表在一个节点相交，那么后面所有的节点都是重合的。所以，链表相交一定发生在链表的尾部。</p>
+        <h1 id="相交链表"><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/intersection-of-two-linked-lists/">160.
+相交链表</a></h1>
+<p>由于链表的特殊性质，一旦多条链表在一个节点相交，那么后面所有的节点都是重合的。所以，链表相交一定发生在链表的尾部。</p>
 <p>解决方案是，把两条链表尾部对齐，使两指针一起移动，如果发现地址相同，说明链表已经相交。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode *<span class="title">getIntersectionNode</span><span class="params">(ListNode *headA, ListNode *headB)</span> </span>&#123;</span><br><span class="line">        ListNode* curA = headA;</span><br><span class="line">        ListNode* curB = headB;</span><br><span class="line">        <span class="type">int</span> lenA = <span class="number">0</span>, lenB = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (curA != <span class="literal">NULL</span>) &#123; <span class="comment">// 求链表A的长度</span></span><br><span class="line">            lenA++;</span><br><span class="line">            curA = curA-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> (curB != <span class="literal">NULL</span>) &#123; <span class="comment">// 求链表B的长度</span></span><br><span class="line">            lenB++;</span><br><span class="line">            curB = curB-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        curA = headA;</span><br><span class="line">        curB = headB;</span><br><span class="line">        <span class="comment">// 让curA为最长链表的头，lenA为其长度</span></span><br><span class="line">        <span class="keyword">if</span> (lenB &gt; lenA) &#123;</span><br><span class="line">            <span class="built_in">swap</span> (lenA, lenB);</span><br><span class="line">            <span class="built_in">swap</span> (curA, curB);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 求长度差</span></span><br><span class="line">        <span class="type">int</span> gap = lenA - lenB;</span><br><span class="line">        <span class="comment">// 让curA和curB在同一起点上（末尾位置对齐）</span></span><br><span class="line">        <span class="keyword">while</span> (gap--) &#123;</span><br><span class="line">            curA = curA-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 遍历curA 和 curB，遇到相同则直接返回</span></span><br><span class="line">        <span class="keyword">while</span> (curA != <span class="literal">NULL</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (curA == curB) &#123;</span><br><span class="line">                <span class="keyword">return</span> curA;</span><br><span class="line">            &#125;</span><br><span class="line">            curA = curA-&gt;next;</span><br><span class="line">            curB = curB-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
     </div>
 
     
@@ -366,7 +369,8 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#160-%E7%9B%B8%E4%BA%A4%E9%93%BE%E8%A1%A8"><span class="nav-number">1.</span> <span class="nav-text">160. 相交链表</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%9B%B8%E4%BA%A4%E9%93%BE%E8%A1%A8"><span class="nav-number">1.</span> <span class="nav-text">160.
+相交链表</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -500,6 +504,61 @@
 
 
   
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 

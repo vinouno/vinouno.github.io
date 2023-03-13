@@ -257,17 +257,45 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="leetcode-28-找出字符串中第一个匹配项的下标"><a href="#leetcode-28-找出字符串中第一个匹配项的下标" class="headerlink" title="leetcode-28. 找出字符串中第一个匹配项的下标"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/find-the-index-of-the-first-occurrence-in-a-string/">leetcode-28. 找出字符串中第一个匹配项的下标</a></h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">getNext</span><span class="params">(<span class="type">const</span> string s)</span> </span>&#123;</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">next</span><span class="params">(s.size())</span></span>;</span><br><span class="line">        next[<span class="number">0</span>] = <span class="number">-1</span>;</span><br><span class="line">        <span class="type">int</span> i = <span class="number">0</span>, j = <span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">while</span> (i &lt; s.<span class="built_in">size</span>() - <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (j == <span class="number">-1</span> || s[j] == s[i]) &#123;</span><br><span class="line">                j++;</span><br><span class="line">                i++;</span><br><span class="line">                next[i] = j;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                j = next[j];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> next;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">strStr</span><span class="params">(string haystack, string needle)</span> </span>&#123;</span><br><span class="line">        vector&lt;<span class="type">int</span>&gt; next = <span class="built_in">getNext</span>(needle);</span><br><span class="line">        <span class="type">int</span> i = <span class="number">0</span>, j = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (i &lt; haystack.<span class="built_in">size</span>()) &#123;</span><br><span class="line">            <span class="keyword">if</span> (j == <span class="number">-1</span> || haystack[i] == needle[j]) &#123;</span><br><span class="line">                i++;</span><br><span class="line">                j++;</span><br><span class="line">                <span class="keyword">if</span> (j == needle.<span class="built_in">size</span>()) &#123;</span><br><span class="line">                    <span class="keyword">return</span> i - j;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                j = next[j];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>这段代码实现了经典的字符串匹配算法 KMP。KMP 算法的核心是利用已经匹配的信息来避免重复匹配，从而提高匹配效率。</p>
-<p>首先，我们来看 getNext 函数。该函数用于计算 needle 字符串的前缀表（prefix table），也称为失配函数（failure function）。前缀表是一个数组，其中第 i 个元素表示 needle 字符串中以第 i 个字符结尾的子串的最长前缀和最长后缀相等的长度。</p>
-<p>具体来说，我们定义两个指针 i 和 j，其中 i 表示当前子串的结尾位置，j 表示当前子串的最长前缀和最长后缀相等的长度。初始化时，i 和 j 都指向字符串的开头，前缀表的第一个元素设为 -1。</p>
-<p>接下来，我们在一个循环中不断计算前缀表中的元素。每次循环，我们比较 s[i] 和 s[j] 是否相等，如果相等，说明可以将 j 增加 1，同时将前缀表中下一个元素设为 j。如果不相等，我们需要将 j 回溯到前缀表中 j 对应的值，这是因为我们已经知道前面的 j 个字符是匹配的，所以可以直接跳过这些字符，从前面已经匹配的位置重新开始匹配。这个过程可以用递推式 j &#x3D; next[j] 来描述。</p>
+        <h1 id="leetcode-28.-找出字符串中第一个匹配项的下标"><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/find-the-index-of-the-first-occurrence-in-a-string/">leetcode-28.
+找出字符串中第一个匹配项的下标</a></h1>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">getNext</span><span class="params">(<span class="type">const</span> string s)</span> </span>&#123;</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">next</span><span class="params">(s.size())</span></span>;</span><br><span class="line">        next[<span class="number">0</span>] = <span class="number">-1</span>;</span><br><span class="line">        <span class="type">int</span> i = <span class="number">0</span>, j = <span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">while</span> (i &lt; s.<span class="built_in">size</span>() - <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (j == <span class="number">-1</span> || s[j] == s[i]) &#123;</span><br><span class="line">                j++;</span><br><span class="line">                i++;</span><br><span class="line">                next[i] = j;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                j = next[j];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> next;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">strStr</span><span class="params">(string haystack, string needle)</span> </span>&#123;</span><br><span class="line">        vector&lt;<span class="type">int</span>&gt; next = <span class="built_in">getNext</span>(needle);</span><br><span class="line">        <span class="type">int</span> i = <span class="number">0</span>, j = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (i &lt; haystack.<span class="built_in">size</span>()) &#123;</span><br><span class="line">            <span class="keyword">if</span> (j == <span class="number">-1</span> || haystack[i] == needle[j]) &#123;</span><br><span class="line">                i++;</span><br><span class="line">                j++;</span><br><span class="line">                <span class="keyword">if</span> (j == needle.<span class="built_in">size</span>()) &#123;</span><br><span class="line">                    <span class="keyword">return</span> i - j;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                j = next[j];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>这段代码实现了经典的字符串匹配算法 KMP。KMP
+算法的核心是利用已经匹配的信息来避免重复匹配，从而提高匹配效率。</p>
+<p>首先，我们来看 getNext 函数。该函数用于计算 needle
+字符串的前缀表（prefix table），也称为失配函数（failure
+function）。前缀表是一个数组，其中第 i 个元素表示 needle 字符串中以第 i
+个字符结尾的子串的最长前缀和最长后缀相等的长度。</p>
+<p>具体来说，我们定义两个指针 i 和 j，其中 i 表示当前子串的结尾位置，j
+表示当前子串的最长前缀和最长后缀相等的长度。初始化时，i 和 j
+都指向字符串的开头，前缀表的第一个元素设为 -1。</p>
+<p>接下来，我们在一个循环中不断计算前缀表中的元素。每次循环，我们比较
+s[i] 和 s[j] 是否相等，如果相等，说明可以将 j 增加
+1，同时将前缀表中下一个元素设为 j。如果不相等，我们需要将 j
+回溯到前缀表中 j 对应的值，这是因为我们已经知道前面的 j
+个字符是匹配的，所以可以直接跳过这些字符，从前面已经匹配的位置重新开始匹配。这个过程可以用递推式
+j = next[j] 来描述。</p>
 <p>最后，我们返回前缀表。</p>
-<p>我们来看 strStr 函数。该函数用于在 haystack 字符串中查找 needle 字符串的第一个匹配项。首先，我们调用 getNext 函数计算出 needle 字符串的前缀表。然后，我们定义两个指针 i 和 j，其中 i 表示当前在 haystack 中匹配的位置，j 表示当前在 needle 中匹配的位置。初始化时，i 和 j 都指向字符串的开头。</p>
-<p>我们在一个循环中不断尝试匹配 haystack 和 needle 中的字符。如果当前字符匹配成功，我们将 i 和 j 同时向后移动一个位置，继续匹配下一个字符。如果 j 到达了 needle 的末尾，说明已经找到了匹配项，我们可以返回 i - j。如果当前字符匹配失败，我们需要将 j 回溯到前缀表中 j 对应的值，重新开始匹配。这个过程可以用递推式 <code>j = next[j]</code> 来描述。如果 j 已经回溯到了 -1，说明在当前位置找不到匹配项，需要将 i 向后移动一个位置，重新开始匹配。</p>
-<p>最后，如果循环结束还没有找到匹配项，说明在 haystack 中找不到 needle，需要返回 -1。</p>
-<p>总体来说，这段代码的时间复杂度为 $O(m+n)$，其中 $m$ 和 $n$ 分别是 haystack 和 needle 的长度。这是因为在计算前缀表和匹配字符串时，指针 i 和 j 各自最多向前移动 $m$ 和 $n$ 次。空间复杂度为 $O(n)$，其中 $n$ 是 needle 的长度，这是因为前缀表需要保存 needle 中每个位置的最长前缀和最长后缀相等的长度。</p>
+<p>我们来看 strStr 函数。该函数用于在 haystack 字符串中查找 needle
+字符串的第一个匹配项。首先，我们调用 getNext 函数计算出 needle
+字符串的前缀表。然后，我们定义两个指针 i 和 j，其中 i 表示当前在
+haystack 中匹配的位置，j 表示当前在 needle 中匹配的位置。初始化时，i 和
+j 都指向字符串的开头。</p>
+<p>我们在一个循环中不断尝试匹配 haystack 和 needle
+中的字符。如果当前字符匹配成功，我们将 i 和 j
+同时向后移动一个位置，继续匹配下一个字符。如果 j 到达了 needle
+的末尾，说明已经找到了匹配项，我们可以返回 i -
+j。如果当前字符匹配失败，我们需要将 j 回溯到前缀表中 j
+对应的值，重新开始匹配。这个过程可以用递推式 <code>j = next[j]</code>
+来描述。如果 j 已经回溯到了 -1，说明在当前位置找不到匹配项，需要将 i
+向后移动一个位置，重新开始匹配。</p>
+<p>最后，如果循环结束还没有找到匹配项，说明在 haystack 中找不到
+needle，需要返回 -1。</p>
+<p>总体来说，这段代码的时间复杂度为 <span class="math inline">\(O(m+n)\)</span>，其中 <span class="math inline">\(m\)</span> 和 <span class="math inline">\(n\)</span> 分别是 haystack 和 needle
+的长度。这是因为在计算前缀表和匹配字符串时，指针 i 和 j 各自最多向前移动
+<span class="math inline">\(m\)</span> 和 <span class="math inline">\(n\)</span> 次。空间复杂度为 <span class="math inline">\(O(n)\)</span>，其中 <span class="math inline">\(n\)</span> 是 needle
+的长度，这是因为前缀表需要保存 needle
+中每个位置的最长前缀和最长后缀相等的长度。</p>
 <p>总之，这段代码非常经典和实用，可以在很多场景下使用，比如搜索引擎中的字符串匹配、文本编辑器中的搜索功能等等。</p>
 
     </div>
@@ -370,7 +398,8 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#leetcode-28-%E6%89%BE%E5%87%BA%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%8C%B9%E9%85%8D%E9%A1%B9%E7%9A%84%E4%B8%8B%E6%A0%87"><span class="nav-number">1.</span> <span class="nav-text">leetcode-28. 找出字符串中第一个匹配项的下标</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#leetcode-28.-%E6%89%BE%E5%87%BA%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%8C%B9%E9%85%8D%E9%A1%B9%E7%9A%84%E4%B8%8B%E6%A0%87"><span class="nav-number">1.</span> <span class="nav-text">leetcode-28.
+找出字符串中第一个匹配项的下标</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -504,6 +533,61 @@
 
 
   
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 

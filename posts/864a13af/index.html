@@ -263,21 +263,26 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="二分查找的模板与边界问题"><a href="#二分查找的模板与边界问题" class="headerlink" title="二分查找的模板与边界问题"></a>二分查找的模板与边界问题</h1><p>二分查找有两套模板，模板A代码如下：</p>
+        <h1 id="二分查找的模板与边界问题">二分查找的模板与边界问题</h1>
+<p>二分查找有两套模板，模板A代码如下：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">bsearch_1</span><span class="params">(<span class="type">int</span> l, <span class="type">int</span> r)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">while</span> (l &lt; r)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">int</span> mid = (l + r)/<span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">check</span>(mid)) r = mid;</span><br><span class="line">        <span class="keyword">else</span> l = mid + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> l;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>模板B代码如下：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">bsearch_2</span><span class="params">(<span class="type">int</span> l, <span class="type">int</span> r)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">while</span> (l &lt; r)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">int</span> mid = (l + r + <span class="number">1</span>) /<span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">check</span>(mid)) l = mid;</span><br><span class="line">        <span class="keyword">else</span> r = mid - <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> l;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="两套代码有什么区别"><a href="#两套代码有什么区别" class="headerlink" title="两套代码有什么区别"></a>两套代码有什么区别</h2><ul>
+<p>模板B代码如下： <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">bsearch_2</span><span class="params">(<span class="type">int</span> l, <span class="type">int</span> r)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">while</span> (l &lt; r)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">int</span> mid = (l + r + <span class="number">1</span>) /<span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">check</span>(mid)) l = mid;</span><br><span class="line">        <span class="keyword">else</span> r = mid - <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> l;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="两套代码有什么区别">两套代码有什么区别</h2>
+<ul>
 <li>模板A区间[l,r]划分成[l,mid]和[mid+1,r],更新操作是<code>r=mid</code>或者<code>l=mid+1</code>，计算mid时不需要加1，即<code>mid=(l+r)/2</code>。</li>
 <li>模板B区间[l,r]划分成[l,mid-1]和[mid,r],更新操作是<code>r=mid-1</code>或者<code>l=mid</code>，计算mid时不需要加1，即<code>mid=(l+r+1)/2</code>。</li>
 </ul>
-<h2 id="为什么使用两套模板的mid计算方法不同？"><a href="#为什么使用两套模板的mid计算方法不同？" class="headerlink" title="为什么使用两套模板的mid计算方法不同？"></a>为什么使用两套模板的mid计算方法不同？</h2><p>当使用模板B时，会有以下这种特殊情况：<code>r=l+1</code>。此时，如果使用<code>mid=(l+r)/2</code>，向下取整，使得<code>mid=l</code>，从而形成无限循环。</p>
-<h2 id="什么时候用模板A？什么时候用模板B？"><a href="#什么时候用模板A？什么时候用模板B？" class="headerlink" title="什么时候用模板A？什么时候用模板B？"></a>什么时候用模板A？什么时候用模板B？</h2><p>左边界要更新为<code>l=mid+1</code>,使用模板A。<br>左边界要更新为<code>l=mid</code>，则使用模板B。</p>
-<h2 id="数据溢出怎么办？"><a href="#数据溢出怎么办？" class="headerlink" title="数据溢出怎么办？"></a>数据溢出怎么办？</h2><p>把mid的计算方式更改为<code>mid=l+((r-l)/2)</code>。</p>
-<h2 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h2><p>你现在已经完全掌握二分查找了，快来试试看吧：<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/search-in-rotated-sorted-array/">leetcode-33. 搜索旋转排序数组</a><br>示例代码：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">search</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums, <span class="type">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//使用模板A，找到旋转点，用p储存之</span></span><br><span class="line">        <span class="type">int</span> l = <span class="number">0</span>, r = nums.<span class="built_in">size</span>() - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (l &lt; r)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="type">int</span> mid = (l + r)/<span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span> (nums[mid] &lt; nums[r]) </span><br><span class="line">            r = mid;</span><br><span class="line">            <span class="keyword">else</span> l = mid + <span class="number">1</span>;</span><br><span class="line">        &#125;       </span><br><span class="line">        <span class="type">int</span> p = l;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//[0,p]为有序数组，使用模板A二分查找</span></span><br><span class="line">        r = p - <span class="number">1</span>, l = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (l &lt; r)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="type">int</span> mid = (l + r)/<span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span> (nums[mid] &gt;= target) </span><br><span class="line">            r = mid;</span><br><span class="line">            <span class="keyword">else</span> l = mid + <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(nums[l] == target)</span><br><span class="line">        <span class="keyword">return</span> l;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//p之后为有序数组，使用模板A二分查找</span></span><br><span class="line">        l = p, r = nums.<span class="built_in">size</span>() - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (l &lt; r)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="type">int</span> mid = (l + r)/<span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span> (nums[mid] &gt;= target) </span><br><span class="line">            r = mid;</span><br><span class="line">            <span class="keyword">else</span> l = mid + <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(nums[l] == target)</span><br><span class="line">        <span class="keyword">return</span> l;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="为什么使用两套模板的mid计算方法不同">为什么使用两套模板的mid计算方法不同？</h2>
+<p>当使用模板B时，会有以下这种特殊情况：<code>r=l+1</code>。此时，如果使用<code>mid=(l+r)/2</code>，向下取整，使得<code>mid=l</code>，从而形成无限循环。</p>
+<h2 id="什么时候用模板a什么时候用模板b">什么时候用模板A？什么时候用模板B？</h2>
+<p>左边界要更新为<code>l=mid+1</code>,使用模板A。
+左边界要更新为<code>l=mid</code>，则使用模板B。</p>
+<h2 id="数据溢出怎么办">数据溢出怎么办？</h2>
+<p>把mid的计算方式更改为<code>mid=l+((r-l)/2)</code>。</p>
+<h2 id="example">Example</h2>
+<p>你现在已经完全掌握二分查找了，快来试试看吧：<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/search-in-rotated-sorted-array/">leetcode-33.
+搜索旋转排序数组</a> 示例代码： <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">search</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums, <span class="type">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//使用模板A，找到旋转点，用p储存之</span></span><br><span class="line">        <span class="type">int</span> l = <span class="number">0</span>, r = nums.<span class="built_in">size</span>() - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (l &lt; r)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="type">int</span> mid = (l + r)/<span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span> (nums[mid] &lt; nums[r]) </span><br><span class="line">            r = mid;</span><br><span class="line">            <span class="keyword">else</span> l = mid + <span class="number">1</span>;</span><br><span class="line">        &#125;       </span><br><span class="line">        <span class="type">int</span> p = l;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//[0,p]为有序数组，使用模板A二分查找</span></span><br><span class="line">        r = p - <span class="number">1</span>, l = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (l &lt; r)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="type">int</span> mid = (l + r)/<span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span> (nums[mid] &gt;= target) </span><br><span class="line">            r = mid;</span><br><span class="line">            <span class="keyword">else</span> l = mid + <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(nums[l] == target)</span><br><span class="line">        <span class="keyword">return</span> l;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//p之后为有序数组，使用模板A二分查找</span></span><br><span class="line">        l = p, r = nums.<span class="built_in">size</span>() - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (l &lt; r)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="type">int</span> mid = (l + r)/<span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span> (nums[mid] &gt;= target) </span><br><span class="line">            r = mid;</span><br><span class="line">            <span class="keyword">else</span> l = mid + <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(nums[l] == target)</span><br><span class="line">        <span class="keyword">return</span> l;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+
     </div>
 
     
@@ -375,7 +380,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E7%9A%84%E6%A8%A1%E6%9D%BF%E4%B8%8E%E8%BE%B9%E7%95%8C%E9%97%AE%E9%A2%98"><span class="nav-number">1.</span> <span class="nav-text">二分查找的模板与边界问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%A4%E5%A5%97%E4%BB%A3%E7%A0%81%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB"><span class="nav-number">1.1.</span> <span class="nav-text">两套代码有什么区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%BF%E7%94%A8%E4%B8%A4%E5%A5%97%E6%A8%A1%E6%9D%BF%E7%9A%84mid%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%95%E4%B8%8D%E5%90%8C%EF%BC%9F"><span class="nav-number">1.2.</span> <span class="nav-text">为什么使用两套模板的mid计算方法不同？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E7%94%A8%E6%A8%A1%E6%9D%BFA%EF%BC%9F%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E7%94%A8%E6%A8%A1%E6%9D%BFB%EF%BC%9F"><span class="nav-number">1.3.</span> <span class="nav-text">什么时候用模板A？什么时候用模板B？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E6%BA%A2%E5%87%BA%E6%80%8E%E4%B9%88%E5%8A%9E%EF%BC%9F"><span class="nav-number">1.4.</span> <span class="nav-text">数据溢出怎么办？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Example"><span class="nav-number">1.5.</span> <span class="nav-text">Example</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E7%9A%84%E6%A8%A1%E6%9D%BF%E4%B8%8E%E8%BE%B9%E7%95%8C%E9%97%AE%E9%A2%98"><span class="nav-number">1.</span> <span class="nav-text">二分查找的模板与边界问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%A4%E5%A5%97%E4%BB%A3%E7%A0%81%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB"><span class="nav-number">1.1.</span> <span class="nav-text">两套代码有什么区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%BF%E7%94%A8%E4%B8%A4%E5%A5%97%E6%A8%A1%E6%9D%BF%E7%9A%84mid%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%95%E4%B8%8D%E5%90%8C"><span class="nav-number">1.2.</span> <span class="nav-text">为什么使用两套模板的mid计算方法不同？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E7%94%A8%E6%A8%A1%E6%9D%BFa%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E7%94%A8%E6%A8%A1%E6%9D%BFb"><span class="nav-number">1.3.</span> <span class="nav-text">什么时候用模板A？什么时候用模板B？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E6%BA%A2%E5%87%BA%E6%80%8E%E4%B9%88%E5%8A%9E"><span class="nav-number">1.4.</span> <span class="nav-text">数据溢出怎么办？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#example"><span class="nav-number">1.5.</span> <span class="nav-text">Example</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -509,6 +514,61 @@
 
 
   
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 

@@ -236,7 +236,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>670</span>
+              <span>665</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -256,19 +256,18 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="454-四数相加-II"><a href="#454-四数相加-II" class="headerlink" title="454. 四数相加 II"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/4sum-ii/">454. 四数相加 II</a></h1><ul>
-<li><p>首先定义 一个unordered_map，key放a和b两数之和，value 放a和b两数之和出现的次数。</p>
-</li>
-<li><p>遍历大A和大B数组，统计两个数组元素之和，和出现的次数，放到map中。</p>
-</li>
-<li><p>定义int变量count，用来统计 a+b+c+d &#x3D; 0 出现的次数。</p>
-</li>
-<li><p>在遍历大C和大D数组，找到如果 0-(c+d) 在map中出现过的话，就用count把map中key对应的value也就是出现次数统计出来。</p>
-</li>
-<li><p>最后返回统计值 count 就可以了</p>
-</li>
+        <h1 id="四数相加-ii"><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/4sum-ii/">454. 四数相加 II</a></h1>
+<ul>
+<li><p>首先定义 一个unordered_map，key放a和b两数之和，value
+放a和b两数之和出现的次数。</p></li>
+<li><p>遍历大A和大B数组，统计两个数组元素之和，和出现的次数，放到map中。</p></li>
+<li><p>定义int变量count，用来统计 a+b+c+d = 0 出现的次数。</p></li>
+<li><p>在遍历大C和大D数组，找到如果 0-(c+d)
+在map中出现过的话，就用count把map中key对应的value也就是出现次数统计出来。</p></li>
+<li><p>最后返回统计值 count 就可以了</p></li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">fourSumCount</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums1, vector&lt;<span class="type">int</span>&gt;&amp; nums2, vector&lt;<span class="type">int</span>&gt;&amp; nums3, vector&lt;<span class="type">int</span>&gt;&amp; nums4)</span> </span>&#123;</span><br><span class="line">        unordered_map&lt;<span class="type">int</span>,<span class="type">int</span>&gt; umap;</span><br><span class="line">        <span class="type">int</span> count = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> a : nums1)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> b : nums2)</span><br><span class="line">            &#123;</span><br><span class="line">                umap[a + b]++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> c : nums3)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> d : nums4)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span>(umap.<span class="built_in">find</span>(- c - d) != umap.<span class="built_in">end</span>() )</span><br><span class="line">                &#123;</span><br><span class="line">                    count += umap[- c - d];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> count;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
     </div>
 
     
@@ -368,7 +367,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#454-%E5%9B%9B%E6%95%B0%E7%9B%B8%E5%8A%A0-II"><span class="nav-number">1.</span> <span class="nav-text">454. 四数相加 II</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%9B%E6%95%B0%E7%9B%B8%E5%8A%A0-ii"><span class="nav-number">1.</span> <span class="nav-text">454. 四数相加 II</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -502,6 +501,61 @@
 
 
   
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 

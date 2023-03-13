@@ -242,7 +242,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>890</span>
+              <span>880</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -262,17 +262,32 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="65-非递减数列"><a href="#65-非递减数列" class="headerlink" title="65. 非递减数列"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/non-decreasing-array/description/">65. 非递减数列</a></h1><p>这段代码实现了一个时间复杂度为 O(n)、空间复杂度为 O(1) 的解法，用于判断在最多修改一个元素的情况下，给定的数组 nums 能否变成一个非递减数列。</p>
-<p>具体来说，它通过遍历数组 nums，对于每一对相邻元素 (x, y) 进行比较，如果 x &gt; y，则说明需要修改一个元素才能满足非递减的条件。此时，将修改次数 cnt 加一，并判断 cnt 是否超过了一次，如果超过了一次，则说明无法只修改一个元素来满足条件，直接返回 false。</p>
-<p>如果 cnt 不超过一次，则需要考虑修改哪个元素。为了保证修改后的数组满足非递减的条件，有两种可能的情况需要考虑：</p>
-<ol>
-<li><p>修改 nums[i]，使得 x &lt;&#x3D; y，此时修改后的数组可能会影响到 i - 1 和 i + 1 位置的元素。如果 nums[i + 1] &lt; nums[i - 1]，则说明需要将 nums[i + 1] 修改为 nums[i]，否则将 nums[i] 修改为 nums[i + 1]。</p>
-</li>
-<li><p>修改 nums[i + 1]，使得 x &lt;&#x3D; y，此时只会影响到 i + 1 位置的元素，因为 i 和 i - 1 位置的元素已经是非递减的了。因此，直接将 nums[i + 1] 修改为 nums[i] 即可。</p>
-</li>
+        <h1 id="非递减数列"><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/non-decreasing-array/description/">65.
+非递减数列</a></h1>
+<p>这段代码实现了一个时间复杂度为 O(n)、空间复杂度为 O(1)
+的解法，用于判断在最多修改一个元素的情况下，给定的数组 nums
+能否变成一个非递减数列。</p>
+<p>具体来说，它通过遍历数组 nums，对于每一对相邻元素 (x, y)
+进行比较，如果 x &gt;
+y，则说明需要修改一个元素才能满足非递减的条件。此时，将修改次数 cnt
+加一，并判断 cnt
+是否超过了一次，如果超过了一次，则说明无法只修改一个元素来满足条件，直接返回
+false。</p>
+<p>如果 cnt
+不超过一次，则需要考虑修改哪个元素。为了保证修改后的数组满足非递减的条件，有两种可能的情况需要考虑：</p>
+<ol type="1">
+<li><p>修改 nums[i]，使得 x &lt;= y，此时修改后的数组可能会影响到 i - 1
+和 i + 1 位置的元素。如果 nums[i + 1] &lt; nums[i - 1]，则说明需要将
+nums[i + 1] 修改为 nums[i]，否则将 nums[i] 修改为 nums[i + 1]。</p></li>
+<li><p>修改 nums[i + 1]，使得 x &lt;= y，此时只会影响到 i + 1
+位置的元素，因为 i 和 i - 1 位置的元素已经是非递减的了。因此，直接将
+nums[i + 1] 修改为 nums[i] 即可。</p></li>
 </ol>
-<p>最后，如果遍历完整个数组 nums 之后都没有返回 false，则说明只需要修改不超过一次元素就可以将数组变成非递减的，返回 true 即可。</p>
+<p>最后，如果遍历完整个数组 nums 之后都没有返回
+false，则说明只需要修改不超过一次元素就可以将数组变成非递减的，返回 true
+即可。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">checkPossibility</span><span class="params">(vector&lt;<span class="type">int</span>&gt; &amp;nums)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = nums.<span class="built_in">size</span>(), cnt = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n - <span class="number">1</span>; ++i) &#123;</span><br><span class="line">            <span class="type">int</span> x = nums[i], y = nums[i + <span class="number">1</span>];</span><br><span class="line">            <span class="keyword">if</span> (x &gt; y) &#123;</span><br><span class="line">                cnt++;</span><br><span class="line">                <span class="keyword">if</span> (cnt &gt; <span class="number">1</span>) &#123;</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (i &gt; <span class="number">0</span> &amp;&amp; y &lt; nums[i - <span class="number">1</span>]) &#123;</span><br><span class="line">                    nums[i + <span class="number">1</span>] = x;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
     </div>
 
     
@@ -372,7 +387,8 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#65-%E9%9D%9E%E9%80%92%E5%87%8F%E6%95%B0%E5%88%97"><span class="nav-number">1.</span> <span class="nav-text">65. 非递减数列</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%9D%9E%E9%80%92%E5%87%8F%E6%95%B0%E5%88%97"><span class="nav-number">1.</span> <span class="nav-text">65.
+非递减数列</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -506,6 +522,61 @@
 
 
   
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 

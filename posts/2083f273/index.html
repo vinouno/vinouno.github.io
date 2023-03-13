@@ -242,7 +242,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>168</span>
+              <span>169</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -262,11 +262,14 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="原图"><a href="#原图" class="headerlink" title="原图"></a>原图</h1><p>从P站上找了一张稻草人的像素图，尝试第一次临摹。</p>
-<p><img src="https://raw.githubusercontent.com/vinouno/blog_image/main/%E7%A8%BB%E8%8D%89%E4%BA%BA-%E5%8E%9F%E5%9B%BE.png"></p>
-<h1 id="轮廓临摹"><a href="#轮廓临摹" class="headerlink" title="轮廓临摹"></a>轮廓临摹</h1><p>这个还是比较满意的，外形基本复现成功了。我想让稻草人的腿更长一点，就把它的腿拉长了，看上去也没太违和。</p>
+        <h1 id="原图">原图</h1>
+<p>从P站上找了一张稻草人的像素图，尝试第一次临摹。</p>
+<p><img src="https://raw.githubusercontent.com/vinouno/blog_image/main/%E7%A8%BB%E8%8D%89%E4%BA%BA-%E5%8E%9F%E5%9B%BE.png">
+# 轮廓临摹
+这个还是比较满意的，外形基本复现成功了。我想让稻草人的腿更长一点，就把它的腿拉长了，看上去也没太违和。</p>
 <p><img src="https://raw.githubusercontent.com/vinouno/blog_image/main/%E7%A8%BB%E8%8D%89%E4%BA%BA-400.png"></p>
-<h1 id="上色"><a href="#上色" class="headerlink" title="上色"></a>上色</h1><p>上色的结果不是特别满意，想让稻草人灰暗一点，这样才有恐怖的感觉。但是试了很多次，总感觉不是特别满意，没画出原图那种“脏”的感觉，不像一个扭曲的怪物，还是要对调色多加练习。</p>
+<h1 id="上色">上色</h1>
+<p>上色的结果不是特别满意，想让稻草人灰暗一点，这样才有恐怖的感觉。但是试了很多次，总感觉不是特别满意，没画出原图那种“脏”的感觉，不像一个扭曲的怪物，还是要对调色多加练习。</p>
 <p><img src="https://raw.githubusercontent.com/vinouno/blog_image/main/%E7%A8%BB%E8%8D%89%E4%BA%BA-400-%E4%B8%8A%E8%89%B2.png"></p>
 
     </div>
@@ -370,7 +373,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8E%9F%E5%9B%BE"><span class="nav-number">1.</span> <span class="nav-text">原图</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BD%AE%E5%BB%93%E4%B8%B4%E6%91%B9"><span class="nav-number">2.</span> <span class="nav-text">轮廓临摹</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%8A%E8%89%B2"><span class="nav-number">3.</span> <span class="nav-text">上色</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8E%9F%E5%9B%BE"><span class="nav-number">1.</span> <span class="nav-text">原图</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%8A%E8%89%B2"><span class="nav-number">2.</span> <span class="nav-text">上色</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -504,6 +507,61 @@
 
 
   
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 

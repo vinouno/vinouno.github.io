@@ -265,23 +265,31 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="142-环形链表-II"><a href="#142-环形链表-II" class="headerlink" title="142. 环形链表 II"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/linked-list-cycle-ii/description/">142. 环形链表 II</a></h1><p>这道题非常地有趣，旨在找到链表中环的起始点。</p>
-<h2 id="哈希法"><a href="#哈希法" class="headerlink" title="哈希法"></a>哈希法</h2><p>最容易的办法是遍历链表中的每个节点，用哈希表储存地址，如果有重复的内容，说明找到了环的起始点。</p>
+        <h1 id="环形链表-ii"><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/linked-list-cycle-ii/description/">142.
+环形链表 II</a></h1>
+<p>这道题非常地有趣，旨在找到链表中环的起始点。</p>
+<h2 id="哈希法">哈希法</h2>
+<p>最容易的办法是遍历链表中的每个节点，用哈希表储存地址，如果有重复的内容，说明找到了环的起始点。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode *<span class="title">detectCycle</span><span class="params">(ListNode *head)</span> </span>&#123;</span><br><span class="line">        unordered_set&lt;ListNode *&gt; visited;</span><br><span class="line">        <span class="keyword">while</span>(head != <span class="literal">nullptr</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(visited.<span class="built_in">count</span>(head)) <span class="comment">//返回head出现的次数</span></span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">return</span> head;</span><br><span class="line">            &#125;</span><br><span class="line">            visited.<span class="built_in">insert</span>(head);</span><br><span class="line">            head = head-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="数学法"><a href="#数学法" class="headerlink" title="数学法"></a>数学法</h2><p>第二种办法是数学法，具体可以参考题解：<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/linked-list-cycle-ii/solutions/12616/linked-list-cycle-ii-kuai-man-zhi-zhen-shuang-zhi-/">环形链表 II（双指针法，清晰图解）</a></p>
+<h2 id="数学法">数学法</h2>
+<p>第二种办法是数学法，具体可以参考题解：<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/linked-list-cycle-ii/solutions/12616/linked-list-cycle-ii-kuai-man-zhi-zhen-shuang-zhi-/">环形链表
+II（双指针法，清晰图解）</a></p>
 <p>概括一下：</p>
 <p>根据：</p>
-<p>f&#x3D;2s （快指针每次2步，路程刚好2倍）</p>
-<p>f &#x3D; s + nb (相遇时，刚好多走了n圈）</p>
-<p>推出：s &#x3D; nb</p>
-<p>从head结点走到入环点需要走 ： a + nb， 而slow已经走了nb，那么slow再走a步就是入环点了。</p>
-<p>如何知道slow刚好走了a步？ 从head开始，和slow指针一起走，相遇时刚好就是a步.</p>
+<p>f=2s （快指针每次2步，路程刚好2倍）</p>
+<p>f = s + nb (相遇时，刚好多走了n圈）</p>
+<p>推出：s = nb</p>
+<p>从head结点走到入环点需要走 ： a + nb，
+而slow已经走了nb，那么slow再走a步就是入环点了。</p>
+<p>如何知道slow刚好走了a步？
+从head开始，和slow指针一起走，相遇时刚好就是a步.</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode *<span class="title">detectCycle</span><span class="params">(ListNode *head)</span> </span>&#123;</span><br><span class="line">         ListNode* fast = head;</span><br><span class="line">         ListNode* slow = head;</span><br><span class="line">        <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (fast == <span class="literal">NULL</span> || fast-&gt;next == <span class="literal">NULL</span>) <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">            fast = fast-&gt;next-&gt;next;</span><br><span class="line">            slow = slow-&gt;next;</span><br><span class="line">            <span class="keyword">if</span> (fast == slow) <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        fast = head;</span><br><span class="line">        <span class="keyword">while</span> (slow != fast) &#123;</span><br><span class="line">            slow = slow-&gt;next;</span><br><span class="line">            fast = fast-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> fast;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<h2 id="巧妙法"><a href="#巧妙法" class="headerlink" title="巧妙法"></a>巧妙法</h2><p>O(n)算法，应该是最快的。 堆的地址从低到高，LeetCode的链表内存是顺序申请的，如果有环，head-&gt;next一定小于或等于head。</p>
+<h2 id="巧妙法">巧妙法</h2>
+<p>O(n)算法，应该是最快的。
+堆的地址从低到高，LeetCode的链表内存是顺序申请的，如果有环，head-&gt;next一定小于或等于head。</p>
 <p>这个办法在实际生产中没法使用，因为堆内会不断地new和delete新的节点。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode *<span class="title">detectCycle</span><span class="params">(ListNode *head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">while</span>(head) &#123;</span><br><span class="line">            <span class="keyword">if</span>(!<span class="built_in">less</span>&lt;ListNode *&gt;()(head, head-&gt;next)) &#123;</span><br><span class="line">                <span class="keyword">return</span> head-&gt;next;</span><br><span class="line">            &#125;</span><br><span class="line">            head = head-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
     </div>
 
     
@@ -384,7 +392,8 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#142-%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8-II"><span class="nav-number">1.</span> <span class="nav-text">142. 环形链表 II</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%93%88%E5%B8%8C%E6%B3%95"><span class="nav-number">1.1.</span> <span class="nav-text">哈希法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E5%AD%A6%E6%B3%95"><span class="nav-number">1.2.</span> <span class="nav-text">数学法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B7%A7%E5%A6%99%E6%B3%95"><span class="nav-number">1.3.</span> <span class="nav-text">巧妙法</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8-ii"><span class="nav-number">1.</span> <span class="nav-text">142.
+环形链表 II</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%93%88%E5%B8%8C%E6%B3%95"><span class="nav-number">1.1.</span> <span class="nav-text">哈希法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E5%AD%A6%E6%B3%95"><span class="nav-number">1.2.</span> <span class="nav-text">数学法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B7%A7%E5%A6%99%E6%B3%95"><span class="nav-number">1.3.</span> <span class="nav-text">巧妙法</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -518,6 +527,61 @@
 
 
   
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 

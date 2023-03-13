@@ -265,102 +265,91 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="常见的三种哈希结构"><a href="#常见的三种哈希结构" class="headerlink" title="常见的三种哈希结构"></a>常见的三种哈希结构</h1><p>当我们想使用哈希法来解决问题的时候，我们一般会选择如下三种数据结构。</p>
+        <h1 id="常见的三种哈希结构">常见的三种哈希结构</h1>
+<p>当我们想使用哈希法来解决问题的时候，我们一般会选择如下三种数据结构。</p>
 <ul>
 <li>数组</li>
 <li>set（集合）</li>
 <li>map (映射)</li>
 </ul>
 <p>这里数组就没啥可说的了，我们来看一下set。</p>
-<p>在C++中，set 和 map 分别提供以下三种数据结构，其底层实现以及优劣如下表所示：</p>
-<table>
+<p>在C++中，set 和 map
+分别提供以下三种数据结构，其底层实现以及优劣如下表所示： | 集合 |
+底层实现 | 是否有序 | 数值是否可以重复 | 能否更改数值 | 查询效率
+|增删效率 | | :----:| :----: | :----: | :----:| :----: | :----: |:----:
+| | std::set | 红黑树 | 有序 | 否 | 否 | O(log n) | O(log n) | |
+std::multiset | 红黑树 | 有序 | 是 | 否 | O(log n) | O(log n) | |
+std::unordered_set | 哈希表 | 无序 | 否 | 否 | O(1) | O(1) |</p>
+<p>std::unordered_set底层实现为哈希表，std::set 和std::multiset
+的底层实现是红黑树，红黑树是一种平衡二叉搜索树，所以key值是有序的，但key不可以修改，改动key值会导致整棵树的错乱，所以只能删除和增加。</p>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+</colgroup>
 <thead>
-<tr>
-<th align="center">集合</th>
-<th align="center">底层实现</th>
-<th align="center">是否有序</th>
-<th align="center">数值是否可以重复</th>
-<th align="center">能否更改数值</th>
-<th align="center">查询效率</th>
-<th align="center">增删效率</th>
+<tr class="header">
+<th style="text-align: center;">集合</th>
+<th style="text-align: center;">底层实现</th>
+<th style="text-align: center;">是否有序</th>
+<th style="text-align: center;">数值是否可以重复</th>
+<th style="text-align: center;">能否更改数值</th>
+<th style="text-align: center;">查询效率</th>
+<th style="text-align: center;">增删效率</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center">std::set</td>
-<td align="center">红黑树</td>
-<td align="center">有序</td>
-<td align="center">否</td>
-<td align="center">否</td>
-<td align="center">O(log n)</td>
-<td align="center">O(log n)</td>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">std::map</td>
+<td style="text-align: center;">红黑树</td>
+<td style="text-align: center;">key有序</td>
+<td style="text-align: center;">key不可重复</td>
+<td style="text-align: center;">key不可修改</td>
+<td style="text-align: center;">O(log n)</td>
+<td style="text-align: center;">O(log n)</td>
 </tr>
-<tr>
-<td align="center">std::multiset</td>
-<td align="center">红黑树</td>
-<td align="center">有序</td>
-<td align="center">是</td>
-<td align="center">否</td>
-<td align="center">O(log n)</td>
-<td align="center">O(log n)</td>
+<tr class="even">
+<td style="text-align: center;">std::multimap</td>
+<td style="text-align: center;">红黑树</td>
+<td style="text-align: center;">key有序</td>
+<td style="text-align: center;">key可重复</td>
+<td style="text-align: center;">key可修改</td>
+<td style="text-align: center;">O(log n)</td>
+<td style="text-align: center;">O(log n)</td>
 </tr>
-<tr>
-<td align="center">std::unordered_set</td>
-<td align="center">哈希表</td>
-<td align="center">无序</td>
-<td align="center">否</td>
-<td align="center">否</td>
-<td align="center">O(1)</td>
-<td align="center">O(1)</td>
+<tr class="odd">
+<td style="text-align: center;">std::unordered_map</td>
+<td style="text-align: center;">哈希表</td>
+<td style="text-align: center;">key无序</td>
+<td style="text-align: center;">key不可重复</td>
+<td style="text-align: center;">key不可修改</td>
+<td style="text-align: center;">O(1)</td>
+<td style="text-align: center;">O(1)</td>
 </tr>
-</tbody></table>
-<p>std::unordered_set底层实现为哈希表，std::set 和std::multiset 的底层实现是红黑树，红黑树是一种平衡二叉搜索树，所以key值是有序的，但key不可以修改，改动key值会导致整棵树的错乱，所以只能删除和增加。</p>
-<table>
-<thead>
-<tr>
-<th align="center">集合</th>
-<th align="center">底层实现</th>
-<th align="center">是否有序</th>
-<th align="center">数值是否可以重复</th>
-<th align="center">能否更改数值</th>
-<th align="center">查询效率</th>
-<th align="center">增删效率</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">std::map</td>
-<td align="center">红黑树</td>
-<td align="center">key有序</td>
-<td align="center">key不可重复</td>
-<td align="center">key不可修改</td>
-<td align="center">O(log n)</td>
-<td align="center">O(log n)</td>
-</tr>
-<tr>
-<td align="center">std::multimap</td>
-<td align="center">红黑树</td>
-<td align="center">key有序</td>
-<td align="center">key可重复</td>
-<td align="center">key可修改</td>
-<td align="center">O(log n)</td>
-<td align="center">O(log n)</td>
-</tr>
-<tr>
-<td align="center">std::unordered_map</td>
-<td align="center">哈希表</td>
-<td align="center">key无序</td>
-<td align="center">key不可重复</td>
-<td align="center">key不可修改</td>
-<td align="center">O(1)</td>
-<td align="center">O(1)</td>
-</tr>
-</tbody></table>
-<p>std::unordered_map 底层实现为哈希表，std::map 和std::multimap 的底层实现是红黑树。同理，std::map 和std::multimap 的key也是有序的（这个问题也经常作为面试题，考察对语言容器底层的理解）。</p>
+</tbody>
+</table>
+<p>std::unordered_map 底层实现为哈希表，std::map 和std::multimap
+的底层实现是红黑树。同理，std::map 和std::multimap
+的key也是有序的（这个问题也经常作为面试题，考察对语言容器底层的理解）。</p>
 <p>当我们要使用集合来解决哈希问题的时候，优先使用unordered_set，因为它的查询和增删效率是最优的，如果需要集合是有序的，那么就用set，如果要求不仅有序还要有重复数据的话，那么就用multiset。</p>
-<p>那么再来看一下map ，在map 是一个key value 的数据结构，map中，对key是有限制，对value没有限制的，因为key的存储方式使用红黑树实现的。</p>
-<p>其他语言例如：java里的HashMap ，TreeMap 都是一样的原理。可以灵活贯通。</p>
-<p>虽然std::set、std::multiset 的底层实现是红黑树，不是哈希表，std::set、std::multiset 使用红黑树来索引和存储，不过给我们的使用方式，还是哈希法的使用方式，即key和value。所以使用这些数据结构来解决映射问题的方法，我们依然称之为哈希法。 map也是一样的道理。</p>
-<p>这里在说一下，一些C++的经典书籍上 例如STL源码剖析，说到了hash_set hash_map，这个与unordered_set，unordered_map又有什么关系呢？</p>
-<p>实际上功能都是一样一样的， 但是unordered_set在C++11的时候被引入标准库了，而hash_set并没有，所以建议还是使用unordered_set比较好，这就好比一个是官方认证的，hash_set，hash_map 是C++11标准之前民间高手自发造的轮子。</p>
+<p>那么再来看一下map ，在map 是一个key value
+的数据结构，map中，对key是有限制，对value没有限制的，因为key的存储方式使用红黑树实现的。</p>
+<p>其他语言例如：java里的HashMap ，TreeMap
+都是一样的原理。可以灵活贯通。</p>
+<p>虽然std::set、std::multiset
+的底层实现是红黑树，不是哈希表，std::set、std::multiset
+使用红黑树来索引和存储，不过给我们的使用方式，还是哈希法的使用方式，即key和value。所以使用这些数据结构来解决映射问题的方法，我们依然称之为哈希法。
+map也是一样的道理。</p>
+<p>这里在说一下，一些C++的经典书籍上 例如STL源码剖析，说到了hash_set
+hash_map，这个与unordered_set，unordered_map又有什么关系呢？</p>
+<p>实际上功能都是一样一样的，
+但是unordered_set在C++11的时候被引入标准库了，而hash_set并没有，所以建议还是使用unordered_set比较好，这就好比一个是官方认证的，hash_set，hash_map
+是C++11标准之前民间高手自发造的轮子。</p>
 <p><img src="https://img-blog.csdnimg.cn/20210104235134572.png"></p>
 
     </div>
@@ -597,6 +586,61 @@
 
 
   
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 

@@ -248,8 +248,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="像素画薇古丝"><a href="#像素画薇古丝" class="headerlink" title="像素画薇古丝"></a>像素画薇古丝</h1><p><img src="https://raw.githubusercontent.com/vinouno/blog_image/main/%E8%96%87%E5%8F%A4%E4%B8%9D-400-%E6%9C%AA%E5%AE%8C%E6%88%90.png"></p>
-<p>外形大体上满意（就是头发画的很僵硬）。<br>但是高光和阴影很难达到满意的效果，尝试数次，放弃，待进步后完成。</p>
+        <h1 id="像素画薇古丝">像素画薇古丝</h1>
+<p><img src="https://raw.githubusercontent.com/vinouno/blog_image/main/%E8%96%87%E5%8F%A4%E4%B8%9D-400-%E6%9C%AA%E5%AE%8C%E6%88%90.png"></p>
+<p>外形大体上满意（就是头发画的很僵硬）。
+但是高光和阴影很难达到满意的效果，尝试数次，放弃，待进步后完成。</p>
 
     </div>
 
@@ -481,6 +483,61 @@
 
 
   
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 
