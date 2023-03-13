@@ -21,17 +21,21 @@
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"vinouno.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
   </script>
-  <meta name="description" content="苏老泉，二十七。始发愤，读书籍。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="老泉杂记">
-<meta property="og:url" content="https://vinouno.github.io/archives/2023/page/2/index.html">
+  <meta name="description" content="逆波兰表达式与栈">
+<meta property="og:type" content="article">
+<meta property="og:title" content="150. 逆波兰表达式求值">
+<meta property="og:url" content="https://vinouno.github.io/posts/b3578cd3/index.html">
 <meta property="og:site_name" content="老泉杂记">
-<meta property="og:description" content="苏老泉，二十七。始发愤，读书籍。">
+<meta property="og:description" content="逆波兰表达式与栈">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-03-13T11:10:02.000Z">
+<meta property="article:modified_time" content="2023-03-13T11:12:46.826Z">
 <meta property="article:author" content="裘千尺">
+<meta property="article:tag" content="栈">
+<meta property="article:tag" content="逆波兰">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://vinouno.github.io/archives/2023/page/2/">
+<link rel="canonical" href="https://vinouno.github.io/posts/b3578cd3/">
 
 
 <script id="page-configurations">
@@ -39,12 +43,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>归档 | 老泉杂记</title>
+  <title>150. 逆波兰表达式求值 | 老泉杂记</title>
   
 
 
@@ -184,235 +188,130 @@
         <div class="content-wrap">
           
 
-          <div class="content archive">
+          <div class="content post posts-expand">
             
 
+    
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        
-        <span class="collection-header">还行! 目前共计 37 篇日志。 继续努力。</span>
-      </div>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://vinouno.github.io/posts/b3578cd3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/jinx.jpg">
+      <meta itemprop="name" content="裘千尺">
+      <meta itemprop="description" content="苏老泉，二十七。始发愤，读书籍。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="老泉杂记">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          150. 逆波兰表达式求值
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-03-13 19:10:02 / 修改时间：19:12:46" itemprop="dateCreated datePublished" datetime="2023-03-13T19:10:02+08:00">2023-03-13</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">算法笔记</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>871</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+            <div class="post-description"><div align="center">逆波兰表达式与栈</div></div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <span class="collection-header">2023</span>
-    </div>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2023-02-23T11:09:27+08:00"
-              content="2023-02-23">
-          02-23
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/posts/75057265/" itemprop="url">
-            <span itemprop="name">225. 用队列实现栈&&232. 用栈实现队列</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2023-02-16T18:31:18+08:00"
-              content="2023-02-16">
-          02-16
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/posts/dd14d712/" itemprop="url">
-            <span itemprop="name">151. 反转字符串中的单词</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2023-02-14T10:59:43+08:00"
-              content="2023-02-14">
-          02-14
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/posts/e192590d/" itemprop="url">
-            <span itemprop="name">15. 三数之和</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2023-02-12T23:05:19+08:00"
-              content="2023-02-12">
-          02-12
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/posts/e20c25b0/" itemprop="url">
-            <span itemprop="name">541. 反转字符串 II</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2023-02-12T22:40:14+08:00"
-              content="2023-02-12">
-          02-12
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/posts/f8e8b99a/" itemprop="url">
-            <span itemprop="name">344. 反转字符串</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2023-02-12T20:00:57+08:00"
-              content="2023-02-12">
-          02-12
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/posts/3fb1f6fc/" itemprop="url">
-            <span itemprop="name">383. 赎金信</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2023-02-12T18:11:11+08:00"
-              content="2023-02-12">
-          02-12
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/posts/8ea35345/" itemprop="url">
-            <span itemprop="name">454. 四数相加 II</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2023-02-11T11:23:01+08:00"
-              content="2023-02-11">
-          02-11
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/posts/d87f7e0c/" itemprop="url">
-            <span itemprop="name">test</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2023-02-11T10:33:16+08:00"
-              content="2023-02-11">
-          02-11
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/posts/827e2fc4/" itemprop="url">
-            <span itemprop="name">202. 快乐数</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2023-02-11T09:38:31+08:00"
-              content="2023-02-11">
-          02-11
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/posts/41de9669/" itemprop="url">
-            <span itemprop="name">算法笔记-综述</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
+        <h1 id="leetcode-150-逆波兰表达式求值"><a href="#leetcode-150-逆波兰表达式求值" class="headerlink" title="leetcode-150. 逆波兰表达式求值"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/evaluate-reverse-polish-notation/description/">leetcode-150. 逆波兰表达式求值</a></h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">evalRPN</span><span class="params">(vector&lt;string&gt;&amp; tokens)</span> </span>&#123;</span><br><span class="line">        stack&lt;<span class="type">long</span> <span class="type">long</span>&gt; st;</span><br><span class="line">        <span class="keyword">for</span>(string str : tokens)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(str == <span class="string">&quot;+&quot;</span> || str == <span class="string">&quot;-&quot;</span> || str == <span class="string">&quot;*&quot;</span>|| str == <span class="string">&quot;/&quot;</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="type">long</span> <span class="type">long</span> num1 = st.<span class="built_in">top</span>();</span><br><span class="line">                st.<span class="built_in">pop</span>();</span><br><span class="line">                <span class="type">long</span> <span class="type">long</span> num2 = st.<span class="built_in">top</span>();</span><br><span class="line">                st.<span class="built_in">pop</span>();</span><br><span class="line">                <span class="keyword">if</span>(str == <span class="string">&quot;+&quot;</span>) </span><br><span class="line">                st.<span class="built_in">push</span>(num2 + num1);</span><br><span class="line">                <span class="keyword">if</span>(str == <span class="string">&quot;-&quot;</span>) </span><br><span class="line">                st.<span class="built_in">push</span>(num2 - num1);</span><br><span class="line">                <span class="keyword">if</span>(str == <span class="string">&quot;*&quot;</span>) </span><br><span class="line">                st.<span class="built_in">push</span>(num2 * num1);</span><br><span class="line">                <span class="keyword">if</span>(str == <span class="string">&quot;/&quot;</span>) </span><br><span class="line">                st.<span class="built_in">push</span>(num2 / num1);</span><br><span class="line">                </span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                st.<span class="built_in">push</span>(<span class="built_in">stoll</span>(str));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> st.<span class="built_in">top</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>这段代码是一个计算逆波兰表达式的函数，其中输入的参数是一个字符串类型的 vector，表示逆波兰表达式。该函数的返回值是计算出的表达式的结果。</p>
+<p>逆波兰表达式是一种将运算符放在操作数之后的表示数学表达式的方法。例如，中缀表达式 “3 + 4” 在逆波兰表示法中为 “3 4 +”。</p>
+<p>函数通过使用一个堆栈来实现计算逆波兰表达式的功能。在遍历逆波兰表达式时，如果当前的字符串为运算符，则从堆栈中弹出两个操作数，并将它们应用于该运算符。否则，如果当前的字符串为操作数，则将其作为 long long 类型解析，并将其压入堆栈中。</p>
+<p>最终，堆栈中仅剩一个元素，即为计算出的逆波兰表达式的结果，将其返回即可。</p>
 
     </div>
-  </div>
-  
-  
-  
 
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>裘千尺
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://vinouno.github.io/posts/b3578cd3/" title="150. 逆波兰表达式求值">https://vinouno.github.io/posts/b3578cd3/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%A0%88/" rel="tag"># 栈</a>
+              <a href="/tags/%E9%80%86%E6%B3%A2%E5%85%B0/" rel="tag"># 逆波兰</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/posts/c49d4bce/" rel="prev" title="像素画-薇古丝（未完成）">
+      <i class="fa fa-chevron-left"></i> 像素画-薇古丝（未完成）
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/posts/58d1758d/" rel="next" title="239. 滑动窗口最大值">
+      239. 滑动窗口最大值 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
   
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/archives/2023/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/archives/2023/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/2023/page/3/">3</a><a class="page-number" href="/archives/2023/page/4/">4</a><a class="extend next" rel="next" href="/archives/2023/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
-  </nav>
+  
+  
 
 
 
@@ -464,6 +363,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#leetcode-150-%E9%80%86%E6%B3%A2%E5%85%B0%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%B1%82%E5%80%BC"><span class="nav-number">1.</span> <span class="nav-text">leetcode-150. 逆波兰表达式求值</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
