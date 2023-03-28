@@ -21,16 +21,19 @@
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"vinouno.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
   </script>
-  <meta property="og:type" content="article">
+  <meta name="description" content="chatGPT生成的第一章笔记">
+<meta property="og:type" content="article">
 <meta property="og:title" content="CSAPP 第一章：计算机系统漫游">
 <meta property="og:url" content="https://vinouno.github.io/posts/19b7c283/index.html">
 <meta property="og:site_name" content="老泉杂记">
+<meta property="og:description" content="chatGPT生成的第一章笔记">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-03-28T02:55:19.000Z">
-<meta property="article:modified_time" content="2023-03-28T03:07:42.274Z">
+<meta property="article:modified_time" content="2023-03-28T03:17:28.928Z">
 <meta property="article:author" content="裘千尺">
 <meta property="article:tag" content="CSAPP">
 <meta property="article:tag" content="笔记">
+<meta property="article:tag" content="chatGPT">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="https://vinouno.github.io/posts/19b7c283/">
@@ -217,7 +220,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2023-03-28 10:55:19 / 修改时间：11:07:42" itemprop="dateCreated datePublished" datetime="2023-03-28T10:55:19+08:00">2023-03-28</time>
+              <time title="创建时间：2023-03-28 10:55:19 / 修改时间：11:17:28" itemprop="dateCreated datePublished" datetime="2023-03-28T10:55:19+08:00">2023-03-28</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -235,7 +238,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.3k</span>
+              <span>1.4k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -244,7 +247,7 @@
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               <span>2 分钟</span>
             </span>
-            <div class="post-description"><div align="center"> </div></div>
+            <div class="post-description"><div align="center">chatGPT生成的第一章笔记</div></div>
 
         </div>
       </header>
@@ -270,36 +273,48 @@
 <ul>
 <li>优化程序性能</li>
 <li>理解链接是出现的错误</li>
-<li>避免安全漏洞 ## 1.4 处理器读取并解释存储在内存中的指令</li>
+<li>避免安全漏洞</li>
 </ul>
+<h2 id="处理器读取并解释存储在内存中的指令">1.4
+处理器读取并解释存储在内存中的指令</h2>
 <p>存储器层次结构指的是计算机中各个存储设备（寄存器、缓存、主存、硬盘等）按照距离处理器远近划分的层次结构。
 处理器解释并执行存储在内存中的指令，指令集体系结构定义了处理器能够执行的指令集合。
 程序计数器是一个寄存器，保存当前正在执行的指令地址，处理器按顺序逐条执行指令。</p>
 <h2 id="高速缓存至关重要">1.5 高速缓存至关重要</h2>
 <p>高速缓存是存储器层次结构中的一级缓存，用于加速处理器访问主存中的数据。
 高速缓存采用空间局部性和时间局部性原理，预测处理器未来访问的数据，提前将其缓存到高速缓存中。
-高速缓存的命中率指的是处理器需要的数据在高速缓存中的比例，高速缓存的访问时间短于主存，能显著提升程序性能。
-## 1.6 存储设备形成层次结构
-存储设备也有层次结构，根据访问时间、容量和价格的不同分为寄存器、高速缓存、主存、硬盘等层次。
+高速缓存的命中率指的是处理器需要的数据在高速缓存中的比例，高速缓存的访问时间短于主存，能显著提升程序性能。</p>
+<h2 id="存储设备形成层次结构">1.6 存储设备形成层次结构</h2>
+<p>存储设备也有层次结构，根据访问时间、容量和价格的不同分为寄存器、高速缓存、主存、硬盘等层次。
 存储设备的层次结构决定了数据的访问速度和容量，越靠近处理器的存储设备速度越快，容量越小。
-存储器和磁盘都采用二进制编址方案，即将每个存储单元（或扇区）赋予一个唯一的二进制地址，用于在存储设备中寻找数据。
-## 1.7 操作系统管理硬件
-操作系统是计算机中负责管理各种硬件设备的程序，包括进程、内存、文件等。
+存储器和磁盘都采用二进制编址方案，即将每个存储单元（或扇区）赋予一个唯一的二进制地址，用于在存储设备中寻找数据。</p>
+<h2 id="操作系统管理硬件">1.7 操作系统管理硬件</h2>
+<p>操作系统是计算机中负责管理各种硬件设备的程序，包括进程、内存、文件等。
 操作系统为进程提供了虚拟地址空间，使得每个进程看到的内存空间都是相同的。
-文件系统是操作系统中负责管理磁盘上文件和目录的程序，文件被组织成目录树结构。
-## 1.8 系统之间利用网络通信
-高速网络使得计算机之间可以快速传输大量数据，网络中传输的数据以分组为单位。
+文件系统是操作系统中负责管理磁盘上文件和目录的程序，文件被组织成目录树结构。</p>
+<h2 id="系统之间利用网络通信">1.8 系统之间利用网络通信</h2>
+<p>高速网络使得计算机之间可以快速传输大量数据，网络中传输的数据以分组为单位。
 因特网是一种全球范围内的计算机网络，互联了数十亿个计算机。
-网络协议是计算机间通信的规则，常见的网络协议有TCP/IP协议。 ## 1.9
-并发编程是必不可少的
-并发指的是多个计算机或进程在同一时间内执行多个任务的能力，可以提高程序的性能。
+网络协议是计算机间通信的规则，常见的网络协议有TCP/IP协议。</p>
+<h2 id="重要主题">1.9 重要主题</h2>
+<h3 id="amdahl定律">Amdahl定律</h3>
+<p>该定律指出，一个程序在多处理器系统上的加速比取决于其可并行化部分的比例和处理器的数量。</p>
+<p>假设一个程序的总运行时间为<span
+class="math inline">\(T\)</span>，其中有一个比例为<span
+class="math inline">\(\alpha\)</span>的部分可以被并行化（即可以使用多个处理器同时执行），而剩余的比例为<span
+class="math inline">\(1 -
+\alpha\)</span>的部分必须在单个处理器上顺序执行。如果该程序在单个处理器上运行的时间为<span
+class="math inline">\(T_1\)</span>，在<span
+class="math inline">\(N\)</span>个处理器上运行的时间为<span
+class="math inline">\(T_N\)</span>，则该程序在<span
+class="math inline">\(N\)</span>个处理器上的加速比为：</p>
+<p><span class="math display">\[
+Speedup_{overall} = \frac{1}{(1 - \alpha) + \frac{\alpha}{N}}
+\]</span></p>
+<h3 id="并发与并行">并发与并行</h3>
+<p>并发指的是多个计算机或进程在同一时间内执行多个任务的能力，可以提高程序的性能。
 操作系统需要管理多个进程之间的并发访问，包括进程调度、同步、互斥等机制。
-并发编程需要注意同步和互斥问题，多线程编程需要注意线程安全问题。 ## 1.9
-学习计算机系统是如何工作的
-学习计算机系统可以帮助我们更好地理解计算机的工作原理和性能，提高编程和系统调试的能力。
-学习计算机系统需要掌握底层硬件知识、操作系统知识、网络协议知识等多方面的知识。
-学习计算机系统需要通过实践来深入理解，例如实现一个简单的操作系统或网络应用程序。
-## 重点概念 -</p>
+并发编程需要注意同步和互斥问题，多线程编程需要注意线程安全问题。</p>
 
     </div>
 
@@ -328,6 +343,7 @@
           <div class="post-tags">
               <a href="/tags/CSAPP/" rel="tag"># CSAPP</a>
               <a href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag"># 笔记</a>
+              <a href="/tags/chatGPT/" rel="tag"># chatGPT</a>
           </div>
 
         
@@ -400,7 +416,8 @@
       <div class="post-toc-wrap sidebar-panel">
           <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#csapp-%E7%AC%AC%E4%B8%80%E7%AB%A0%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%BC%AB%E6%B8%B8"><span class="nav-number">1.</span> <span class="nav-text">CSAPP 第一章：计算机系统漫游</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%A1%E6%81%AF%E5%B0%B1%E6%98%AF%E4%BD%8D%E4%B8%8A%E4%B8%8B%E6%96%87"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 信息就是位+上下文</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A8%8B%E5%BA%8F%E8%A2%AB%E5%85%B6%E4%BB%96%E7%A8%8B%E5%BA%8F%E7%BF%BB%E8%AF%91%E6%88%90%E4%B8%8D%E5%90%8C%E7%9A%84%E6%A0%BC%E5%BC%8F"><span class="nav-number">1.2.</span> <span class="nav-text">1.2
 程序被其他程序翻译成不同的格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%86%E8%A7%A3%E7%BC%96%E8%AF%91%E7%B3%BB%E7%BB%9F%E5%A6%82%E4%BD%95%E5%B7%A5%E4%BD%9C%E6%98%AF%E5%A4%A7%E6%9C%89%E7%9B%8A%E5%A4%84%E7%9A%84"><span class="nav-number">1.3.</span> <span class="nav-text">1.3
-了解编译系统如何工作是大有益处的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%AB%98%E9%80%9F%E7%BC%93%E5%AD%98%E8%87%B3%E5%85%B3%E9%87%8D%E8%A6%81"><span class="nav-number">1.4.</span> <span class="nav-text">1.5 高速缓存至关重要</span></a></li></ol></li></ol></div>
+了解编译系统如何工作是大有益处的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%84%E7%90%86%E5%99%A8%E8%AF%BB%E5%8F%96%E5%B9%B6%E8%A7%A3%E9%87%8A%E5%AD%98%E5%82%A8%E5%9C%A8%E5%86%85%E5%AD%98%E4%B8%AD%E7%9A%84%E6%8C%87%E4%BB%A4"><span class="nav-number">1.4.</span> <span class="nav-text">1.4
+处理器读取并解释存储在内存中的指令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%AB%98%E9%80%9F%E7%BC%93%E5%AD%98%E8%87%B3%E5%85%B3%E9%87%8D%E8%A6%81"><span class="nav-number">1.5.</span> <span class="nav-text">1.5 高速缓存至关重要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%98%E5%82%A8%E8%AE%BE%E5%A4%87%E5%BD%A2%E6%88%90%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84"><span class="nav-number">1.6.</span> <span class="nav-text">1.6 存储设备形成层次结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%E7%A1%AC%E4%BB%B6"><span class="nav-number">1.7.</span> <span class="nav-text">1.7 操作系统管理硬件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E4%B9%8B%E9%97%B4%E5%88%A9%E7%94%A8%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1"><span class="nav-number">1.8.</span> <span class="nav-text">1.8 系统之间利用网络通信</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%87%8D%E8%A6%81%E4%B8%BB%E9%A2%98"><span class="nav-number">1.9.</span> <span class="nav-text">1.9 重要主题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#amdahl%E5%AE%9A%E5%BE%8B"><span class="nav-number">1.9.1.</span> <span class="nav-text">Amdahl定律</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B9%B6%E5%8F%91%E4%B8%8E%E5%B9%B6%E8%A1%8C"><span class="nav-number">1.9.2.</span> <span class="nav-text">并发与并行</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -429,7 +446,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">39</span>
+        <span class="site-state-item-count">40</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
