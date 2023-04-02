@@ -29,8 +29,11 @@
 <meta property="og:description" content="CSAPP 第二章：信息的表示和处理">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-03-31T11:34:57.000Z">
-<meta property="article:modified_time" content="2023-04-01T08:07:53.704Z">
-<meta property="article:author" content="裘千尺">
+<meta property="article:modified_time" content="2023-04-01T15:02:56.504Z">
+<meta property="article:author" content="裘千丈">
+<meta property="article:tag" content="CSAPP">
+<meta property="article:tag" content="C语言">
+<meta property="article:tag" content="二进制">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="https://vinouno.github.io/posts/6870ef63/">
@@ -197,7 +200,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/jinx.jpg">
-      <meta itemprop="name" content="裘千尺">
+      <meta itemprop="name" content="裘千丈">
       <meta itemprop="description" content="苏老泉，二十七。始发愤，读书籍。">
     </span>
 
@@ -223,8 +226,17 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-04-01 16:07:53" itemprop="dateModified" datetime="2023-04-01T16:07:53+08:00">2023-04-01</time>
+                <time title="修改时间：2023-04-01 23:02:56" itemprop="dateModified" datetime="2023-04-01T23:02:56+08:00">2023-04-01</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CSAPP/" itemprop="url" rel="index"><span itemprop="name">CSAPP</span></a>
+                </span>
+            </span>
 
           <br>
             <span class="post-meta-item" title="本文字数">
@@ -232,14 +244,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>24</span>
+              <span>4.2k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>7 分钟</span>
             </span>
             <div class="post-description"><div align="center">CSAPP 第二章：信息的表示和处理</div></div>
 
@@ -255,6 +267,134 @@
         <h1 id="csapp-第二章信息的表示和处理">CSAPP
 第二章：信息的表示和处理</h1>
 <h2 id="信息存储">2.1 信息存储</h2>
+<h3 id="位和字节">位和字节</h3>
+<ul>
+<li>计算机中最小的存储单位是位（bit），每个位可以存储0或1。</li>
+<li>8个位构成一个字节（byte），通常用于表示一个字符或一个整数的值。</li>
+<li>计算机中的数据是按字节为单位存储的，每个字节都有一个唯一的地址。</li>
+</ul>
+<h3 id="十六进制表示法">十六进制表示法</h3>
+<ul>
+<li>十六进制表示法用于方便地表示二进制数。</li>
+<li>每个十六进制数字对应于4个二进制位，因此一个字节可以表示为两个十六进制数字。</li>
+<li>十六进制数字包括0到9和A到F。</li>
+</ul>
+<h3 id="字数据大小">字数据大小</h3>
+<ul>
+<li>计算机中常用的字大小有1字节（8位）、2字节（16位）、4字节（32位）和8字节（64位）。</li>
+<li>不同的字大小可以表示的最大值不同，例如1字节可以表示的最大值为255（<span
+class="math inline">\(2^8-1\)</span>），而4字节可以表示的最大值为4294967295（<span
+class="math inline">\(2^{32}-1\)</span>）。</li>
+</ul>
+<h3 id="数据类型">数据类型</h3>
+<ul>
+<li>不同类型的数据在计算机中存储的方式不同。</li>
+<li>布尔类型通常存储为1字节，0表示假，非0表示真。</li>
+<li>整数类型可以使用有符号或无符号表示，有符号类型使用补码表示，无符号类型使用无符号整数表示。</li>
+<li>浮点数类型通常使用IEEE标准表示，包括符号位、指数位和尾数位。</li>
+</ul>
+<h3 id="c语言数据类型">C语言数据类型</h3>
+<ul>
+<li>C语言支持各种数据类型，包括整数类型、浮点数类型、字符类型等。
+不同的数据类型在内存中占用的字节数不同，可以使用sizeof运算符获取。</li>
+<li>在C语言中，常量可以直接使用字面值表示，例如整数常量、浮点数常量、字符常量等。</li>
+<li>为什么防止不同编译器的不同设置引起的奇怪问题，引入了数据大小固定的数据类型，例如int32_t和int64_t。</li>
+</ul>
+<h3 id="大端和小端">大端和小端</h3>
+<p>在计算机中，数据在内存中存储时需要占用多个字节。大端和小端是两种不同的字节序，用于确定多字节数据中字节的存储顺序。</p>
+<ul>
+<li><p>大端字节序：在大端字节序中，最高位字节（即最高有效字节）存储在最低地址处，最低位字节（即最低有效字节）存储在最高地址处。例如，十六进制数0x12345678在大端字节序中存储为12
+34 56
+78，最高位字节0x12存储在最低地址处，最低位字节0x78存储在最高地址处。</p></li>
+<li><p>小端字节序：在小端字节序中，最低位字节（即最低有效字节）存储在最低地址处，最高位字节（即最高有效字节）存储在最高地址处。例如，十六进制数0x12345678在小端字节序中存储为78
+56 34
+12，最低位字节0x78存储在最低地址处，最高位字节0x12存储在最高地址处。</p></li>
+</ul>
+<p>两种字节序的区别在于多字节数据的字节存储顺序，而单字节数据的字节存储顺序是相同的。在网络通信和数据传输中，通常使用大端字节序。一些计算机处理器（如PowerPC）采用大端字节序，而另一些计算机处理器（如x86）采用小端字节序。在程序开发中，需要考虑字节序的问题，以免造成数据解析错误或不兼容的问题。</p>
+<h3 id="布尔代数">布尔代数</h3>
+<p>布尔代数是一种数学分支，也是一种逻辑代数。它以二元关系和二元运算为基础，用于描述逻辑命题和逻辑运算，其中的基本元素只有两个值，通常用0和1表示。在布尔代数中，0表示假，1表示真。</p>
+<p>布尔代数的运算包括与（AND）、或（OR）、非（NOT）和异或（XOR）等。以AND运算为例，当两个元素的值均为1时，AND运算的结果为1，否则为0。OR运算的结果是两个元素的值中至少有一个为1时为1，否则为0。NOT运算的结果是一个元素的值取反，即1变成0，0变成1。XOR运算的结果是两个元素的值不相同时为1，相同时为0。</p>
+<p>布尔代数广泛应用于计算机科学领域中的逻辑设计、编译器设计、数据结构、算法设计等方面。例如，在逻辑电路的设计中，可以使用布尔代数的公式来简化电路的设计，从而减少电路的复杂性和成本。在编译器的设计中，布尔代数也被用来描述和优化中间代码和目标代码的生成和优化过程。在数据结构和算法设计中，布尔代数常常被用来描述逻辑运算和条件判断等。</p>
+<h3 id="c语言中的逻辑运算">C语言中的逻辑运算</h3>
+<p>逻辑与（&amp;&amp;）运算符表示两个表达式都为真时结果为真，只要有一个表达式为假则结果为假。例如，a
+&amp;&amp; b表示当a和b都为真时结果为真，否则结果为假。</p>
+<p>逻辑或（||）运算符表示两个表达式有一个为真时结果为真，只有两个表达式都为假时结果为假。例如，a
+|| b表示当a或b中有一个为真时结果为真，否则结果为假。</p>
+<p>逻辑非（!）运算符表示对一个表达式取反。例如，!a表示当a为假时结果为真，当a为真时结果为假。</p>
+<h3 id="c语言中的移位">C语言中的移位</h3>
+<p>C语言中的移位运算是位运算的一种，包括左移运算符（&lt;&lt;）、逻辑右移运算符（&gt;&gt;&gt;）、算术右移运算符（&gt;&gt;）。</p>
+<p>左移运算符（&lt;&lt;）将一个数的二进制表示向左移动指定的位数，右侧空出的位补0。例如，a
+&lt;&lt; 2表示将a的二进制表示向左移动2位，即将a的值乘以4。</p>
+<p>逻辑右移运算符（&gt;&gt;&gt;）将一个数的二进制表示向右移动指定的位数，左侧空出的位补0。例如，a
+&gt;&gt;&gt; 1表示将a的二进制表示向右移动1位，左侧空出的位补0。</p>
+<p>算术右移运算符（&gt;&gt;）将一个数的二进制表示向右移动指定的位数，左侧空出的位补符号位，即正数补0，负数补1。例如，a
+&gt;&gt; 1表示将a的二进制表示向右移动1位，即将a的值除以2。</p>
+<p>在C语言标准中，并没有明确定义算术右移和逻辑右移的方法，具体的实现方式取决于编译器和处理器的实现。在实际中，大部分的处理器都采用了算术右移的方式来进行有符号数的右移操作，即将左侧空出的位补上符号位；而无符号数的右移操作一般采用逻辑右移的方式，即左侧空出的位补0。</p>
+<p>由于C语言标准并没有规定右移的行为，因此在进行有符号数的右移操作时，存在一些跨平台的兼容性问题，不同的编译器和处理器可能会有不同的实现方式。因此，为了避免这些问题，建议在进行右移操作时，尽量使用无符号数进行位运算，或者使用移位后进行符号扩展的方法。</p>
+<p>移位运算在C语言中常用于优化计算，比如将乘法运算转化为移位运算。需要注意的是，移位运算符的使用需要遵循一定的规则，如不可将一个数向右移动超过它的位数，否则结果将不可预知。在使用算术右移时，需要注意负数的符号扩展问题，可以通过逻辑右移再进行符号位的处理。</p>
+<h2 id="整数表示">2.2 整数表示</h2>
+<h3 id="补码">补码</h3>
+<p>补码是一种用来表示有符号整数的编码方式。对于一个n位二进制数，它的补码表示方法如下：</p>
+<ul>
+<li>对于正数，它的补码就是它的原码（即二进制数的绝对值）</li>
+<li>对于负数，它的补码是将它的原码除符号位以外的所有位按位取反，然后再加1所得到的结果</li>
+</ul>
+<p>对于一个n位的补码数X，其数值表示为：</p>
+<p><span class="math display">\[
+X = -w_{n-1} × 2^{n-1} + ∑_{i=0}^{n-2}w_i × 2^i
+\]</span></p>
+<p>其中，<span
+class="math inline">\(w_{n-1}\)</span>表示符号位，若为0则表示正数，若为1则表示负数。</p>
+<p>以一个8位的有符号整数-7为例，其原码为：</p>
+<p><span class="math display">\[
+-7_{10} = 10000111_{2}
+\]</span></p>
+<p>将其转换为补码：</p>
+<ol type="1">
+<li>对于符号位，符号位为1，表示负数。</li>
+<li>对于除符号位以外的所有位，将其取反得到01111000。</li>
+<li>将取反后的结果加1，得到01111001。</li>
+</ol>
+<p>因此，-7的补码表示为01111001。</p>
+<h3
+id="有符号数和无符号数的运算与转化">有符号数和无符号数的运算与转化</h3>
+<p>有符号数和无符号数的运算和转化涉及到它们在内存中存储的方式不同，可能会导致意想不到的结果。</p>
+<p>首先，无符号数的取值范围是 <span class="math inline">\(0\)</span> 到
+<span class="math inline">\(2^n-1\)</span>，其中 <span
+class="math inline">\(n\)</span> 是该类型的位数。因此，当无符号数的值为
+<span class="math inline">\(0\)</span> 时，其所有位都为 <span
+class="math inline">\(0\)</span>。</p>
+<p>而对于有符号数，它的第一位通常表示它的符号。使用补码表示时，有符号数的取值范围是
+<span class="math inline">\(-2^{n-1}\)</span> 到 <span
+class="math inline">\(2^{n-1}-1\)</span>。对于一个 <span
+class="math inline">\(n\)</span> 位的有符号数，最高位的权重是 <span
+class="math inline">\(-2^{n-1}\)</span>，其余位的权重分别为 <span
+class="math inline">\(2^{n-2}\)</span>、<span
+class="math inline">\(2^{n-3}\)</span>、<span
+class="math inline">\(\cdots\)</span>、<span
+class="math inline">\(2^0\)</span>。</p>
+<p>当有符号数和无符号数发生运算时，C语言会将无符号数当作有符号数进行运算。如果无符号数的值小于
+<span
+class="math inline">\(0\)</span>，那么它会被解释为有符号数的一个较大的正数值，这可能导致意想不到的结果。</p>
+<p>当将有符号数转换为无符号数时，如果该数的值为负，则将其值加上 <span
+class="math inline">\(2^n\)</span>（其中 <span
+class="math inline">\(n\)</span>
+是该类型的位数），直到它成为一个非负数。这种转换也可能导致意想不到的结果，例如：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">unsigned</span> <span class="type">int</span> x = <span class="number">10</span>;</span><br><span class="line"><span class="type">int</span> y = <span class="number">-20</span>;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%u\n&quot;</span>, x + y);</span><br></pre></td></tr></table></figure>
+<p>上面的代码中，y 被转换为一个无符号数，其值为 <span
+class="math inline">\(2^{32}-20\)</span>。因此，x + y 的值为 <span
+class="math inline">\(2^{32}-10\)</span>，它通常不是我们想要的结果。</p>
+<h3 id="拓展与截断">拓展与截断</h3>
+<p>拓展和截断是指对于一个数据类型，将其从一种宽度（width）转换为另一种宽度的过程。</p>
+<p>拓展指将一个较窄的数据类型转换为一个较宽的数据类型时所进行的操作。例如，将一个8位的无符号数拓展为一个16位的无符号数，就需要将其高位补0。拓展操作可以通过左移、右移和或操作等方式来实现。</p>
+<p>例如，将一个8位的无符号数x拓展为一个16位的无符号数y，可以使用下面的代码：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">unsigned</span> <span class="type">char</span> x = <span class="number">0x23</span>; <span class="comment">// 0000 0010</span></span><br><span class="line"><span class="type">unsigned</span> <span class="type">short</span> y = (<span class="type">unsigned</span> <span class="type">short</span>) x; <span class="comment">// 0000 0000 0010 0011</span></span><br></pre></td></tr></table></figure>
+<p>在上面的代码中，我们将x拓展为一个16位的无符号数y，使用了显式类型转换的方式。</p>
+<p>截断指将一个较宽的数据类型转换为一个较窄的数据类型时所进行的操作。例如，将一个32位的整数截断为一个16位的整数，就需要将其高位截断。截断操作会导致数据的精度降低，可能会导致精度损失和数据溢出等问题。</p>
+<p>例如，将一个32位的有符号整数x截断为一个16位的有符号整数y，可以使用下面的代码：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> x = <span class="number">0x0000ffff</span>; <span class="comment">// 0000 0000 0000 0000 1111 1111 1111 1111</span></span><br><span class="line"><span class="type">short</span> y = (<span class="type">short</span>) x; <span class="comment">// 1111 1111 1111 1111</span></span><br></pre></td></tr></table></figure>
+<p>在上面的代码中，我们将x截断为一个16位的有符号整数y，使用了显式类型转换的方式。由于x的高位都是0，因此截断的结果和原始值相同。</p>
+<p>需要注意的是，对于有符号整数的拓展和截断操作，其具体的结果取决于CPU的架构和编译器的实现。例如，对于有符号整数的截断操作，一些编译器会采用“截断高位，保留低位”的方式，而另一些编译器则会采用“截断低位，保留符号位”的方式。因此，在进行数据类型转换时，应该根据具体的编译器和CPU架构来决定具体的实现方式。</p>
 
     </div>
 
@@ -266,7 +406,7 @@
 <div>
 <ul class="post-copyright">
   <li class="post-copyright-author">
-    <strong>本文作者： </strong>裘千尺
+    <strong>本文作者： </strong>裘千丈
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
@@ -280,6 +420,11 @@
 
 
       <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/CSAPP/" rel="tag"># CSAPP</a>
+              <a href="/tags/C%E8%AF%AD%E8%A8%80/" rel="tag"># C语言</a>
+              <a href="/tags/%E4%BA%8C%E8%BF%9B%E5%88%B6/" rel="tag"># 二进制</a>
+          </div>
 
         
 
@@ -353,15 +498,15 @@
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
           <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#csapp-%E7%AC%AC%E4%BA%8C%E7%AB%A0%E4%BF%A1%E6%81%AF%E7%9A%84%E8%A1%A8%E7%A4%BA%E5%92%8C%E5%A4%84%E7%90%86"><span class="nav-number">1.</span> <span class="nav-text">CSAPP
-第二章：信息的表示和处理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%A1%E6%81%AF%E5%AD%98%E5%82%A8"><span class="nav-number">1.1.</span> <span class="nav-text">2.1 信息存储</span></a></li></ol></li></ol></div>
+第二章：信息的表示和处理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%A1%E6%81%AF%E5%AD%98%E5%82%A8"><span class="nav-number">1.1.</span> <span class="nav-text">2.1 信息存储</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%8D%E5%92%8C%E5%AD%97%E8%8A%82"><span class="nav-number">1.1.1.</span> <span class="nav-text">位和字节</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%81%E5%85%AD%E8%BF%9B%E5%88%B6%E8%A1%A8%E7%A4%BA%E6%B3%95"><span class="nav-number">1.1.2.</span> <span class="nav-text">十六进制表示法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%97%E6%95%B0%E6%8D%AE%E5%A4%A7%E5%B0%8F"><span class="nav-number">1.1.3.</span> <span class="nav-text">字数据大小</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.1.4.</span> <span class="nav-text">数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#c%E8%AF%AD%E8%A8%80%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.1.5.</span> <span class="nav-text">C语言数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%A7%E7%AB%AF%E5%92%8C%E5%B0%8F%E7%AB%AF"><span class="nav-number">1.1.6.</span> <span class="nav-text">大端和小端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%83%E5%B0%94%E4%BB%A3%E6%95%B0"><span class="nav-number">1.1.7.</span> <span class="nav-text">布尔代数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#c%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97"><span class="nav-number">1.1.8.</span> <span class="nav-text">C语言中的逻辑运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#c%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E7%A7%BB%E4%BD%8D"><span class="nav-number">1.1.9.</span> <span class="nav-text">C语言中的移位</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B4%E6%95%B0%E8%A1%A8%E7%A4%BA"><span class="nav-number">1.2.</span> <span class="nav-text">2.2 整数表示</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A1%A5%E7%A0%81"><span class="nav-number">1.2.1.</span> <span class="nav-text">补码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%89%E7%AC%A6%E5%8F%B7%E6%95%B0%E5%92%8C%E6%97%A0%E7%AC%A6%E5%8F%B7%E6%95%B0%E7%9A%84%E8%BF%90%E7%AE%97%E4%B8%8E%E8%BD%AC%E5%8C%96"><span class="nav-number">1.2.2.</span> <span class="nav-text">有符号数和无符号数的运算与转化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8B%93%E5%B1%95%E4%B8%8E%E6%88%AA%E6%96%AD"><span class="nav-number">1.2.3.</span> <span class="nav-text">拓展与截断</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="裘千尺"
+    <img class="site-author-image" itemprop="image" alt="裘千丈"
       src="/images/jinx.jpg">
-  <p class="site-author-name" itemprop="name">裘千尺</p>
+  <p class="site-author-name" itemprop="name">裘千丈</p>
   <div class="site-description" itemprop="description">苏老泉，二十七。始发愤，读书籍。</div>
 </div>
 <div class="site-state-wrap motion-element">
@@ -382,7 +527,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">41</span>
+        <span class="site-state-item-count">43</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -417,17 +562,17 @@
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">裘千尺</span>
+  <span class="author" itemprop="copyrightHolder">裘千丈</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">39k</span>
+    <span title="站点总字数">43k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">1:05</span>
+    <span title="站点阅读时长">1:12</span>
 </div>
 
 <!--
