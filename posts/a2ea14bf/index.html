@@ -21,22 +21,22 @@
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"vinouno.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
   </script>
-  <meta name="description" content="chatGPT生成的第一章笔记，突出一个似是而非">
+  <meta name="description" content="利用记忆化搜索进行动态规划">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CSAPP 第一章：计算机系统漫游">
-<meta property="og:url" content="https://vinouno.github.io/posts/19b7c283/index.html">
+<meta property="og:title" content="1039. 多边形三角剖分的最低得分">
+<meta property="og:url" content="https://vinouno.github.io/posts/a2ea14bf/index.html">
 <meta property="og:site_name" content="老泉杂记">
-<meta property="og:description" content="chatGPT生成的第一章笔记，突出一个似是而非">
+<meta property="og:description" content="利用记忆化搜索进行动态规划">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-03-28T02:55:19.000Z">
-<meta property="article:modified_time" content="2023-04-01T13:16:28.850Z">
+<meta property="article:published_time" content="2023-04-02T13:10:36.000Z">
+<meta property="article:modified_time" content="2023-04-02T13:19:48.699Z">
 <meta property="article:author" content="裘千丈">
-<meta property="article:tag" content="CSAPP">
-<meta property="article:tag" content="计算机组成原理">
-<meta property="article:tag" content="chatGPT">
+<meta property="article:tag" content="动态规划">
+<meta property="article:tag" content="记忆化搜索">
+<meta property="article:tag" content="C++">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://vinouno.github.io/posts/19b7c283/">
+<link rel="canonical" href="https://vinouno.github.io/posts/a2ea14bf/">
 
 
 <script id="page-configurations">
@@ -49,7 +49,7 @@
   };
 </script>
 
-  <title>CSAPP 第一章：计算机系统漫游 | 老泉杂记</title>
+  <title>1039. 多边形三角剖分的最低得分 | 老泉杂记</title>
   
 
 
@@ -196,7 +196,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://vinouno.github.io/posts/19b7c283/">
+    <link itemprop="mainEntityOfPage" href="https://vinouno.github.io/posts/a2ea14bf/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/jinx.jpg">
@@ -209,7 +209,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          CSAPP 第一章：计算机系统漫游
+          1039. 多边形三角剖分的最低得分
         </h1>
 
         <div class="post-meta">
@@ -218,23 +218,17 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2023-03-28 10:55:19" itemprop="dateCreated datePublished" datetime="2023-03-28T10:55:19+08:00">2023-03-28</time>
+              <time title="创建时间：2023-04-02 21:10:36 / 修改时间：21:19:48" itemprop="dateCreated datePublished" datetime="2023-04-02T21:10:36+08:00">2023-04-02</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-04-01 21:16:28" itemprop="dateModified" datetime="2023-04-01T21:16:28+08:00">2023-04-01</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CSAPP/" itemprop="url" rel="index"><span itemprop="name">CSAPP</span></a>
+                  <a href="/categories/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">算法笔记</span></a>
                 </span>
             </span>
 
@@ -244,16 +238,16 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.4k</span>
+              <span>2k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
+              <span>3 分钟</span>
             </span>
-            <div class="post-description"><div align="center">chatGPT生成的第一章笔记，突出一个似是而非</div></div>
+            <div class="post-description"><div align="center">利用记忆化搜索进行动态规划</div></div>
 
         </div>
       </header>
@@ -264,63 +258,52 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="csapp-第一章计算机系统漫游">CSAPP 第一章：计算机系统漫游</h1>
-<h2 id="信息就是位上下文">1.1 信息就是位+上下文</h2>
-<p>计算机以二进制形式表示信息，每个二进制位表示一种状态，可以表示数字、字符等等。
-上下文指的是信息被解释的环境，同样的位在不同上下文中可能有不同的含义。
-字节是计算机中常用的信息单位，一个字节通常表示8位二进制数据。</p>
-<h2 id="程序被其他程序翻译成不同的格式">1.2
-程序被其他程序翻译成不同的格式</h2>
-<p>操作系统负责将高级语言程序翻译成机器语言程序，其中编译器将高级语言翻译成汇编语言，汇编器将汇编语言翻译成机器语言。
-目标代码是机器语言的二进制表示形式，可执行目标代码是可直接在计算机上运行的机器语言程序。
-共享库是一段被多个程序共享的目标代码，使得程序在运行时所需的内存更小。</p>
-<h2 id="了解编译系统如何工作是大有益处的">1.3
-了解编译系统如何工作是大有益处的</h2>
-<ul>
-<li>优化程序性能</li>
-<li>理解链接是出现的错误</li>
-<li>避免安全漏洞</li>
-</ul>
-<h2 id="处理器读取并解释存储在内存中的指令">1.4
-处理器读取并解释存储在内存中的指令</h2>
-<p>存储器层次结构指的是计算机中各个存储设备（寄存器、缓存、主存、硬盘等）按照距离处理器远近划分的层次结构。
-处理器解释并执行存储在内存中的指令，指令集体系结构定义了处理器能够执行的指令集合。
-程序计数器是一个寄存器，保存当前正在执行的指令地址，处理器按顺序逐条执行指令。</p>
-<h2 id="高速缓存至关重要">1.5 高速缓存至关重要</h2>
-<p>高速缓存是存储器层次结构中的一级缓存，用于加速处理器访问主存中的数据。
-高速缓存采用空间局部性和时间局部性原理，预测处理器未来访问的数据，提前将其缓存到高速缓存中。
-高速缓存的命中率指的是处理器需要的数据在高速缓存中的比例，高速缓存的访问时间短于主存，能显著提升程序性能。</p>
-<h2 id="存储设备形成层次结构">1.6 存储设备形成层次结构</h2>
-<p>存储设备也有层次结构，根据访问时间、容量和价格的不同分为寄存器、高速缓存、主存、硬盘等层次。
-存储设备的层次结构决定了数据的访问速度和容量，越靠近处理器的存储设备速度越快，容量越小。
-存储器和磁盘都采用二进制编址方案，即将每个存储单元（或扇区）赋予一个唯一的二进制地址，用于在存储设备中寻找数据。</p>
-<h2 id="操作系统管理硬件">1.7 操作系统管理硬件</h2>
-<p>操作系统是计算机中负责管理各种硬件设备的程序，包括进程、内存、文件等。
-操作系统为进程提供了虚拟地址空间，使得每个进程看到的内存空间都是相同的。
-文件系统是操作系统中负责管理磁盘上文件和目录的程序，文件被组织成目录树结构。</p>
-<h2 id="系统之间利用网络通信">1.8 系统之间利用网络通信</h2>
-<p>高速网络使得计算机之间可以快速传输大量数据，网络中传输的数据以分组为单位。
-因特网是一种全球范围内的计算机网络，互联了数十亿个计算机。
-网络协议是计算机间通信的规则，常见的网络协议有TCP/IP协议。</p>
-<h2 id="重要主题">1.9 重要主题</h2>
-<h3 id="amdahl定律">Amdahl定律</h3>
-<p>该定律指出，一个程序在多处理器系统上的加速比取决于其可并行化部分的比例和处理器的数量。</p>
-<p>假设一个程序的总运行时间为<span
-class="math inline">\(T\)</span>，其中有一个比例为<span
-class="math inline">\(\alpha\)</span>的部分可以被并行化（即可以使用多个处理器同时执行），而剩余的比例为<span
-class="math inline">\(1 -
-\alpha\)</span>的部分必须在单个处理器上顺序执行。如果该程序在单个处理器上运行的时间为<span
-class="math inline">\(T_1\)</span>，在<span
-class="math inline">\(N\)</span>个处理器上运行的时间为<span
-class="math inline">\(T_N\)</span>，则该程序在<span
-class="math inline">\(N\)</span>个处理器上的加速比为：</p>
-<p><span class="math display">\[
-Speedup_{overall} = \frac{1}{(1 - \alpha) + \frac{\alpha}{N}}
-\]</span></p>
-<h3 id="并发与并行">并发与并行</h3>
-<p>并发指的是多个计算机或进程在同一时间内执行多个任务的能力，可以提高程序的性能。
-操作系统需要管理多个进程之间的并发访问，包括进程调度、同步、互斥等机制。
-并发编程需要注意同步和互斥问题，多线程编程需要注意线程安全问题。</p>
+        <h1 id="多边形三角剖分的最低得分"><a
+target="_blank" rel="noopener" href="https://leetcode.cn/problems/minimum-score-triangulation-of-polygon/description/">1039.
+多边形三角剖分的最低得分</a></h1>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">minScoreTriangulation</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; values)</span> </span>&#123;</span><br><span class="line">        unordered_map&lt;<span class="type">int</span>, <span class="type">int</span>&gt; memo; <span class="comment">// memo是用来记录子问题的解，避免重复计算</span></span><br><span class="line">        <span class="type">int</span> n = values.<span class="built_in">size</span>();</span><br><span class="line">        function&lt;<span class="type">int</span>(<span class="type">int</span>, <span class="type">int</span>)&gt; dp = [&amp;](<span class="type">int</span> i, <span class="type">int</span> j) -&gt; <span class="type">int</span> &#123; <span class="comment">// dp函数是用来计算子问题的解</span></span><br><span class="line">            <span class="keyword">if</span> (i + <span class="number">2</span> &gt; j) &#123; <span class="comment">// 当前的多边形边数小于3，不需要进行三角剖分，得分为0</span></span><br><span class="line">                <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (i + <span class="number">2</span> == j) &#123; <span class="comment">// 当前的多边形边数等于3，只有一种剖分方式，直接计算得分</span></span><br><span class="line">                <span class="keyword">return</span> values[i] * values[i + <span class="number">1</span>] * values[j];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="type">int</span> key = i * n + j; <span class="comment">// 将子问题的i和j作为key，保存子问题的解</span></span><br><span class="line">            <span class="keyword">if</span> (!memo.<span class="built_in">count</span>(key)) &#123; <span class="comment">// 如果当前子问题没有被计算过，进行计算</span></span><br><span class="line">                <span class="type">int</span> minScore = INT_MAX; <span class="comment">// 初始化当前子问题的最小得分</span></span><br><span class="line">                <span class="keyword">for</span> (<span class="type">int</span> k = i + <span class="number">1</span>; k &lt; j; k++) &#123; <span class="comment">// 枚举剖分点k，计算最小得分</span></span><br><span class="line">                    minScore = <span class="built_in">min</span>(minScore, values[i] * values[k] * values[j] + <span class="built_in">dp</span>(i, k) + <span class="built_in">dp</span>(k, j));</span><br><span class="line">                &#125;</span><br><span class="line">                memo[key] = minScore; <span class="comment">// 将子问题的解保存到memo中</span></span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> memo[key]; <span class="comment">// 返回子问题的解</span></span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">dp</span>(<span class="number">0</span>, n - <span class="number">1</span>); <span class="comment">// 计算整个多边形的最小得分</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="解题思路">解题思路</h2>
+<p>这道题可以使用动态规划（DP）来求解。具体来说，可以定义一个 DP 函数
+dp(i, j)，表示对于多边形的第 i 个顶点到第 j
+个顶点之间的区间，选择不相交的对角线将其分成若干个三角形的最小得分之和。那么最终的答案即为
+dp(0, n-1)，其中 n 是顶点的个数。</p>
+<p>对于 dp(i, j)，可以枚举 i 和 j 之间的所有顶点 k，并尝试将顶点 i
+和顶点 j
+之间的一条对角线连接起来，将多边形分成两个部分。然后分别递归求解左右两个部分的最小得分之和，并将其加上当前三角形的得分，得到当前方案的总得分。最后取所有方案的总得分中的最小值即可。</p>
+<p>为了避免重复计算，可以使用备忘录（memoization）技术对已经计算过的结果进行缓存。首先创建了一个
+unordered_map&lt;int, int&gt; 类型的 memo
+变量，用于记录已经计算过的子问题的答案，以避免重复计算。</p>
+<p>然后定义了一个名为 dp 的 lambda 函数，它的输入参数为两个整数 i 和
+j，输出一个整数，代表计算多边形顶点 i 到顶点 j
+之间构成的三角形的最小分数。这个 lambda
+函数内部采用记忆化搜索的方式来避免重复计算。首先检查是否已经计算过当前子问题的答案，如果没有则通过遍历顶点
+i 到顶点 j
+之间的所有可能的三角形，分别计算分数，然后取最小值并将结果存入 memo
+中。</p>
+<p>最后调用 dp 函数计算多边形从顶点 0 到顶点 n-1
+之间构成的三角形的最小分数，并将结果作为函数的返回值。</p>
+<p>综上，这段代码实现了一种动态规划算法，用于计算多边形中所有可能的三角形分割方案中的最小分数。其中使用了记忆化搜索来避免重复计算，lambda
+函数 dp 中定义了具体的计算逻辑。</p>
+<h2 id="lamda表达式和function">lamda表达式和function</h2>
+<p>这段代码是最复杂的：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">function&lt;<span class="type">int</span>(<span class="type">int</span>, <span class="type">int</span>)&gt; dp = [&amp;](<span class="type">int</span> i, <span class="type">int</span> j) -&gt; <span class="type">int</span> &#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>这行代码定义了一个函数对象 dp，这个函数对象是一个 std::function
+类型的变量，它指向一个以 int 和 int 为输入参数，以 int
+为返回值的函数。</p>
+<p>具体来说，function&lt;int(int, int)&gt; 表示 dp
+是一个函数对象，它接受两个 int 类型的参数，返回一个 int
+类型的值。这个函数对象在后面的实现中被赋值为一个 lambda 表达式，这个
+lambda 表达式定义了动态规划的状态转移方程。</p>
+<p>&amp; 符号表示通过引用捕获外部变量，[&amp;]
+表示以引用的方式捕获所有外部变量，即函数对象内部可以访问外部的变量和函数。在本例中，lambda
+表达式需要访问 values 和 memo 这两个变量。</p>
+<p>-&gt; int 表示函数对象返回值的类型是 int，dp(i, j)
+表示函数对象的调用方式，即传入两个参数 i 和 j 并返回一个 int
+类型的值。</p>
+<p>总之，这行代码定义了一个函数对象
+dp，它表示动态规划中的状态转移方程。在实际运行中，通过调用 dp(i, j)
+可以计算出以 i 和 j 为顶点的三角形的最小得分，并且使用 memo
+对已经计算过的值进行了缓存，以避免重复计算。</p>
 
     </div>
 
@@ -336,7 +319,7 @@ Speedup_{overall} = \frac{1}{(1 - \alpha) + \frac{\alpha}{N}}
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://vinouno.github.io/posts/19b7c283/" title="CSAPP 第一章：计算机系统漫游">https://vinouno.github.io/posts/19b7c283/</a>
+    <a href="https://vinouno.github.io/posts/a2ea14bf/" title="1039. 多边形三角剖分的最低得分">https://vinouno.github.io/posts/a2ea14bf/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -347,9 +330,9 @@ Speedup_{overall} = \frac{1}{(1 - \alpha) + \frac{\alpha}{N}}
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/CSAPP/" rel="tag"># CSAPP</a>
-              <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" rel="tag"># 计算机组成原理</a>
-              <a href="/tags/chatGPT/" rel="tag"># chatGPT</a>
+              <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" rel="tag"># 动态规划</a>
+              <a href="/tags/%E8%AE%B0%E5%BF%86%E5%8C%96%E6%90%9C%E7%B4%A2/" rel="tag"># 记忆化搜索</a>
+              <a href="/tags/C/" rel="tag"># C++</a>
           </div>
 
         
@@ -358,13 +341,10 @@ Speedup_{overall} = \frac{1}{(1 - \alpha) + \frac{\alpha}{N}}
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/posts/460c78a0/" rel="prev" title="53. 最大子数组和">
-      <i class="fa fa-chevron-left"></i> 53. 最大子数组和
+    <a href="/posts/c805edf0/" rel="prev" title="831. 隐藏个人信息">
+      <i class="fa fa-chevron-left"></i> 831. 隐藏个人信息
     </a></div>
-      <div class="post-nav-item">
-    <a href="/posts/3a68c5f2/" rel="next" title="关于free和delete">
-      关于free和delete <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -423,10 +403,8 @@ Speedup_{overall} = \frac{1}{(1 - \alpha) + \frac{\alpha}{N}}
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#csapp-%E7%AC%AC%E4%B8%80%E7%AB%A0%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%BC%AB%E6%B8%B8"><span class="nav-number">1.</span> <span class="nav-text">CSAPP 第一章：计算机系统漫游</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%A1%E6%81%AF%E5%B0%B1%E6%98%AF%E4%BD%8D%E4%B8%8A%E4%B8%8B%E6%96%87"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 信息就是位+上下文</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A8%8B%E5%BA%8F%E8%A2%AB%E5%85%B6%E4%BB%96%E7%A8%8B%E5%BA%8F%E7%BF%BB%E8%AF%91%E6%88%90%E4%B8%8D%E5%90%8C%E7%9A%84%E6%A0%BC%E5%BC%8F"><span class="nav-number">1.2.</span> <span class="nav-text">1.2
-程序被其他程序翻译成不同的格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%86%E8%A7%A3%E7%BC%96%E8%AF%91%E7%B3%BB%E7%BB%9F%E5%A6%82%E4%BD%95%E5%B7%A5%E4%BD%9C%E6%98%AF%E5%A4%A7%E6%9C%89%E7%9B%8A%E5%A4%84%E7%9A%84"><span class="nav-number">1.3.</span> <span class="nav-text">1.3
-了解编译系统如何工作是大有益处的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%84%E7%90%86%E5%99%A8%E8%AF%BB%E5%8F%96%E5%B9%B6%E8%A7%A3%E9%87%8A%E5%AD%98%E5%82%A8%E5%9C%A8%E5%86%85%E5%AD%98%E4%B8%AD%E7%9A%84%E6%8C%87%E4%BB%A4"><span class="nav-number">1.4.</span> <span class="nav-text">1.4
-处理器读取并解释存储在内存中的指令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%AB%98%E9%80%9F%E7%BC%93%E5%AD%98%E8%87%B3%E5%85%B3%E9%87%8D%E8%A6%81"><span class="nav-number">1.5.</span> <span class="nav-text">1.5 高速缓存至关重要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%98%E5%82%A8%E8%AE%BE%E5%A4%87%E5%BD%A2%E6%88%90%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84"><span class="nav-number">1.6.</span> <span class="nav-text">1.6 存储设备形成层次结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%E7%A1%AC%E4%BB%B6"><span class="nav-number">1.7.</span> <span class="nav-text">1.7 操作系统管理硬件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E4%B9%8B%E9%97%B4%E5%88%A9%E7%94%A8%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1"><span class="nav-number">1.8.</span> <span class="nav-text">1.8 系统之间利用网络通信</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%87%8D%E8%A6%81%E4%B8%BB%E9%A2%98"><span class="nav-number">1.9.</span> <span class="nav-text">1.9 重要主题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#amdahl%E5%AE%9A%E5%BE%8B"><span class="nav-number">1.9.1.</span> <span class="nav-text">Amdahl定律</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B9%B6%E5%8F%91%E4%B8%8E%E5%B9%B6%E8%A1%8C"><span class="nav-number">1.9.2.</span> <span class="nav-text">并发与并行</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A4%9A%E8%BE%B9%E5%BD%A2%E4%B8%89%E8%A7%92%E5%89%96%E5%88%86%E7%9A%84%E6%9C%80%E4%BD%8E%E5%BE%97%E5%88%86"><span class="nav-number">1.</span> <span class="nav-text">1039.
+多边形三角剖分的最低得分</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF"><span class="nav-number">1.1.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lamda%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%92%8Cfunction"><span class="nav-number">1.2.</span> <span class="nav-text">lamda表达式和function</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
