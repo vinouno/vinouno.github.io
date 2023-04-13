@@ -29,7 +29,7 @@
 <meta property="og:description" content="CSAPP 第二章：信息的表示和处理">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-03-31T11:34:57.000Z">
-<meta property="article:modified_time" content="2023-04-08T16:24:10.840Z">
+<meta property="article:modified_time" content="2023-04-08T16:45:06.283Z">
 <meta property="article:author" content="裘千丈">
 <meta property="article:tag" content="CSAPP">
 <meta property="article:tag" content="C语言">
@@ -226,7 +226,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-04-09 00:24:10" itemprop="dateModified" datetime="2023-04-09T00:24:10+08:00">2023-04-09</time>
+                <time title="修改时间：2023-04-09 00:45:06" itemprop="dateModified" datetime="2023-04-09T00:45:06+08:00">2023-04-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -244,14 +244,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>5.7k</span>
+              <span>5.9k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>9 分钟</span>
+              <span>10 分钟</span>
             </span>
             <div class="post-description"><div align="center">CSAPP 第二章：信息的表示和处理</div></div>
 
@@ -425,17 +425,26 @@ class="math inline">\(2^{n-1}-1\)</span>，其中 n
 <h3 id="无符号乘法">无符号乘法</h3>
 <p>无符号乘法是指对两个无符号整数进行乘法运算，得到的结果也是一个无符号整数。在无符号乘法中，计算机将两个数按位相乘，然后再将结果相加得到最终的乘积。由于无符号整数没有正负之分，因此无符号乘法不需要考虑进位或溢出的问题。</p>
 <p>可以简单地表示无符号乘法的公式如下：</p>
-<p>$$</p>
-<p>C = A * B mod 2^ω</p>
-<p>$$</p>
+<p><span class="math display">\[
+C = A * B mod 2^ω
+\]</span></p>
 <h3 id="补码乘法">补码乘法</h3>
-<p>补码乘法和无符号乘法的位级等价，可以通过补码的定义来证明。</p>
-<p>首先，补码表示法是使用补码表示负数的一种方法。在补码中，负数表示为其对应正数的补码（即，将正数按位取反再加上1）。例如，对于一个8位二进制数，如果其表示的是-5，则其补码为
-11111011。</p>
-<p>对于无符号乘法，如果两个n位的二进制数相乘，结果将是一个2n位的二进制数。在这种情况下，我们只关心乘积的低n位，因为乘积的高n位不会影响结果。</p>
-<p>对于补码乘法，我们仍然将两个n位的二进制数相乘，但是我们需要将结果转换回原来的符号。如果两个数都是正数或都是负数，那么结果将是一个正数；如果一个数是正数，另一个数是负数，那么结果将是一个负数。</p>
-<p>无论是无符号乘法还是补码乘法，它们在计算低n位乘积时使用的是相同的算法，因此它们在位级上是等价的。差别在于补码乘法还需要进行符号位的处理，但这不影响位级等价性的证明。</p>
-<p>因此，我们可以得出结论：补码乘法和无符号乘法的位级等价。</p>
+<ol type="1">
+<li><p>对无符号和补码乘法，乘法运算的位级表示都是一样的。</p></li>
+<li><p>机器使用一种乘法指令来进行有符号和无符号整数的乘法，也就是都采用无符号乘法处理，再取低位。</p></li>
+<li><p>无符号和补码的乘法低位是相同的。证明如下：</p></li>
+</ol>
+<p><img
+src="https://raw.githubusercontent.com/vinouno/blog_image/main/%E8%A1%A5%E7%A0%81%E4%B9%98%E6%B3%95%E8%AF%81%E6%98%8E.jpg" /></p>
+<p>补码乘法的过程主要包括三个步骤：补码表示、乘法运算和结果转换。</p>
+<p>下面是补码乘法的详细步骤：</p>
+<ol type="1">
+<li><p>将两个乘数转换为它们的补码形式。如果乘数是正数，则它们的补码与原码相同；如果乘数是负数，则需要将它们的绝对值转换为二进制补码形式，并将符号位取反，然后再将符号位和数值位组合起来得到补码。</p></li>
+<li><p>将两个补码乘起来，得到一个结果的补码。在这个过程中，可以使用常规的乘法算法，将乘数逐位与被乘数相乘，并将结果相加。需要注意的是，结果的位数可能会超过原始数的位数，需要进行适当的位扩展。</p></li>
+<li><p>将结果的补码转换为原码。如果结果是正数，则它们的补码与原码相同；如果结果是负数，则需要将它们的绝对值转换为二进制补码形式，并将符号位取反，然后再将符号位和数值位组合起来得到原码。</p></li>
+</ol>
+<p>举例说明补码乘法：</p>
+<figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">          <span class="number">1111 1111</span>        -<span class="number">1</span></span><br><span class="line">       x  <span class="number">1111 1001</span>     x  -<span class="number">7</span></span><br><span class="line">      ----------------    ------</span><br><span class="line">          <span class="number">11111111</span>          <span class="number">7</span></span><br><span class="line">         <span class="number">00000000</span></span><br><span class="line">        <span class="number">00000000</span></span><br><span class="line">       <span class="number">11111111</span></span><br><span class="line">      <span class="number">11111111</span></span><br><span class="line">     <span class="number">11111111</span></span><br><span class="line">    <span class="number">11111111</span></span><br><span class="line">   <span class="number">11111111</span></span><br><span class="line">   ----------------</span><br><span class="line"><span class="number">1</span>  <span class="number">00000000111</span>       ---&gt;  <span class="number">7</span> (notice the Most significant bit is zero)</span><br><span class="line">(last <span class="number">8</span>-bits needed) </span><br></pre></td></tr></table></figure>
 
     </div>
 
@@ -555,7 +564,7 @@ class="math inline">\(2^{n-1}-1\)</span>，其中 n
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">55</span>
+          <span class="site-state-item-count">58</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -568,7 +577,7 @@ class="math inline">\(2^{n-1}-1\)</span>，其中 n
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">52</span>
+        <span class="site-state-item-count">56</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -608,12 +617,12 @@ class="math inline">\(2^{n-1}-1\)</span>，其中 n
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">56k</span>
+    <span title="站点总字数">58k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">1:33</span>
+    <span title="站点阅读时长">1:36</span>
 </div>
 
 <!--
