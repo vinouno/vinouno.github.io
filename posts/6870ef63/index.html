@@ -29,7 +29,7 @@
 <meta property="og:description" content="CSAPP 第二章：信息的表示和处理">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-03-31T11:34:57.000Z">
-<meta property="article:modified_time" content="2023-05-16T15:32:59.290Z">
+<meta property="article:modified_time" content="2023-05-20T14:57:36.692Z">
 <meta property="article:author" content="裘千丈">
 <meta property="article:tag" content="CSAPP">
 <meta property="article:tag" content="C语言">
@@ -226,7 +226,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-05-16 23:32:59" itemprop="dateModified" datetime="2023-05-16T23:32:59+08:00">2023-05-16</time>
+                <time title="修改时间：2023-05-20 22:57:36" itemprop="dateModified" datetime="2023-05-20T22:57:36+08:00">2023-05-20</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -244,14 +244,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>6.4k</span>
+              <span>8.7k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>11 分钟</span>
+              <span>15 分钟</span>
             </span>
             <div class="post-description"><div align="center">CSAPP 第二章：信息的表示和处理</div></div>
 
@@ -461,7 +461,229 @@ class="math inline">\(2^k - 1\)</span>)，再进行移位。</p>
 <p>测试题：在不使用任何乘除法、模运算、条件语句、比较运算符、循环的情况下，写一个函数，返回整数参数<span
 class="math inline">\(x/16\)</span>的值。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">div16</span><span class="params">(<span class="type">int</span> x)</span>&#123;</span><br><span class="line">   <span class="type">int</span> bias = (x &gt;&gt; <span class="number">31</span>) &amp;<span class="number">0XF</span>;</span><br><span class="line">   <span class="keyword">return</span> (x + bias) &gt;&gt; <span class="number">4</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="浮点数">浮点数</h2>
+<h2 id="浮点数">2.4 浮点数</h2>
+<p>现实的应用中，需要表示一些非常大的数字或者非常接近0的数字，以及更普遍地作为实数运算的近似值的计算，这是就需要浮点数的表示。</p>
+<p>其中IEEE754标准定义的浮点数规则，广泛地被应用。</p>
+<h3 id="二进制小数">二进制小数</h3>
+<p>在二进制中，不同位置的数字带有<span
+class="math inline">\(2^n\)</span>的权，基于同样的原则，我们也能推广到负位置上，不同位置上的数字，也可以代表<span
+class="math inline">\(\frac{1}{2}、\frac{1}{4}\)</span>等等。</p>
+<p>这样的表示方法，就带来一个问题：用有限位数的二进制数表示十进制小数，只能近似地表示（当然，增加二进制数的表示长度，可以提升近似地精度）。</p>
+<h3 id="ieee浮点表示">IEEE浮点表示</h3>
+<p>IEEE 754是一种常用的标准。它定义了浮点数的表示方法和运算规则。</p>
+<h4 id="浮点数的组成部分">浮点数的组成部分</h4>
+<p>IEEE
+754浮点数由三个主要部分组成：符号位（Sign）、指数位（Exponent）和尾数位（Significand/Mantissa）。每个部分在浮点数的二进制表示中具有特定的意义。</p>
+<ul>
+<li><p>符号位（Sign）：用于表示浮点数的正负号。0表示正数，1表示负数。</p></li>
+<li><p>指数位（Exponent）：表示浮点数的指数部分，用于确定浮点数的数量级。指数位的值采用偏移表示法（移码），其中偏移值为2^(n-1)
+- 1，其中n是指数位的位数。</p></li>
+<li><p>尾数位（Significand/Mantissa）：表示浮点数的小数部分。尾数位决定了浮点数的精度。</p></li>
+</ul>
+<p>在单精度浮点数中，三个部分分别占1、8、23位，而在双精度浮点数中，三个部分分别占1、11、52位。</p>
+<h4 id="规格化与非规格化">规格化与非规格化</h4>
+<ul>
+<li><p>规格化值（Normalized
+Value）：如果浮点数中指数部分的编码值既不是全0，又不是全1，且在科学表示法的表示方式下，分数
+(fraction)
+部分最高有效位（即整数字）是1，那么这个浮点数将被称为规约形式的浮点数。“规约”是指用唯一确定的浮点形式去表示一个值。由于这种表示下的尾数有一位隐含的二进制有效数字，为了与二进制科学计数法的尾数（mantissa）相区别，IEEE754称之为有效数（significant）。</p></li>
+<li><p>非规格化值（Denormalized
+Value）：如果浮点数的指数部分的编码值是0，分数部分非零，那么这个浮点数将被称为非规约形式的浮点数。一般是某个数字相当接近零时才会使用非规约型式来表示。
+IEEE
+754标准规定：非规约形式的浮点数的指数偏移值比规约形式的浮点数的指数偏移值小1。例如，最小的规约形式的单精度浮点数的指数部分编码值为1，指数的实际值为-126；而非规约的单精度浮点数的指数域编码值为0，对应的指数实际值也是-126而不是-127。实际上非规约形式的浮点数仍然是有效可以使用的，只是它们的绝对值已经小于所有的规约浮点数的绝对值；即所有的非规约浮点数比规约浮点数更接近0。规约浮点数的尾数大于等于1且小于2，而非规约浮点数的尾数小于1且大于0。</p></li>
+</ul>
+<h4 id="特殊值">特殊值</h4>
+<p>三个特殊值需要指出：</p>
+<ol type="1">
+<li>如果指数是0并且尾数的小数部分是0，这个数±0（和符号位相关）</li>
+<li>如果指数为<span
+class="math inline">\(2^e-1\)</span>并且尾数的小数部分是0，这个数是±∞（同样和符号位相关）</li>
+<li>如果指数为<span
+class="math inline">\(2^e-1\)</span>并且尾数的小数部分非0，这个数表示为非数（NaN）。</li>
+</ol>
+<h4 id="总结">总结</h4>
+<p>总结以上所有的情况：</p>
+<table>
+<thead>
+<tr class="header">
+<th>形式</th>
+<th>指数</th>
+<th>小数部分</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>零</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>非规约形式</td>
+<td>0</td>
+<td>大于0小于1</td>
+</tr>
+<tr class="odd">
+<td>规约形式</td>
+<td>1到2^(e)-2</td>
+<td>大于等于1小于2</td>
+</tr>
+<tr class="even">
+<td>无穷</td>
+<td>2^(e)-1</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>NaN</td>
+<td>2^(e)-1</td>
+<td>非0</td>
+</tr>
+</tbody>
+</table>
+<p>单精度浮点数各种极值情况：</p>
+<table>
+<colgroup>
+<col style="width: 11%" />
+<col style="width: 5%" />
+<col style="width: 6%" />
+<col style="width: 8%" />
+<col style="width: 11%" />
+<col style="width: 26%" />
+<col style="width: 30%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>类别</th>
+<th>正负号</th>
+<th>实际指数</th>
+<th>有偏移指数</th>
+<th>指数域</th>
+<th>尾数域</th>
+<th>数值</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>零</td>
+<td>0</td>
+<td>-127</td>
+<td>0</td>
+<td>0000 0000</td>
+<td>000 0000 0000 0000 0000 0000</td>
+<td>0.0</td>
+</tr>
+<tr class="even">
+<td>负零</td>
+<td>1</td>
+<td>-127</td>
+<td>0</td>
+<td>0000 0000</td>
+<td>000 0000 0000 0000 0000 0000</td>
+<td>-0.0</td>
+</tr>
+<tr class="odd">
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>127</td>
+<td>0111 1111</td>
+<td>000 0000 0000 0000 0000 0000</td>
+<td>1.0</td>
+</tr>
+<tr class="even">
+<td>-1</td>
+<td>1</td>
+<td>0</td>
+<td>127</td>
+<td>0111 1111</td>
+<td>000 0000 0000 0000 0000 0000</td>
+<td>-1.0</td>
+</tr>
+<tr class="odd">
+<td>最小的非规约数</td>
+<td>*</td>
+<td>-126</td>
+<td>0</td>
+<td>0000 0000</td>
+<td>000 0000 0000 0000 0000 0001</td>
+<td>±2^-23 × 2^-126 ≈ ±2^-149 ≈ ±1.4×10^-45</td>
+</tr>
+<tr class="even">
+<td>中间大小的非规约数</td>
+<td>*</td>
+<td>-126</td>
+<td>0</td>
+<td>0000 0000</td>
+<td>100 0000 0000 0000 0000 0000</td>
+<td>±2^-1 × 2^-126 ≈ ±2^-127 ≈ ±5.88×10^-39</td>
+</tr>
+<tr class="odd">
+<td>最大的非规约数</td>
+<td>*</td>
+<td>-126</td>
+<td>0</td>
+<td>0000 0000</td>
+<td>111 1111 1111 1111 1111 1111</td>
+<td>±(1-2^-23) × 2^-126 ≈ ±1.18×10^-38</td>
+</tr>
+<tr class="even">
+<td>最小的规约数</td>
+<td>*</td>
+<td>-126</td>
+<td>1</td>
+<td>0000 0001</td>
+<td>000 0000 0000 0000 0000 0000</td>
+<td>±2^-126 ≈ ±1.18×10^-38</td>
+</tr>
+<tr class="odd">
+<td>最大的规约数</td>
+<td>*</td>
+<td>127</td>
+<td>254</td>
+<td>1111 1110</td>
+<td>111 1111 1111 1111 1111 1111</td>
+<td>±(2<sup>-2</sup>-23) × 2^127 ≈ ±3.4×10^38</td>
+</tr>
+<tr class="even">
+<td>正无穷</td>
+<td>0</td>
+<td>128</td>
+<td>255</td>
+<td>1111 1111</td>
+<td>000 0000 0000 0000 0000 0000</td>
+<td>+∞</td>
+</tr>
+<tr class="odd">
+<td>负无穷</td>
+<td>1</td>
+<td>128</td>
+<td>255</td>
+<td>1111 1111</td>
+<td>000 0000 0000 0000 0000 0000</td>
+<td>-∞</td>
+</tr>
+<tr class="even">
+<td>NaN</td>
+<td>*</td>
+<td>128</td>
+<td>255</td>
+<td>1111 1111</td>
+<td>非全0</td>
+<td>NaN</td>
+</tr>
+</tbody>
+</table>
+<h3 id="浮点数的舍入">浮点数的舍入</h3>
+<p>任何有效数上的运算结果，通常都存放在较长的寄存器中，当结果被放回浮点格式时，必须将多出来的比特丢弃。
+有多种方法可以用来执行舍入作业，实际上IEEE标准列出4种不同的方法：</p>
+<ul>
+<li>舍入到最接近：舍入到最接近，在一样接近的情况下偶数优先（Ties To
+Even，这是默认的舍入方式）：会将结果舍入为最接近且可以表示的值，但是当存在两个数一样接近的时候，则取其中的偶数（在二进制中是以0结尾的）。</li>
+<li>朝+∞方向舍入：会将结果朝正无限大的方向舍入。</li>
+<li>朝-∞方向舍入：会将结果朝负无限大的方向舍入。</li>
+<li>朝0方向舍入：会将结果朝0的方向舍入。</li>
+</ul>
+<h3 id="浮点数的运算性质">浮点数的运算性质</h3>
+<p>浮点数的运算不遵循结合性和分配性。</p>
 
     </div>
 
@@ -565,7 +787,7 @@ class="math inline">\(x/16\)</span>的值。</p>
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
           <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#csapp-%E7%AC%AC%E4%BA%8C%E7%AB%A0%E4%BF%A1%E6%81%AF%E7%9A%84%E8%A1%A8%E7%A4%BA%E5%92%8C%E5%A4%84%E7%90%86"><span class="nav-number">1.</span> <span class="nav-text">CSAPP
-第二章：信息的表示和处理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%A1%E6%81%AF%E5%AD%98%E5%82%A8"><span class="nav-number">1.1.</span> <span class="nav-text">2.1 信息存储</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%8D%E5%92%8C%E5%AD%97%E8%8A%82"><span class="nav-number">1.1.1.</span> <span class="nav-text">位和字节</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%81%E5%85%AD%E8%BF%9B%E5%88%B6%E8%A1%A8%E7%A4%BA%E6%B3%95"><span class="nav-number">1.1.2.</span> <span class="nav-text">十六进制表示法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%97%E6%95%B0%E6%8D%AE%E5%A4%A7%E5%B0%8F"><span class="nav-number">1.1.3.</span> <span class="nav-text">字数据大小</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.1.4.</span> <span class="nav-text">数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#c%E8%AF%AD%E8%A8%80%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.1.5.</span> <span class="nav-text">C语言数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%A7%E7%AB%AF%E5%92%8C%E5%B0%8F%E7%AB%AF"><span class="nav-number">1.1.6.</span> <span class="nav-text">大端和小端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%83%E5%B0%94%E4%BB%A3%E6%95%B0"><span class="nav-number">1.1.7.</span> <span class="nav-text">布尔代数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#c%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97"><span class="nav-number">1.1.8.</span> <span class="nav-text">C语言中的逻辑运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#c%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E7%A7%BB%E4%BD%8D"><span class="nav-number">1.1.9.</span> <span class="nav-text">C语言中的移位</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B4%E6%95%B0%E8%A1%A8%E7%A4%BA"><span class="nav-number">1.2.</span> <span class="nav-text">2.2 整数表示</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A1%A5%E7%A0%81"><span class="nav-number">1.2.1.</span> <span class="nav-text">补码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%89%E7%AC%A6%E5%8F%B7%E6%95%B0%E5%92%8C%E6%97%A0%E7%AC%A6%E5%8F%B7%E6%95%B0%E7%9A%84%E8%BF%90%E7%AE%97%E4%B8%8E%E8%BD%AC%E5%8C%96"><span class="nav-number">1.2.2.</span> <span class="nav-text">有符号数和无符号数的运算与转化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8B%93%E5%B1%95%E4%B8%8E%E6%88%AA%E6%96%AD"><span class="nav-number">1.2.3.</span> <span class="nav-text">拓展与截断</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B4%E6%95%B0%E8%BF%90%E7%AE%97"><span class="nav-number">1.3.</span> <span class="nav-text">2.3 整数运算</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A0%E7%AC%A6%E5%8F%B7%E6%95%B0%E5%8A%A0%E6%B3%95"><span class="nav-number">1.3.1.</span> <span class="nav-text">无符号数加法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A1%A5%E7%A0%81%E5%8A%A0%E6%B3%95"><span class="nav-number">1.3.2.</span> <span class="nav-text">补码加法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%89%E7%AC%A6%E5%8F%B7%E6%95%B0%E7%9A%84%E6%BA%A2%E5%87%BA"><span class="nav-number">1.3.3.</span> <span class="nav-text">有符号数的溢出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A0%E7%AC%A6%E5%8F%B7%E4%B9%98%E6%B3%95"><span class="nav-number">1.3.4.</span> <span class="nav-text">无符号乘法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A1%A5%E7%A0%81%E4%B9%98%E6%B3%95"><span class="nav-number">1.3.5.</span> <span class="nav-text">补码乘法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B9%98%E4%BB%A5%E5%B8%B8%E6%95%B0"><span class="nav-number">1.3.6.</span> <span class="nav-text">乘以常数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%99%A4%E4%BB%A52%E7%9A%84%E5%B9%82"><span class="nav-number">1.3.7.</span> <span class="nav-text">除以2的幂</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%AE%E7%82%B9%E6%95%B0"><span class="nav-number">1.4.</span> <span class="nav-text">浮点数</span></a></li></ol></li></ol></div>
+第二章：信息的表示和处理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%A1%E6%81%AF%E5%AD%98%E5%82%A8"><span class="nav-number">1.1.</span> <span class="nav-text">2.1 信息存储</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%8D%E5%92%8C%E5%AD%97%E8%8A%82"><span class="nav-number">1.1.1.</span> <span class="nav-text">位和字节</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%81%E5%85%AD%E8%BF%9B%E5%88%B6%E8%A1%A8%E7%A4%BA%E6%B3%95"><span class="nav-number">1.1.2.</span> <span class="nav-text">十六进制表示法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%97%E6%95%B0%E6%8D%AE%E5%A4%A7%E5%B0%8F"><span class="nav-number">1.1.3.</span> <span class="nav-text">字数据大小</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.1.4.</span> <span class="nav-text">数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#c%E8%AF%AD%E8%A8%80%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.1.5.</span> <span class="nav-text">C语言数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%A7%E7%AB%AF%E5%92%8C%E5%B0%8F%E7%AB%AF"><span class="nav-number">1.1.6.</span> <span class="nav-text">大端和小端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%83%E5%B0%94%E4%BB%A3%E6%95%B0"><span class="nav-number">1.1.7.</span> <span class="nav-text">布尔代数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#c%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97"><span class="nav-number">1.1.8.</span> <span class="nav-text">C语言中的逻辑运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#c%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E7%A7%BB%E4%BD%8D"><span class="nav-number">1.1.9.</span> <span class="nav-text">C语言中的移位</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B4%E6%95%B0%E8%A1%A8%E7%A4%BA"><span class="nav-number">1.2.</span> <span class="nav-text">2.2 整数表示</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A1%A5%E7%A0%81"><span class="nav-number">1.2.1.</span> <span class="nav-text">补码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%89%E7%AC%A6%E5%8F%B7%E6%95%B0%E5%92%8C%E6%97%A0%E7%AC%A6%E5%8F%B7%E6%95%B0%E7%9A%84%E8%BF%90%E7%AE%97%E4%B8%8E%E8%BD%AC%E5%8C%96"><span class="nav-number">1.2.2.</span> <span class="nav-text">有符号数和无符号数的运算与转化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8B%93%E5%B1%95%E4%B8%8E%E6%88%AA%E6%96%AD"><span class="nav-number">1.2.3.</span> <span class="nav-text">拓展与截断</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B4%E6%95%B0%E8%BF%90%E7%AE%97"><span class="nav-number">1.3.</span> <span class="nav-text">2.3 整数运算</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A0%E7%AC%A6%E5%8F%B7%E6%95%B0%E5%8A%A0%E6%B3%95"><span class="nav-number">1.3.1.</span> <span class="nav-text">无符号数加法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A1%A5%E7%A0%81%E5%8A%A0%E6%B3%95"><span class="nav-number">1.3.2.</span> <span class="nav-text">补码加法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%89%E7%AC%A6%E5%8F%B7%E6%95%B0%E7%9A%84%E6%BA%A2%E5%87%BA"><span class="nav-number">1.3.3.</span> <span class="nav-text">有符号数的溢出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A0%E7%AC%A6%E5%8F%B7%E4%B9%98%E6%B3%95"><span class="nav-number">1.3.4.</span> <span class="nav-text">无符号乘法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A1%A5%E7%A0%81%E4%B9%98%E6%B3%95"><span class="nav-number">1.3.5.</span> <span class="nav-text">补码乘法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B9%98%E4%BB%A5%E5%B8%B8%E6%95%B0"><span class="nav-number">1.3.6.</span> <span class="nav-text">乘以常数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%99%A4%E4%BB%A52%E7%9A%84%E5%B9%82"><span class="nav-number">1.3.7.</span> <span class="nav-text">除以2的幂</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%AE%E7%82%B9%E6%95%B0"><span class="nav-number">1.4.</span> <span class="nav-text">2.4 浮点数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%B0%8F%E6%95%B0"><span class="nav-number">1.4.1.</span> <span class="nav-text">二进制小数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ieee%E6%B5%AE%E7%82%B9%E8%A1%A8%E7%A4%BA"><span class="nav-number">1.4.2.</span> <span class="nav-text">IEEE浮点表示</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B5%AE%E7%82%B9%E6%95%B0%E7%9A%84%E7%BB%84%E6%88%90%E9%83%A8%E5%88%86"><span class="nav-number">1.4.2.1.</span> <span class="nav-text">浮点数的组成部分</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A7%84%E6%A0%BC%E5%8C%96%E4%B8%8E%E9%9D%9E%E8%A7%84%E6%A0%BC%E5%8C%96"><span class="nav-number">1.4.2.2.</span> <span class="nav-text">规格化与非规格化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%89%B9%E6%AE%8A%E5%80%BC"><span class="nav-number">1.4.2.3.</span> <span class="nav-text">特殊值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">1.4.2.4.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%AE%E7%82%B9%E6%95%B0%E7%9A%84%E8%88%8D%E5%85%A5"><span class="nav-number">1.4.3.</span> <span class="nav-text">浮点数的舍入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%AE%E7%82%B9%E6%95%B0%E7%9A%84%E8%BF%90%E7%AE%97%E6%80%A7%E8%B4%A8"><span class="nav-number">1.4.4.</span> <span class="nav-text">浮点数的运算性质</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -634,12 +856,12 @@ class="math inline">\(x/16\)</span>的值。</p>
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">70k</span>
+    <span title="站点总字数">73k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">1:57</span>
+    <span title="站点阅读时长">2:01</span>
 </div>
 
 <!--
