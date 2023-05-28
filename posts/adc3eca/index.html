@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/logo%20(2).png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/logo%20(3).png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/logo%20(4).png">
+  <link rel="mask-icon" href="/images/logo%20(1).png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"vinouno.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
+  </script>
+  <meta property="og:type" content="article">
+<meta property="og:title" content="CSAPP 第三章：程序的机器级表示">
+<meta property="og:url" content="https://vinouno.github.io/posts/adc3eca/index.html">
+<meta property="og:site_name" content="老泉杂记">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-05-21T03:55:10.000Z">
+<meta property="article:modified_time" content="2023-05-28T14:33:40.717Z">
+<meta property="article:author" content="裘千丈">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://vinouno.github.io/posts/adc3eca/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>CSAPP 第三章：程序的机器级表示 | 老泉杂记</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">老泉杂记</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/vinouno" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://vinouno.github.io/posts/adc3eca/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/jinx.jpg">
+      <meta itemprop="name" content="裘千丈">
+      <meta itemprop="description" content="苏老泉，二十七。始发愤，读书籍。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="老泉杂记">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          CSAPP 第三章：程序的机器级表示
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-05-21 11:55:10" itemprop="dateCreated datePublished" datetime="2023-05-21T11:55:10+08:00">2023-05-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-05-28 22:33:40" itemprop="dateModified" datetime="2023-05-28T22:33:40+08:00">2023-05-28</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CSAPP/" itemprop="url" rel="index"><span itemprop="name">CSAPP</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.2k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>5 分钟</span>
+            </span>
+            <div class="post-description"><div align="center"> </div></div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="csapp-第三章程序的机器级表示">CSAPP
+第三章：程序的机器级表示</h1>
+<h2 id="历史观点">3.1 历史观点</h2>
+<h3 id="摩尔定律">摩尔定律</h3>
+<p>摩尔定律（Moore's
+Law：是由英特尔公司的联合创始人之一戈登·摩尔（Gordon
+Moore）在1965年提出的经验观察和预测。摩尔定律指出，集成电路上可容纳的晶体管数量每隔约18个月翻倍，同时造价减半。换句话说，摩尔定律认为集成电路的性能将以指数级增长，而成本则将相对下降。</p>
+<p>摩尔定律的观察基础是在集成电路中使用的晶体管数量和密度不断增加，这使得处理器的速度和性能也在不断提高。这一观察发展为一个准则，成为计算机硬件行业的重要指导原则。</p>
+<p>摩尔定律的实际效应是，在相同的芯片面积上，可以集成更多的晶体管，从而提高处理器的性能。这使得计算机和其他电子设备变得更快、更小、更强大，并带来了信息技术的快速发展。</p>
+<h3 id="x86和x86-64">X86和X86-64</h3>
+<p>x86是一种32位的处理器架构，最初由英特尔（Intel）开发并推广。它是基于英特尔的8086和8088处理器设计的，并成为个人电脑（PC）中最为广泛使用的架构之一。x86架构支持32位寻址和32位数据处理，其指令集和寄存器设计是基于32位的。</p>
+<p>x86-64（也称为AMD64或x64）是x86架构的64位扩展。它由AMD首先引入，并得到了其他处理器制造商的采纳，包括英特尔。x86-64架构扩展了x86的寻址空间和寄存器大小，支持64位寻址和64位数据处理。这使得x86-64处理器能够处理更大的内存地址空间和执行更复杂的计算任务。与传统的32位x86架构相比，x86-64架构在处理器性能和内存管理方面有显著的优势。</p>
+<p>x86-64架构是目前个人电脑和服务器领域最为广泛使用的处理器架构之一。它支持运行32位和64位的操作系统和应用程序，提供了更高的性能和更大的灵活性。许多现代操作系统和软件都提供了针对x86-64架构的优化版本，以充分利用其性能和功能。</p>
+<h2 id="程序编码">3.2 程序编码</h2>
+<h3 id="汇编过程">汇编过程</h3>
+<p>编译C语言程序的过程：</p>
+<ol type="1">
+<li><p>预处理（Preprocessing）：编译器对源代码进行预处理，包括宏展开、头文件包含等操作。预处理器可以根据#include指令将其他文件的内容插入源文件中，并对宏进行替换。</p></li>
+<li><p>编译（Compilation）：编译器将预处理后的源代码转换为汇编代码（Assembly
+Code），即将C语言的代码转换为机器可以理解的低级指令。</p></li>
+<li><p>汇编（Assembly）：汇编器将汇编代码转换为机器码，即可执行的二进制指令。汇编器将每条汇编指令翻译成对应的机器指令，并生成目标文件（Object
+File）。</p></li>
+<li><p>链接（Linking）：链接器将目标文件与所需的库文件进行链接，生成最终的可执行文件（Executable
+File）。链接器将目标文件中的函数和变量引用与其定义进行匹配，解析符号引用，并将它们关联起来。</p></li>
+</ol>
+<h3 id="attatt和intel的语法区别">ATT（AT&amp;T）和Intel的语法区别</h3>
+<p>ATT（AT&amp;T）和Intel是两种不同的汇编语法格式，它们主要在语法结构和指令书写上存在一些区别。</p>
+<ol type="1">
+<li>语法结构：
+<ul>
+<li>ATT语法：源操作数在前，目的操作数在后，使用逗号分隔。例如：<code>movl %eax, %ebx</code>。</li>
+<li>Intel语法：目的操作数在前，源操作数在后，使用逗号分隔。例如：<code>mov ebx, eax</code>。</li>
+</ul></li>
+<li>寄存器命名：
+<ul>
+<li>ATT语法：寄存器名称以<code>%</code>开头。例如：<code>%eax</code>。</li>
+<li>Intel语法：寄存器名称没有特殊的符号前缀。例如：<code>eax</code>。</li>
+</ul></li>
+<li>立即数和内存引用：
+<ul>
+<li>ATT语法：立即数使用<code>$</code>符号表示，内存引用使用括号表示。例如：<code>movl $10, %eax</code>（将立即数10移动到eax寄存器）；<code>movl (%ebx), %eax</code>（将ebx寄存器指向的内存地址的值移动到eax寄存器）。</li>
+<li>Intel语法：立即数没有特殊符号表示，内存引用使用方括号表示。例如：<code>mov eax, 10</code>（将立即数10移动到eax寄存器）；<code>mov eax, [ebx]</code>（将ebx寄存器指向的内存地址的值移动到eax寄存器）。</li>
+</ul></li>
+<li>操作数大小：
+<ul>
+<li>ATT语法：根据操作数的大小，使用不同的后缀来表示，如<code>b</code>表示字节（byte），<code>w</code>表示字（word），<code>l</code>表示双字（double
+word）。例如：<code>movb $1, %al</code>（将立即数1移动到al寄存器，al为8位寄存器）。</li>
+<li>Intel语法：操作数的大小根据指令而定，不需要显式指定后缀。例如：<code>mov al, 1</code>（将立即数1移动到al寄存器，al为8位寄存器）。</li>
+</ul></li>
+</ol>
+<p>需要注意的是，不同的汇编器可能支持不同的语法格式，默认使用的是特定的汇编语法。在使用汇编语言时，应根据所选的语法格式编写相应的汇编代码。</p>
+<h2 id="数据格式">3.3 数据格式</h2>
+<p>下面是常见的C语言数据类型在x86-64架构中的Intel数据类型、汇编代码后缀和大小（以字节为单位）的表格：</p>
+<table>
+<thead>
+<tr class="header">
+<th>C数据类型</th>
+<th>Intel数据类型</th>
+<th>汇编代码后缀</th>
+<th>大小（字节）</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>char</td>
+<td>BYTE</td>
+<td>b</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>short</td>
+<td>WORD</td>
+<td>w</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>int</td>
+<td>DWORD</td>
+<td>l</td>
+<td>4</td>
+</tr>
+<tr class="even">
+<td>long</td>
+<td>QWORD</td>
+<td>q</td>
+<td>8</td>
+</tr>
+<tr class="odd">
+<td>long long</td>
+<td>QWORD</td>
+<td>q</td>
+<td>8</td>
+</tr>
+<tr class="even">
+<td>float</td>
+<td>DWORD</td>
+<td>s</td>
+<td>4</td>
+</tr>
+<tr class="odd">
+<td>double</td>
+<td>QWORD</td>
+<td>l</td>
+<td>8</td>
+</tr>
+</tbody>
+</table>
+<h2 id="访问信息">3.4 访问信息</h2>
+<h3 id="x86-64中的整数寄存器">X86-64中的整数寄存器</h3>
+<p>非常感谢您的补充说明。您提到的函数参数的寄存器分配和被调用者使用规则的信息是正确的。以下是修改后的表格，以反映
+x86-64 架构中寄存器的用途和调用约定：</p>
+<table>
+<colgroup>
+<col style="width: 7%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
+<col style="width: 8%" />
+<col style="width: 20%" />
+<col style="width: 48%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>64位</th>
+<th>32位</th>
+<th>16位</th>
+<th>8位</th>
+<th>名称</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>%rax</td>
+<td>%eax</td>
+<td>%ax</td>
+<td>%al</td>
+<td>返回值寄存器</td>
+<td>存放函数返回值</td>
+</tr>
+<tr class="even">
+<td>%rbx</td>
+<td>%ebx</td>
+<td>%bx</td>
+<td>%bl</td>
+<td>数据寄存器</td>
+<td>被调用者保存</td>
+</tr>
+<tr class="odd">
+<td>%rcx</td>
+<td>%ecx</td>
+<td>%cx</td>
+<td>%cl</td>
+<td>第4个参数寄存器</td>
+<td>用于存放第4个函数参数</td>
+</tr>
+<tr class="even">
+<td>%rdx</td>
+<td>%edx</td>
+<td>%dx</td>
+<td>%dl</td>
+<td>第3个参数寄存器</td>
+<td>用于存放第3个函数参数</td>
+</tr>
+<tr class="odd">
+<td>%rsi</td>
+<td>%esi</td>
+<td>%si</td>
+<td>%sil</td>
+<td>第2个参数寄存器</td>
+<td>用于存放第2个函数参数</td>
+</tr>
+<tr class="even">
+<td>%rdi</td>
+<td>%edi</td>
+<td>%di</td>
+<td>%dil</td>
+<td>第1个参数寄存器</td>
+<td>用于存放第1个函数参数</td>
+</tr>
+<tr class="odd">
+<td>%rbp</td>
+<td>%ebp</td>
+<td>%bp</td>
+<td>%bpl</td>
+<td>基址指针寄存器</td>
+<td>被调用者保存</td>
+</tr>
+<tr class="even">
+<td>%rsp</td>
+<td>%esp</td>
+<td>%sp</td>
+<td>%spl</td>
+<td>栈指针寄存器</td>
+<td>用于指向栈顶位置</td>
+</tr>
+<tr class="odd">
+<td>%r8</td>
+<td>%r8d</td>
+<td>%r8w</td>
+<td>%r8b</td>
+<td>第5个参数寄存器</td>
+<td>用于存放第5个函数参数</td>
+</tr>
+<tr class="even">
+<td>%r9</td>
+<td>%r9d</td>
+<td>%r9w</td>
+<td>%r9b</td>
+<td>第6个参数寄存器</td>
+<td>用于存放第6个函数参数</td>
+</tr>
+<tr class="odd">
+<td>%r10</td>
+<td>%r10d</td>
+<td>%r10w</td>
+<td>%r10b</td>
+<td>附加寄存器</td>
+<td>可用于存放额外的数据或函数参数</td>
+</tr>
+<tr class="even">
+<td>%r11</td>
+<td>%r11d</td>
+<td>%r11w</td>
+<td>%r11b</td>
+<td>附加寄存器</td>
+<td>调用者保存</td>
+</tr>
+<tr class="odd">
+<td>%r12</td>
+<td>%r12d</td>
+<td>%r12w</td>
+<td>%r12b</td>
+<td>数据寄存器</td>
+<td>调用者保存</td>
+</tr>
+<tr class="even">
+<td>%r13</td>
+<td>%r13d</td>
+<td>%r13w</td>
+<td>%r13b</td>
+<td>数据寄存器</td>
+<td>被调用者保存</td>
+</tr>
+<tr class="odd">
+<td>%r14</td>
+<td>%r14d</td>
+<td>%r14w</td>
+<td>%r14b</td>
+<td>数据寄存器</td>
+<td>被调用者保存</td>
+</tr>
+<tr class="even">
+<td>%r15</td>
+<td>%r15d</td>
+<td>%r15w</td>
+<td>%r15b</td>
+<td>数据寄存器</td>
+<td>被调用者保存</td>
+</tr>
+</tbody>
+</table>
+<p>请注意，这只是一般的约定，具体的寄存器使用可能因编译器、函数调用约定和</p>
+<p>这些寄存器在x86-64汇编语言中具有不同的用途和约定，用于存储数据、地址和指针，以及进行算术运算、控制流操作和函数调用等。</p>
+<h3 id="操作数指示符">操作数指示符</h3>
+<p>下面是一个关于操作数格式的表格示例，使用ATT格式的汇编代码：</p>
+<table>
+<thead>
+<tr class="header">
+<th>类型</th>
+<th>格式</th>
+<th>操作数值</th>
+<th>名称</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>立即数</td>
+<td>立即值</td>
+<td>$42</td>
+<td>立即数42</td>
+</tr>
+<tr class="even">
+<td>寄存器</td>
+<td>寄存器名</td>
+<td>%eax</td>
+<td>通用寄存器</td>
+</tr>
+<tr class="odd">
+<td>寄存器</td>
+<td>内存引用</td>
+<td>(%ebx)</td>
+<td>寄存器间接寻址</td>
+</tr>
+<tr class="even">
+<td>寄存器</td>
+<td>寄存器+偏移</td>
+<td>12(%ecx)</td>
+<td>寄存器偏移寻址</td>
+</tr>
+<tr class="odd">
+<td>寄存器</td>
+<td>寄存器+立即值</td>
+<td>0x1234(%edx)</td>
+<td>立即值偏移寻址</td>
+</tr>
+<tr class="even">
+<td>存储器</td>
+<td>基址(, 索引)</td>
+<td>(%ebx, %esi)</td>
+<td>基址索引寻址</td>
+</tr>
+<tr class="odd">
+<td>存储器</td>
+<td>基址(, , 缩放因子)</td>
+<td>(%ecx,,8)</td>
+<td>变址寻址</td>
+</tr>
+</tbody>
+</table>
+<h3 id="数据传输指令">数据传输指令</h3>
+<table>
+<thead>
+<tr class="header">
+<th>指令</th>
+<th>描述</th>
+<th>数据大小</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>movb</td>
+<td>传输一个字节大小的数据</td>
+<td>8位</td>
+</tr>
+<tr class="even">
+<td>movw</td>
+<td>传输一个字（16位）大小的数据</td>
+<td>16位</td>
+</tr>
+<tr class="odd">
+<td>movl</td>
+<td>传输一个双字（32位）大小的数据</td>
+<td>32位</td>
+</tr>
+<tr class="even">
+<td>movq</td>
+<td>传输一个四字（64位）大小的数据</td>
+<td>64位</td>
+</tr>
+<tr class="odd">
+<td>movzb</td>
+<td>将无符号字节数据拓展为字大小</td>
+<td>8位拓展为16位</td>
+</tr>
+<tr class="even">
+<td>movsb</td>
+<td>将有符号字节数据拓展为字大小</td>
+<td>8位拓展为16位</td>
+</tr>
+</tbody>
+</table>
+<p>在x86-64架构的汇编语言中，movl指令会将32位数据的低32位复制到目的操作数的低32位，并将目的操作数的高32位清零</p>
+<p>movzb指令将无符号字节数据拓展为字大小，填充零位；movsb指令将有符号字节数据拓展为字大小，保持符号位不变。</p>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>裘千丈
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://vinouno.github.io/posts/adc3eca/" title="CSAPP 第三章：程序的机器级表示">https://vinouno.github.io/posts/adc3eca/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/posts/b47441a5/" rel="prev" title="2211. 统计道路上的碰撞次数">
+      <i class="fa fa-chevron-left"></i> 2211. 统计道路上的碰撞次数
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#csapp-%E7%AC%AC%E4%B8%89%E7%AB%A0%E7%A8%8B%E5%BA%8F%E7%9A%84%E6%9C%BA%E5%99%A8%E7%BA%A7%E8%A1%A8%E7%A4%BA"><span class="nav-number">1.</span> <span class="nav-text">CSAPP
+第三章：程序的机器级表示</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%86%E5%8F%B2%E8%A7%82%E7%82%B9"><span class="nav-number">1.1.</span> <span class="nav-text">3.1 历史观点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%91%A9%E5%B0%94%E5%AE%9A%E5%BE%8B"><span class="nav-number">1.1.1.</span> <span class="nav-text">摩尔定律</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#x86%E5%92%8Cx86-64"><span class="nav-number">1.1.2.</span> <span class="nav-text">X86和X86-64</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A8%8B%E5%BA%8F%E7%BC%96%E7%A0%81"><span class="nav-number">1.2.</span> <span class="nav-text">3.2 程序编码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B1%87%E7%BC%96%E8%BF%87%E7%A8%8B"><span class="nav-number">1.2.1.</span> <span class="nav-text">汇编过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#attatt%E5%92%8Cintel%E7%9A%84%E8%AF%AD%E6%B3%95%E5%8C%BA%E5%88%AB"><span class="nav-number">1.2.2.</span> <span class="nav-text">ATT（AT&amp;T）和Intel的语法区别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F"><span class="nav-number">1.3.</span> <span class="nav-text">3.3 数据格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BF%E9%97%AE%E4%BF%A1%E6%81%AF"><span class="nav-number">1.4.</span> <span class="nav-text">3.4 访问信息</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#x86-64%E4%B8%AD%E7%9A%84%E6%95%B4%E6%95%B0%E5%AF%84%E5%AD%98%E5%99%A8"><span class="nav-number">1.4.1.</span> <span class="nav-text">X86-64中的整数寄存器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E6%95%B0%E6%8C%87%E7%A4%BA%E7%AC%A6"><span class="nav-number">1.4.2.</span> <span class="nav-text">操作数指示符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E4%BC%A0%E8%BE%93%E6%8C%87%E4%BB%A4"><span class="nav-number">1.4.3.</span> <span class="nav-text">数据传输指令</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="裘千丈"
+      src="/images/jinx.jpg">
+  <p class="site-author-name" itemprop="name">裘千丈</p>
+  <div class="site-description" itemprop="description">苏老泉，二十七。始发愤，读书籍。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">73</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">74</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">裘千丈</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">75k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">2:05</span>
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+-->
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>
