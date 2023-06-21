@@ -1312,7 +1312,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #8585d7;
+  background: #78c720;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2723,4 +2723,7 @@ body {
 }
 .popup {
   opacity: 0.85;
+}
+::-webkit-scrollbar {
+  display: none; /* 隐藏滚动条 */
 }
