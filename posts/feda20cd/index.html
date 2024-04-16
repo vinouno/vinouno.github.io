@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/logo%20(2).png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/logo%20(3).png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/logo%20(4).png">
+  <link rel="mask-icon" href="/images/logo%20(1).png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"vinouno.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
+  </script>
+  <meta name="description" content="看了一个视频教程，学着画一棵像素树">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用像素画一棵树吧">
+<meta property="og:url" content="https://vinouno.github.io/posts/feda20cd/index.html">
+<meta property="og:site_name" content="老泉杂记">
+<meta property="og:description" content="看了一个视频教程，学着画一棵像素树">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-03-02T05:47:10.000Z">
+<meta property="article:modified_time" content="2023-03-13T14:34:06.605Z">
+<meta property="article:author" content="裘千丈">
+<meta property="article:tag" content="像素画">
+<meta property="article:tag" content="教程学习">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://vinouno.github.io/posts/feda20cd/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>用像素画一棵树吧 | 老泉杂记</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">老泉杂记</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/vinouno" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://vinouno.github.io/posts/feda20cd/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/head.png">
+      <meta itemprop="name" content="裘千丈">
+      <meta itemprop="description" content="苏老泉，二十七。始发愤，读书籍。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="老泉杂记">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          用像素画一棵树吧
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-03-02 13:47:10" itemprop="dateCreated datePublished" datetime="2023-03-02T13:47:10+08:00">2023-03-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-03-13 22:34:06" itemprop="dateModified" datetime="2023-03-13T22:34:06+08:00">2023-03-13</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BB%98%E7%94%BB%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">绘画笔记</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.3k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+            <div class="post-description"><div align="center">看了一个视频教程，学着画一棵像素树</div></div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="绘画步骤">绘画步骤</h1>
+<p>像素画是一种新兴的艺术形式，一般被应用在一些小游戏里。</p>
+<p>究其本质，和传统绘画是一样的，重点在于轮廓和色彩。接下来，我们通过画一棵树，来展现像素画的一般步骤。</p>
+<h2 id="抽象成几何图形">抽象成几何图形</h2>
+<p>任何图形，都可以被抽象成若干几何图形的组合：比如平行四边形、梯形、椭圆等。</p>
+<p>画一颗树也是如此，因此，我们可以把树抽象成这样的几何图形：上面一个椭圆表示树冠、下面一个矩形表示树干。</p>
+<h2 id="整形补充细节">整形、补充细节</h2>
+<p>显然这么简单的图形是没法表现一棵树的，因此我们应该增加一些细节： -
+在矩形和圆的连接处留空，表示分开的树杈。 -
+矩形的底部延伸出几条线，表示根。 -
+椭圆的外延，沿弧线的切线方向衍生出若干不规则的毛刺，表示向外延伸的树冠。</p>
+<p>完成这些步骤，这个图形就有树的雏形了。</p>
+<h2 id="定义光源区分明暗">定义光源、区分明暗</h2>
+<p>可以假设照射这棵树的阳光来自右上，这样就可以用浅灰、深灰和黑色，分别表示树受到强烈光照、一般光照、较少光照的部分。</p>
+<p>由于光源在右上角，浅灰的部分会集中在右上，黑色的部分则集中在左下。</p>
+<p>由于树冠是不规则的，自由生长的，我们可以想象，这棵树有两个亮面，一个在右上，一个在正面偏左的位置。浅灰和深灰交替分布，但是仍然要遵循一个原则：离光源越近，明亮的部分就分布越密。</p>
+<h2 id="上色">上色</h2>
+<p>我们可以先调出树叶的绿色和树干的棕色。
+运用色轮的知识，分别调出这两个颜色的亮色和暗色。把这些色彩涂在树上，一颗树就完成了。</p>
+<h2 id="成果展示">成果展示</h2>
+<p>这是放大十倍的效果图，也许看上去还有些不自然的地方：</p>
+<p><img
+src="https://raw.githubusercontent.com/vinouno/blog_image/main/%E6%A0%91-%E5%A4%A7.png" /></p>
+<p>但是这棵树只是在48px*48px画布上完成的一个简单作品，如果只放大四倍，问题就没那么大了。</p>
+<p><img
+src="https://raw.githubusercontent.com/vinouno/blog_image/main/%E6%A0%91-%E5%B0%8F.png" /></p>
+<p>如果再画几棵形态各异的树，把它们放在树林场景里，就非常自然了。</p>
+<h1 id="补充知识">补充知识</h1>
+<p>像素画是一种简单的绘画形式，一个初学者只要几天就能画出像样的画来。
+但是，形式上的简单不代表我们可以忽视其他绘画形式所需的基础知识。</p>
+<h2 id="色轮">色轮</h2>
+<p><img
+src="https://raw.githubusercontent.com/vinouno/blog_image/main/%E8%89%B2%E8%BD%AE.png" /></p>
+<h3 id="第一次色第二次色和第三次色">第一次色、第二次色和第三次色</h3>
+<p>绘画中，我们可以把红、黄、蓝定义为三原色，又名第一次色。</p>
+<p>第一次色两两混合，又产生了绿、橙、紫三色，称为第二次色。</p>
+<p>第一次色和相邻的第二次色混合，会产生六种更中间的颜色。</p>
+<p>把这十二种颜色按顺序排列在一个圆上，就得到了十二色相环。</p>
+<h3 id="色相饱和度明度">色相、饱和度、明度</h3>
+<ul>
+<li>色相指的是色彩在色相环所处的位置。因为圆是360度的，所以它的数值范围是0-360。</li>
+<li>饱和度是指色彩的鲜艳程度。个人理解，就是和灰色的混合程度。饱和度越低，颜色就越灰；饱和度越高，颜色就越鲜艳。因为这是一个百分数，所以数值范围是0-100.</li>
+<li>明度是指色彩的明亮程度。个人理解，就是混合的灰色所占的黑白比例。明度越高，就越白；明度越低，就越黑。</li>
+</ul>
+<h3 id="冷暖色补偿色">冷暖色、补偿色</h3>
+<p>冷暖色是色彩给人心理上感觉。红、黄、橙是暖色，而绿、蓝、紫是冷色。
+补偿色是指在色轮上位置相对的颜色，这两种颜色对比最强烈。比如橙色和蓝色，如果在一片蓝天中画一个橙色的太阳，强烈的对比会一下子吸引住观赏者。</p>
+<h3 id="色彩与光照">色彩与光照</h3>
+<p>遵照如下的原则，就可以找到一个色彩的亮色和暗色。</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;"></th>
+<th style="text-align: center;">强光照</th>
+<th style="text-align: center;">弱光照</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">色相</td>
+<td style="text-align: center;">更暖</td>
+<td style="text-align: center;">更冷</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">饱和度</td>
+<td style="text-align: center;">更鲜艳</td>
+<td style="text-align: center;">更灰暗</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">明度</td>
+<td style="text-align: center;">更亮</td>
+<td style="text-align: center;">更暗</td>
+</tr>
+</tbody>
+</table>
+<h2 id="抗锯齿">抗锯齿</h2>
+<p>线条是物体轮廓的组成部分，充满锯齿和毛刺的像素线条是非常违和的，我们追求的是自然的线条。一种常用的办法是用更亮的颜色填充线条的外围，做出半透明的质感。</p>
+<h2 id="负空间">负空间</h2>
+<p>练习像素画的过程中少不了临摹，判断临摹的像不像，要关注临摹作品的负空间。</p>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>裘千丈
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://vinouno.github.io/posts/feda20cd/" title="用像素画一棵树吧">https://vinouno.github.io/posts/feda20cd/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%83%8F%E7%B4%A0%E7%94%BB/" rel="tag"># 像素画</a>
+              <a href="/tags/%E6%95%99%E7%A8%8B%E5%AD%A6%E4%B9%A0/" rel="tag"># 教程学习</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/posts/a807ef62/" rel="prev" title="1047. 删除字符串中的所有相邻重复项">
+      <i class="fa fa-chevron-left"></i> 1047. 删除字符串中的所有相邻重复项
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/posts/78354348/" rel="next" title="反常积分敛散性判别的万能公式">
+      反常积分敛散性判别的万能公式 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%98%E7%94%BB%E6%AD%A5%E9%AA%A4"><span class="nav-number">1.</span> <span class="nav-text">绘画步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8A%BD%E8%B1%A1%E6%88%90%E5%87%A0%E4%BD%95%E5%9B%BE%E5%BD%A2"><span class="nav-number">1.1.</span> <span class="nav-text">抽象成几何图形</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B4%E5%BD%A2%E8%A1%A5%E5%85%85%E7%BB%86%E8%8A%82"><span class="nav-number">1.2.</span> <span class="nav-text">整形、补充细节</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89%E5%85%89%E6%BA%90%E5%8C%BA%E5%88%86%E6%98%8E%E6%9A%97"><span class="nav-number">1.3.</span> <span class="nav-text">定义光源、区分明暗</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8A%E8%89%B2"><span class="nav-number">1.4.</span> <span class="nav-text">上色</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%88%90%E6%9E%9C%E5%B1%95%E7%A4%BA"><span class="nav-number">1.5.</span> <span class="nav-text">成果展示</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A1%A5%E5%85%85%E7%9F%A5%E8%AF%86"><span class="nav-number">2.</span> <span class="nav-text">补充知识</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%89%B2%E8%BD%AE"><span class="nav-number">2.1.</span> <span class="nav-text">色轮</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E6%AC%A1%E8%89%B2%E7%AC%AC%E4%BA%8C%E6%AC%A1%E8%89%B2%E5%92%8C%E7%AC%AC%E4%B8%89%E6%AC%A1%E8%89%B2"><span class="nav-number">2.1.1.</span> <span class="nav-text">第一次色、第二次色和第三次色</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%89%B2%E7%9B%B8%E9%A5%B1%E5%92%8C%E5%BA%A6%E6%98%8E%E5%BA%A6"><span class="nav-number">2.1.2.</span> <span class="nav-text">色相、饱和度、明度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%B7%E6%9A%96%E8%89%B2%E8%A1%A5%E5%81%BF%E8%89%B2"><span class="nav-number">2.1.3.</span> <span class="nav-text">冷暖色、补偿色</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%89%B2%E5%BD%A9%E4%B8%8E%E5%85%89%E7%85%A7"><span class="nav-number">2.1.4.</span> <span class="nav-text">色彩与光照</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8A%97%E9%94%AF%E9%BD%BF"><span class="nav-number">2.2.</span> <span class="nav-text">抗锯齿</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B4%9F%E7%A9%BA%E9%97%B4"><span class="nav-number">2.3.</span> <span class="nav-text">负空间</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="裘千丈"
+      src="/images/head.png">
+  <p class="site-author-name" itemprop="name">裘千丈</p>
+  <div class="site-description" itemprop="description">苏老泉，二十七。始发愤，读书籍。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">75</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">77</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">裘千丈</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">97k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">2:41</span>
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+-->
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>
