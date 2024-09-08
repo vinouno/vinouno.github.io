@@ -507,34 +507,34 @@ class="math inline">\(2^e-1\)</span>并且尾数的小数部分非0，这个数�
 <p>总结以上所有的情况：</p>
 <table>
 <thead>
-<tr class="header">
+<tr>
 <th>形式</th>
 <th>指数</th>
 <th>小数部分</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>零</td>
 <td>0</td>
 <td>0</td>
 </tr>
-<tr class="even">
+<tr>
 <td>非规约形式</td>
 <td>0</td>
 <td>大于0小于1</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>规约形式</td>
 <td>1到2^(e)-2</td>
 <td>大于等于1小于2</td>
 </tr>
-<tr class="even">
+<tr>
 <td>无穷</td>
 <td>2^(e)-1</td>
 <td>0</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>NaN</td>
 <td>2^(e)-1</td>
 <td>非0</td>
@@ -553,7 +553,7 @@ class="math inline">\(2^e-1\)</span>并且尾数的小数部分非0，这个数�
 <col style="width: 30%" />
 </colgroup>
 <thead>
-<tr class="header">
+<tr>
 <th>类别</th>
 <th>正负号</th>
 <th>实际指数</th>
@@ -564,7 +564,7 @@ class="math inline">\(2^e-1\)</span>并且尾数的小数部分非0，这个数�
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>零</td>
 <td>0</td>
 <td>-127</td>
@@ -573,7 +573,7 @@ class="math inline">\(2^e-1\)</span>并且尾数的小数部分非0，这个数�
 <td>000 0000 0000 0000 0000 0000</td>
 <td>0.0</td>
 </tr>
-<tr class="even">
+<tr>
 <td>负零</td>
 <td>1</td>
 <td>-127</td>
@@ -582,7 +582,7 @@ class="math inline">\(2^e-1\)</span>并且尾数的小数部分非0，这个数�
 <td>000 0000 0000 0000 0000 0000</td>
 <td>-0.0</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>1</td>
 <td>0</td>
 <td>0</td>
@@ -591,7 +591,7 @@ class="math inline">\(2^e-1\)</span>并且尾数的小数部分非0，这个数�
 <td>000 0000 0000 0000 0000 0000</td>
 <td>1.0</td>
 </tr>
-<tr class="even">
+<tr>
 <td>-1</td>
 <td>1</td>
 <td>0</td>
@@ -600,7 +600,7 @@ class="math inline">\(2^e-1\)</span>并且尾数的小数部分非0，这个数�
 <td>000 0000 0000 0000 0000 0000</td>
 <td>-1.0</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>最小的非规约数</td>
 <td>*</td>
 <td>-126</td>
@@ -609,7 +609,7 @@ class="math inline">\(2^e-1\)</span>并且尾数的小数部分非0，这个数�
 <td>000 0000 0000 0000 0000 0001</td>
 <td>±2^-23 × 2^-126 ≈ ±2^-149 ≈ ±1.4×10^-45</td>
 </tr>
-<tr class="even">
+<tr>
 <td>中间大小的非规约数</td>
 <td>*</td>
 <td>-126</td>
@@ -618,7 +618,7 @@ class="math inline">\(2^e-1\)</span>并且尾数的小数部分非0，这个数�
 <td>100 0000 0000 0000 0000 0000</td>
 <td>±2^-1 × 2^-126 ≈ ±2^-127 ≈ ±5.88×10^-39</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>最大的非规约数</td>
 <td>*</td>
 <td>-126</td>
@@ -627,7 +627,7 @@ class="math inline">\(2^e-1\)</span>并且尾数的小数部分非0，这个数�
 <td>111 1111 1111 1111 1111 1111</td>
 <td>±(1-2^-23) × 2^-126 ≈ ±1.18×10^-38</td>
 </tr>
-<tr class="even">
+<tr>
 <td>最小的规约数</td>
 <td>*</td>
 <td>-126</td>
@@ -636,7 +636,7 @@ class="math inline">\(2^e-1\)</span>并且尾数的小数部分非0，这个数�
 <td>000 0000 0000 0000 0000 0000</td>
 <td>±2^-126 ≈ ±1.18×10^-38</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>最大的规约数</td>
 <td>*</td>
 <td>127</td>
@@ -645,7 +645,7 @@ class="math inline">\(2^e-1\)</span>并且尾数的小数部分非0，这个数�
 <td>111 1111 1111 1111 1111 1111</td>
 <td>±(2<sup>-2</sup>-23) × 2^127 ≈ ±3.4×10^38</td>
 </tr>
-<tr class="even">
+<tr>
 <td>正无穷</td>
 <td>0</td>
 <td>128</td>
@@ -654,7 +654,7 @@ class="math inline">\(2^e-1\)</span>并且尾数的小数部分非0，这个数�
 <td>000 0000 0000 0000 0000 0000</td>
 <td>+∞</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>负无穷</td>
 <td>1</td>
 <td>128</td>
@@ -663,7 +663,7 @@ class="math inline">\(2^e-1\)</span>并且尾数的小数部分非0，这个数�
 <td>000 0000 0000 0000 0000 0000</td>
 <td>-∞</td>
 </tr>
-<tr class="even">
+<tr>
 <td>NaN</td>
 <td>*</td>
 <td>128</td>
