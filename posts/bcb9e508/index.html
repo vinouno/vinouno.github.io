@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/logo%20(2).png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/logo%20(3).png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/logo%20(4).png">
+  <link rel="mask-icon" href="/images/logo%20(1).png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"vinouno.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
+  </script>
+  <meta property="og:type" content="article">
+<meta property="og:title" content="量子计算入门计划&#96;">
+<meta property="og:url" content="https://vinouno.github.io/posts/bcb9e508/index.html">
+<meta property="og:site_name" content="秋高斋">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-01-29T13:28:45.000Z">
+<meta property="article:modified_time" content="2025-01-29T13:29:00.134Z">
+<meta property="article:author" content="裘千丈">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://vinouno.github.io/posts/bcb9e508/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>量子计算入门计划` | 秋高斋</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">秋高斋</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/vinouno" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://vinouno.github.io/posts/bcb9e508/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/head.png">
+      <meta itemprop="name" content="裘千丈">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="秋高斋">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          量子计算入门计划`
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2025-01-29 21:28:45 / 修改时间：21:29:00" itemprop="dateCreated datePublished" datetime="2025-01-29T21:28:45+08:00">2025-01-29</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.7k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+            <div class="post-description"><div align="center"> </div></div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>以下是为计算机硕士设计的量子计算学习路线，涵盖书籍、论文、课程和实践资源，帮助你系统性地掌握量子计算的核心理论与应用：</p>
+<hr />
+<h3 id="阶段-1数学与量子力学基础2-3个月"><strong>阶段
+1：数学与量子力学基础</strong>（2-3个月）</h3>
+<h4 id="重点目标"><strong>重点目标</strong></h4>
+<ul>
+<li>补充必要的数学和量子力学基础</li>
+<li>理解量子比特的表示与操作</li>
+</ul>
+<h4 id="推荐资源"><strong>推荐资源</strong></h4>
+<ol type="1">
+<li><strong>数学基础</strong>
+<ul>
+<li><strong>书籍</strong>：Gilbert
+Strang《线性代数导论》（重点：向量空间、矩阵、特征值）</li>
+<li><strong>补充材料</strong>：复数运算、概率论、张量积（参考MIT
+OpenCourseWare）</li>
+</ul></li>
+<li><strong>量子力学基础</strong>
+<ul>
+<li><strong>书籍</strong>：《Quantum Mechanics: The Theoretical
+Minimum》（Leonard Susskind）</li>
+<li><strong>在线课程</strong>：Coursera《量子力学与量子计算》（Umesh
+Vazirani, 伯克利）</li>
+</ul></li>
+</ol>
+<hr />
+<h3 id="阶段-2量子计算核心理论3-4个月"><strong>阶段
+2：量子计算核心理论</strong>（3-4个月）</h3>
+<h4 id="重点目标-1"><strong>重点目标</strong></h4>
+<ul>
+<li>掌握量子门、量子算法和量子纠错</li>
+<li>理解量子计算的物理实现</li>
+</ul>
+<h4 id="推荐书籍"><strong>推荐书籍</strong></h4>
+<ol type="1">
+<li><strong>经典教材</strong>
+<ul>
+<li>《Quantum Computation and Quantum Information》（Nielsen &amp;
+Chuang）<em>必读</em></li>
+<li>《Quantum Computing: A Gentle Introduction》（Rieffel &amp;
+Polak）<em>适合入门</em></li>
+</ul></li>
+<li><strong>算法专项</strong>
+<ul>
+<li>《An Introduction to Quantum Algorithms》（Phillip
+Kaye）<em>聚焦Shor/Grover算法</em></li>
+</ul></li>
+</ol>
+<h4 id="关键论文"><strong>关键论文</strong></h4>
+<ol type="1">
+<li>基础算法：
+<ul>
+<li>Shor, P. (1994). <a
+target="_blank" rel="noopener" href="https://doi.org/10.1109/SFCS.1994.365700">"Algorithms for Quantum
+Computation"</a>（因数分解）</li>
+<li>Grover, L. (1996). <a
+target="_blank" rel="noopener" href="https://doi.org/10.1145/237814.237866">"A Fast Quantum Mechanical
+Algorithm for Database Search"</a></li>
+</ul></li>
+<li>近期进展：
+<ul>
+<li>Harrow, A. (2009). <a
+target="_blank" rel="noopener" href="https://arxiv.org/abs/0811.3171">"Quantum Algorithm for Linear
+Systems of Equations"</a>（HHL算法）</li>
+</ul></li>
+</ol>
+<hr />
+<h3 id="阶段-3编程与实践2-3个月"><strong>阶段
+3：编程与实践</strong>（2-3个月）</h3>
+<h4 id="重点目标-2"><strong>重点目标</strong></h4>
+<ul>
+<li>熟悉量子编程框架</li>
+<li>实现经典算法并参与开源项目</li>
+</ul>
+<h4 id="工具与框架"><strong>工具与框架</strong></h4>
+<ol type="1">
+<li><strong>Qiskit（IBM）</strong>：
+<ul>
+<li>官方教程：<a target="_blank" rel="noopener" href="https://qiskit.org/textbook/">Qiskit
+Textbook</a></li>
+<li>书籍：《Learn Quantum Computing with Python and Qiskit》（Hassi
+Norlén）</li>
+</ul></li>
+<li><strong>其他框架</strong>：
+<ul>
+<li>Cirq（Google）/<a target="_blank" rel="noopener" href="https://projectq.ch/">ProjectQ</a>（ETH
+Zurich）</li>
+<li>Microsoft Quantum Development Kit（Q#）</li>
+</ul></li>
+</ol>
+<h4 id="实践项目"><strong>实践项目</strong></h4>
+<ol type="1">
+<li>实现基础算法：量子隐形传态、Deutsch-Jozsa算法</li>
+<li>参与IBM Quantum Challenge（定期举办的编程竞赛）</li>
+<li>探索量子机器学习库（如PennyLane）</li>
+</ol>
+<hr />
+<h3 id="阶段-4高级主题与研究前沿持续学习"><strong>阶段
+4：高级主题与研究前沿</strong>（持续学习）</h3>
+<h4 id="研究方向选择"><strong>研究方向选择</strong></h4>
+<ol type="1">
+<li><strong>量子算法优化</strong>：QAOA（组合优化）、VQE（量子化学）</li>
+<li><strong>量子纠错与容错</strong>：Surface
+Code、NISQ（含噪声中等规模量子计算）</li>
+<li><strong>量子机器学习</strong>：量子神经网络、数据编码策略</li>
+</ol>
+<h4 id="必读论文"><strong>必读论文</strong></h4>
+<ol type="1">
+<li>近期顶会论文：
+<ul>
+<li><a target="_blank" rel="noopener" href="https://aps.org/meetings/qtc/">Quantum Topical Conference
+(QTC)</a></li>
+<li><a target="_blank" rel="noopener" href="https://qipconference.org/">Quantum Information Processing
+(QIP)</a></li>
+</ul></li>
+<li>预印本平台：
+<ul>
+<li><a
+target="_blank" rel="noopener" href="https://arxiv.org/list/quant-ph/recent">arXiv量子计算板块</a></li>
+<li><a target="_blank" rel="noopener" href="https://quantum-journal.org/">Quantum
+Journal</a>（开源期刊）</li>
+</ul></li>
+</ol>
+<hr />
+<h3 id="学习路线总结"><strong>学习路线总结</strong></h3>
+<table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>时间</th>
+<th>内容</th>
+<th>资源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>预备知识</td>
+<td>2-3月</td>
+<td>线性代数/量子力学基础</td>
+<td>Strang教材 + Susskind书籍</td>
+</tr>
+<tr>
+<td>核心理论</td>
+<td>3-4月</td>
+<td>量子门/算法/纠错</td>
+<td>Nielsen &amp; Chuang + 经典论文</td>
+</tr>
+<tr>
+<td>编程实践</td>
+<td>2-3月</td>
+<td>Qiskit/Cirq项目开发</td>
+<td>IBM教程 + 开源项目</td>
+</tr>
+<tr>
+<td>高级研究</td>
+<td>持续</td>
+<td>顶会论文跟踪 + 研究方向深耕</td>
+<td>arXiv + 实验室合作</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="附加建议"><strong>附加建议</strong></h3>
+<ol type="1">
+<li><strong>加入社区</strong>：
+<ul>
+<li>Qiskit Slack频道、Quantum Computing Stack Exchange</li>
+<li>参与本地量子计算Meetup或线上研讨会（如QWorld）</li>
+</ul></li>
+<li><strong>硬件拓展</strong>：
+<ul>
+<li>了解超导量子比特（IBM/Goolge）与光量子（Xanadu）的实现差异</li>
+</ul></li>
+<li><strong>职业路径</strong>：
+<ul>
+<li>实习机会：IBM Quantum、Rigetti、IonQ</li>
+<li>学术路径：关注MIT、Caltech、ETH Zurich等团队研究方向</li>
+</ul></li>
+</ol>
+<p>通过以上路线，你可以逐步从理论过渡到实践，最终进入研究前沿领域。量子计算领域发展迅速，建议定期跟踪最新论文（如关注Scott
+Aaronson博客或John Preskill的年度综述）。</p>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>裘千丈
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://vinouno.github.io/posts/bcb9e508/" title="量子计算入门计划&#96;">https://vinouno.github.io/posts/bcb9e508/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/posts/a0f5744c/" rel="prev" title="第四章：处理器体系结构">
+      <i class="fa fa-chevron-left"></i> 第四章：处理器体系结构
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%98%B6%E6%AE%B5-1%E6%95%B0%E5%AD%A6%E4%B8%8E%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6%E5%9F%BA%E7%A1%802-3%E4%B8%AA%E6%9C%88"><span class="nav-number">1.</span> <span class="nav-text">阶段
+1：数学与量子力学基础（2-3个月）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%87%8D%E7%82%B9%E7%9B%AE%E6%A0%87"><span class="nav-number">1.1.</span> <span class="nav-text">重点目标</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8E%A8%E8%8D%90%E8%B5%84%E6%BA%90"><span class="nav-number">1.2.</span> <span class="nav-text">推荐资源</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%98%B6%E6%AE%B5-2%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%A0%B8%E5%BF%83%E7%90%86%E8%AE%BA3-4%E4%B8%AA%E6%9C%88"><span class="nav-number">2.</span> <span class="nav-text">阶段
+2：量子计算核心理论（3-4个月）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%87%8D%E7%82%B9%E7%9B%AE%E6%A0%87-1"><span class="nav-number">2.1.</span> <span class="nav-text">重点目标</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8E%A8%E8%8D%90%E4%B9%A6%E7%B1%8D"><span class="nav-number">2.2.</span> <span class="nav-text">推荐书籍</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B3%E9%94%AE%E8%AE%BA%E6%96%87"><span class="nav-number">2.3.</span> <span class="nav-text">关键论文</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%98%B6%E6%AE%B5-3%E7%BC%96%E7%A8%8B%E4%B8%8E%E5%AE%9E%E8%B7%B52-3%E4%B8%AA%E6%9C%88"><span class="nav-number">3.</span> <span class="nav-text">阶段
+3：编程与实践（2-3个月）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%87%8D%E7%82%B9%E7%9B%AE%E6%A0%87-2"><span class="nav-number">3.1.</span> <span class="nav-text">重点目标</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B7%A5%E5%85%B7%E4%B8%8E%E6%A1%86%E6%9E%B6"><span class="nav-number">3.2.</span> <span class="nav-text">工具与框架</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9E%E8%B7%B5%E9%A1%B9%E7%9B%AE"><span class="nav-number">3.3.</span> <span class="nav-text">实践项目</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%98%B6%E6%AE%B5-4%E9%AB%98%E7%BA%A7%E4%B8%BB%E9%A2%98%E4%B8%8E%E7%A0%94%E7%A9%B6%E5%89%8D%E6%B2%BF%E6%8C%81%E7%BB%AD%E5%AD%A6%E4%B9%A0"><span class="nav-number">4.</span> <span class="nav-text">阶段
+4：高级主题与研究前沿（持续学习）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A0%94%E7%A9%B6%E6%96%B9%E5%90%91%E9%80%89%E6%8B%A9"><span class="nav-number">4.1.</span> <span class="nav-text">研究方向选择</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BF%85%E8%AF%BB%E8%AE%BA%E6%96%87"><span class="nav-number">4.2.</span> <span class="nav-text">必读论文</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF%E6%80%BB%E7%BB%93"><span class="nav-number">5.</span> <span class="nav-text">学习路线总结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%99%84%E5%8A%A0%E5%BB%BA%E8%AE%AE"><span class="nav-number">6.</span> <span class="nav-text">附加建议</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="裘千丈"
+      src="/images/head.png">
+  <p class="site-author-name" itemprop="name">裘千丈</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">78</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">77</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">裘千丈</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">100k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">2:47</span>
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+-->
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>
